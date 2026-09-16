@@ -315,7 +315,7 @@
   (function(){
     var scroller = document.getElementById('scroller');
     var sections = Array.prototype.slice.call(scroller.querySelectorAll('section'));
-    var DURATION = 1000;              // ms per section — raise for slower
+    var DURATION = 220;                // ms per section — raise for slower
     var COOLDOWN = 50;                 // ms of quiet before another gesture counts
     var index = 0, animating = false, lastEnd = 0;
     var freeIndex = sections.findIndex(function(s){ return s.dataset.free === 'true'; });
