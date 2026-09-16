@@ -39,9 +39,11 @@
     overflow-y:scroll;
     overscroll-behavior:none;
     scrollbar-width:none;
+    touch-action:none;
   }
   .scroller::-webkit-scrollbar{display:none}
-  .scroller.locked{overflow:hidden;touch-action:none}
+  .scroller.locked{overflow:hidden}
+  .scroller.free-scroll{touch-action:pan-y}
   section{
     min-height:100svh;
     display:flex;flex-direction:column;justify-content:center;
@@ -69,17 +71,14 @@
   .note em{font-style:normal;color:var(--olive)}
 
   /* ---------- hero ---------- */
-  #top{padding:0;overflow:hidden;justify-content:flex-end}
-  #top img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  #top .scrim{
-    position:absolute;inset:0;
-    background:rgba(35,38,18,.42);
+  #top{padding:0;overflow:hidden}
+  #top .hero{
+    flex:1;width:100%;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:flex-end;
   }
-  #top .logo{
-    position:relative;z-index:1;
-    padding:var(--pad);
-    width:100%;max-width:1440px;margin:0 auto;
-  }
+  #top .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  #top .scrim{position:absolute;inset:0;background:rgba(35,38,18,.42)}
+  #top .logo{position:relative;z-index:1;padding:var(--pad)}
   /* supply a white/cream version of the mark at /logo.svg */
   #top .logo img{height:clamp(52px,7vw,104px);width:auto;display:block}
 
@@ -113,7 +112,7 @@
   /* ---------- launch ---------- */
   .clock{
     color:var(--heading);
-    font-size:clamp(46px,9vw,150px);letter-spacing:-.03em;line-height:.92;
+    font-size:clamp(40px,7.6vw,130px);letter-spacing:-.03em;line-height:.92;
     font-variant-numeric:tabular-nums;text-transform:uppercase;
   }
   .clock-label{
@@ -161,24 +160,36 @@
   nav a:hover{color:var(--olive)}
   .copy{text-transform:uppercase;letter-spacing:.18em;font-size:clamp(9px,.85vw,11px);color:var(--muted)}
 
-  /* section indicator */
-  .dots{
-    position:fixed;right:clamp(14px,1.6vw,26px);top:50%;transform:translateY(-50%);
-    z-index:20;display:flex;flex-direction:column;gap:11px;
-  }
-  .dots button{
-    width:7px;height:7px;padding:0;border-radius:50%;
-    border:1px solid var(--muted);background:transparent;cursor:pointer;
-    transition:background .5s ease,border-color .5s ease,transform .5s ease;
-  }
-  .dots button.on{background:var(--olive);border-color:var(--olive);transform:scale(1.5)}
-  .dots button.light{border-color:rgba(250,247,239,.75)}
-  .dots button.light.on{background:#FAF7EF;border-color:#FAF7EF}
-  @media (max-width:640px){.dots{display:none}}
+  /* ---------- inverted (olive) sections ---------- */
+  .invert{background:var(--olive);color:var(--bg)}
+  .invert .eyebrow{color:rgba(250,247,239,.7)}
+  .invert .statement{color:var(--bg)}
+  .invert .note{color:var(--bg)}
+  .invert .steps{border-top-color:rgba(250,247,239,.25)}
+  .invert .steps li{border-bottom-color:rgba(250,247,239,.25)}
+  .invert .steps .n{color:var(--bg)}
+  .invert .clock{color:var(--bg)}
+  .invert .clock-label{color:rgba(250,247,239,.7)}
+  .invert .btn{background:var(--bg);color:var(--olive);border-color:var(--bg)}
+  .invert .btn:hover{background:transparent;color:var(--bg)}
+  .invert label{color:rgba(250,247,239,.7)}
+  .invert input[type=text],
+  .invert input[type=email],
+  .invert input[type=tel]{color:var(--bg);border-bottom-color:rgba(250,247,239,.35)}
+  .invert input::placeholder{color:rgba(250,247,239,.55)}
+  .invert input:focus{border-bottom-color:var(--bg)}
+  .invert .check input{border-color:rgba(250,247,239,.5)}
+  .invert .check input:checked{background:var(--bg);border-color:var(--bg)}
+  .invert .check span{color:rgba(250,247,239,.75)}
+  .invert .msg{color:var(--bg)}
+
+  /* ---------- join (photo + form, one section, free scroll) ---------- */
+  #join{padding:0;overflow:visible;justify-content:flex-start}
+  #join .panel-img{width:100%;height:56svh;object-fit:cover;display:block}
+  #join .inner{padding:clamp(40px,5vw,64px) var(--pad) var(--pad)}
 
   @media (prefers-reduced-motion:reduce){
     .scroller{scroll-behavior:auto}
-    .dots button{transition:none}
   }
 </style>
 </head>
@@ -187,15 +198,17 @@
 <div class="scroller" id="scroller">
 
   <section id="top">
-    <img class="bg" src="/HERO.webp" alt="" fetchpriority="high">
-    <div class="scrim"></div>
-    <div class="logo">
-      <!-- supply a cream/white version of the mark as /logo.svg -->
-      <img src="/logo.svg" alt="Dibs">
+    <div class="inner hero">
+      <img class="bg" src="/HERO.webp" alt="" fetchpriority="high">
+      <div class="scrim"></div>
+      <div class="logo">
+        <!-- supply a cream/white version of the mark at /logo.svg -->
+        <img src="/logo.svg" alt="Dibs">
+      </div>
     </div>
   </section>
 
-  <section id="what">
+  <section id="what" class="invert">
     <div class="inner">
       <p class="eyebrow">Bali</p>
       <p class="statement">We sell limited access to spots we've been to, and vouch for.</p>
@@ -205,7 +218,7 @@
         that isn't on the menu — write about why, and release a small number of
         spots at a price you won't get walking in.
       </p>
-      <a class="btn" href="#join">Get on the list</a>
+      <a class="btn" href="#join">Call dibs</a>
     </div>
   </section>
 
@@ -213,7 +226,7 @@
     <img src="/CAFE.webp" alt="" loading="lazy">
   </section>
 
-  <section id="how">
+  <section id="how" class="invert">
     <div class="inner">
       <p class="eyebrow">How it works</p>
       <ol class="steps">
@@ -229,7 +242,7 @@
   </section>
 
   <section class="panel">
-    <img src="/HOTEL.webp" alt="" loading="lazy">
+    <img src="/HERO.webp" alt="" loading="lazy">
   </section>
 
   <section id="launch">
@@ -237,14 +250,15 @@
       <p class="eyebrow">Launch</p>
       <div class="clock" id="clock">—</div>
       <p class="clock-label"><b>10 October 2026</b> · 20:20 WITA</p>
-      <a class="btn" href="#join">Be first in line</a>
+      <a class="btn" href="#join">Call dibs first</a>
     </div>
   </section>
 
-  <section id="join">
+  <section id="join" class="invert" data-free="true">
+    <img class="panel-img" src="/HOTEL.webp" alt="" loading="lazy">
     <div class="inner">
       <p class="eyebrow">Newsletter</p>
-      <p class="statement" style="margin-bottom:clamp(34px,4vw,56px)">Be first in line for the next release.</p>
+      <p class="statement" style="margin-bottom:clamp(34px,4vw,56px)">Call dibs on the next release.</p>
       <form id="signup" novalidate>
         <div class="field">
           <label for="name">Name</label>
@@ -262,7 +276,7 @@
           <input type="checkbox" id="wa" name="wa_optin" value="yes">
           <span>Send me drop alerts on WhatsApp</span>
         </div>
-        <button type="submit" class="btn" id="submit">Sign up</button>
+        <button type="submit" class="btn" id="submit">Call dibs</button>
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -281,49 +295,36 @@
 
 </div>
 
-<div class="dots" id="dots" aria-hidden="true"></div>
-
 <script>
-  var LAUNCH   = '2026-10-10T20:20:00+08:00';   // 10 Oct 2026, 20:20 WITA
-  var ENDPOINT = '';                            // Supabase REST or /api/subscribe
+  var RELEASE_TARGET = '2026-10-10T20:20:00+08:00';   // 10 Oct 2026, 20:20 WITA
+  var ENDPOINT = 'https://myxrzwqsnjroqngcqopd.supabase.co/rest/v1/signups';
+  var SUPABASE_KEY = 'sb_publishable_1yt1XLbG9Wu1qqPVz25GGA_TNGpAoNo';
 
   var clockEl = document.getElementById('clock');
   (function tick(){
-    var diff = new Date(LAUNCH) - new Date();
+    var diff = new Date(RELEASE_TARGET) - new Date();
     if (diff <= 0){ clockEl.textContent = 'Live now'; return; }
-    var d = Math.floor(diff/864e5), h = Math.floor(diff%864e5/36e5), m = Math.floor(diff%36e5/6e4);
-    clockEl.textContent = d + 'd ' + h + 'h ' + m + 'm';
-    setTimeout(tick, 20000);
+    var d = Math.floor(diff/864e5), h = Math.floor(diff%864e5/36e5), m = Math.floor(diff%36e5/6e4), s = Math.floor(diff%6e4/1e3);
+    clockEl.textContent = d + 'd ' + h + 'h ' + m + 'm ' + s + 's';
+    setTimeout(tick, 1000);
   })();
 
-  /* ---------- slow section scrolling ---------- */
+  /* ---------- section scrolling ---------- */
   (function(){
     var scroller = document.getElementById('scroller');
     var sections = Array.prototype.slice.call(scroller.querySelectorAll('section'));
-    var dotsWrap = document.getElementById('dots');
-    var DURATION = 1400;              // ms per section — raise for slower
-    var COOLDOWN = 140;               // ms of quiet before another gesture counts
+    var DURATION = 650;               // ms per section — raise for slower
+    var COOLDOWN = 80;                // ms of quiet before another gesture counts
     var index = 0, animating = false, lastEnd = 0;
+    var freeIndex = sections.findIndex(function(s){ return s.dataset.free === 'true'; });
 
     var reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-    /* dots */
-    sections.forEach(function(sec,i){
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.addEventListener('click', function(){ go(i); });
-      dotsWrap.appendChild(b);
-    });
-    var dots = Array.prototype.slice.call(dotsWrap.children);
-    function paint(){
-      dots.forEach(function(d,i){
-        d.classList.toggle('on', i===index);
-        d.classList.toggle('light', sections[i].classList.contains('panel') || sections[i].id==='top');
-      });
-    }
-    paint();
+    function isFree(){ return index === freeIndex && freeIndex !== -1; }
+    function syncFreeClass(){ scroller.classList.toggle('free-scroll', isFree()); }
+    syncFreeClass();
 
-    /* easing — slow in, slow out */
+    /* easing — quick in, soft out */
     function ease(t){
       return t<0.5 ? 8*t*t*t*t : 1-Math.pow(-2*t+2,4)/2;
     }
@@ -332,7 +333,7 @@
       i = Math.max(0, Math.min(sections.length-1, i));
       if (i===index && !animating) return;
       index = i;
-      paint();
+      syncFreeClass();
       if (reduced){ scroller.scrollTop = sections[i].offsetTop; return; }
 
       var start = scroller.scrollTop;
@@ -360,9 +361,23 @@
 
     function ready(){ return !animating && (Date.now() - lastEnd) > COOLDOWN; }
 
+    function freeAtTop(){
+      var sec = sections[freeIndex];
+      return scroller.scrollTop <= sec.offsetTop + 1;
+    }
+    function freeAtBottom(){
+      var sec = sections[freeIndex];
+      return scroller.scrollTop >= sec.offsetTop + sec.offsetHeight - scroller.clientHeight - 1;
+    }
+
     /* wheel / trackpad */
     var wheelLock = false, wheelTimer;
     scroller.addEventListener('wheel', function(e){
+      if (isFree()){
+        if (e.deltaY < 0 && freeAtTop()){ e.preventDefault(); if (ready()) go(index-1); }
+        else if (e.deltaY > 0 && freeAtBottom()){ e.preventDefault(); if (ready()) go(index+1); }
+        return; // otherwise: let the browser scroll this section normally
+      }
       e.preventDefault();
       if (!ready() || wheelLock) return;
       if (Math.abs(e.deltaY) < 8) return;
@@ -376,13 +391,20 @@
     var y0 = null;
     scroller.addEventListener('touchstart', function(e){ y0 = e.touches[0].clientY; }, {passive:true});
     scroller.addEventListener('touchmove', function(e){
-      if (animating) e.preventDefault();
+      if (isFree()) return; // native scroll inside the free section
+      e.preventDefault();
     }, {passive:false});
     scroller.addEventListener('touchend', function(e){
-      if (y0===null || !ready()) { y0 = null; return; }
+      if (y0===null){ return; }
       var dy = y0 - e.changedTouches[0].clientY;
       y0 = null;
-      if (Math.abs(dy) < 44) return;
+      if (isFree()){
+        if (dy < -18 && freeAtTop()){ if (ready()) go(index-1); }
+        else if (dy > 18 && freeAtBottom()){ if (ready()) go(index+1); }
+        return;
+      }
+      if (!ready()) return;
+      if (Math.abs(dy) < 18) return;
       go(index + (dy > 0 ? 1 : -1));
     }, {passive:true});
 
@@ -410,7 +432,7 @@
     var rt;
     window.addEventListener('resize', function(){
       clearTimeout(rt);
-      rt = setTimeout(function(){ scroller.scrollTop = sections[index].offsetTop; }, 120);
+      rt = setTimeout(function(){ if(!isFree()) scroller.scrollTop = sections[index].offsetTop; }, 120);
     });
   })();
 
@@ -419,15 +441,15 @@
     e.preventDefault(); msg.textContent='';
     var data={name:form.name.value.trim(),email:form.email.value.trim(),phone:form.phone.value.trim(),wa_optin:form.wa_optin.checked,source:'holding-page'};
     if(!data.email.includes('@')){ msg.textContent='A valid e-mail, please.'; return; }
-    btn.disabled=true; btn.textContent='Sending';
+    btn.disabled=true; btn.textContent='Calling dibs';
     try{
       if(!ENDPOINT) throw new Error('no endpoint');
-      var res=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
+      var res=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Prefer':'return=minimal'},body:JSON.stringify(data)});
       if(!res.ok) throw new Error('bad response');
-      form.innerHTML='<p class="msg">You\'re on the list. We\'ll be in touch before launch.</p>';
+      form.innerHTML='<p class="msg">Dibs called. We\'ll be in touch before launch.</p>';
     }catch(err){
       msg.textContent='Something went wrong — write to hello@wearedibs.com';
-      btn.disabled=false; btn.textContent='Sign up';
+      btn.disabled=false; btn.textContent='Call dibs';
     }
   });
 </script>
