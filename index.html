@@ -70,15 +70,16 @@
   }
   .note em{font-style:normal;color:var(--olive)}
 
-  /* ---------- hero ---------- */
+  /* ---------- hero (full-bleed photo, logo aligned to the same grid as every other section) ---------- */
   #top{padding:0;overflow:hidden}
-  #top .hero{
-    flex:1;width:100%;position:relative;overflow:hidden;
-    display:flex;flex-direction:column;justify-content:flex-end;
-  }
   #top .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   #top .scrim{position:absolute;inset:0;background:rgba(35,38,18,.42)}
-  #top .logo{position:relative;z-index:1;padding:var(--pad)}
+  #top .hero-pad{
+    flex:1;position:relative;z-index:1;
+    padding:var(--pad);
+    display:flex;flex-direction:column;justify-content:flex-end;
+  }
+  #top .logo{width:100%;max-width:1440px;margin:0 auto}
   /* supply a white/cream version of the mark at /logo.svg */
   #top .logo img{height:clamp(52px,7vw,104px);width:auto;display:block}
 
@@ -105,7 +106,7 @@
   }
   .steps .n{color:var(--olive);flex:0 0 34px;font-variant-numeric:tabular-nums}
 
-  /* ---------- image panels ---------- */
+  /* ---------- image panels (always full width) ---------- */
   .panel{padding:0;overflow:hidden}
   .panel img{width:100%;height:100svh;object-fit:cover;display:block}
 
@@ -150,8 +151,8 @@
     font-size:clamp(10px,.95vw,12px);line-height:1.8;color:var(--accent);
   }
 
-  /* ---------- footer ---------- */
-  #end{min-height:100svh;justify-content:flex-end}
+  /* ---------- footer nav (now living inside #join) ---------- */
+  .foot{margin-top:clamp(56px,7vw,96px)}
   nav{display:flex;flex-wrap:wrap;gap:clamp(18px,2.6vw,44px);margin-bottom:clamp(34px,4vw,56px)}
   nav a{
     color:var(--body);text-decoration:none;
@@ -182,11 +183,12 @@
   .invert .check input:checked{background:var(--bg);border-color:var(--bg)}
   .invert .check span{color:rgba(250,247,239,.75)}
   .invert .msg{color:var(--bg)}
+  .invert nav a{color:var(--bg)}
+  .invert nav a:hover{opacity:.7}
+  .invert .copy{color:rgba(250,247,239,.7)}
 
-  /* ---------- join (photo + form, one section, free scroll) ---------- */
-  #join{padding:0;overflow:visible;justify-content:flex-start}
-  #join .panel-img{width:100%;height:56svh;object-fit:cover;display:block}
-  #join .inner{padding:clamp(40px,5vw,64px) var(--pad) var(--pad)}
+  /* ---------- join (form + footer, one section, free-scroll if taller than the screen) ---------- */
+  #join{justify-content:flex-start}
 
   @media (prefers-reduced-motion:reduce){
     .scroller{scroll-behavior:auto}
@@ -198,9 +200,9 @@
 <div class="scroller" id="scroller">
 
   <section id="top">
-    <div class="inner hero">
-      <img class="bg" src="/HERO.webp" alt="" fetchpriority="high">
-      <div class="scrim"></div>
+    <img class="bg" src="/HERO.webp" alt="" fetchpriority="high">
+    <div class="scrim"></div>
+    <div class="hero-pad">
       <div class="logo">
         <!-- supply a cream/white version of the mark at /logo.svg -->
         <img src="/logo.svg" alt="Dibs">
@@ -254,8 +256,11 @@
     </div>
   </section>
 
+  <section class="panel">
+    <img src="/HOTEL.webp" alt="" loading="lazy">
+  </section>
+
   <section id="join" class="invert" data-free="true">
-    <img class="panel-img" src="/HOTEL.webp" alt="" loading="lazy">
     <div class="inner">
       <p class="eyebrow">Newsletter</p>
       <p class="statement" style="margin-bottom:clamp(34px,4vw,56px)">Call dibs on the next release.</p>
@@ -280,10 +285,7 @@
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
     </div>
-  </section>
-
-  <section id="end">
-    <div class="inner">
+    <div class="inner foot">
       <nav>
         <a href="https://instagram.com/dibs.id" target="_blank" rel="noopener noreferrer">Instagram</a>
         <a href="mailto:hello@wearedibs.com">Contact</a>
@@ -313,8 +315,8 @@
   (function(){
     var scroller = document.getElementById('scroller');
     var sections = Array.prototype.slice.call(scroller.querySelectorAll('section'));
-    var DURATION = 650;               // ms per section — raise for slower
-    var COOLDOWN = 80;                // ms of quiet before another gesture counts
+    var DURATION = 1000;              // ms per section — raise for slower
+    var COOLDOWN = 120;                // ms of quiet before another gesture counts
     var index = 0, animating = false, lastEnd = 0;
     var freeIndex = sections.findIndex(function(s){ return s.dataset.free === 'true'; });
 
@@ -324,7 +326,7 @@
     function syncFreeClass(){ scroller.classList.toggle('free-scroll', isFree()); }
     syncFreeClass();
 
-    /* easing — quick in, soft out */
+    /* easing — slow in, slow out */
     function ease(t){
       return t<0.5 ? 8*t*t*t*t : 1-Math.pow(-2*t+2,4)/2;
     }
