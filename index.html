@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DIBS</title>
+<meta name="description" content="Limited access to handpicked spots in Bali. Released Monday, Wednesday and Friday at 20:20.">
+<meta property="og:title" content="DIBS">
+<meta property="og:description" content="Limited access to handpicked spots in Bali.">
+<meta property="og:image" content="/HERO.webp">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --olive:#737700;
+    --heading:#232612;
+    --body:#2E2D26;
+    --muted:#6B6A5E;
+    --bg:#FAF7EF;
+    --card:#FFFFFF;
+    --tint:#E9EAD0;
+    --accent:#C8553D;
+    --pad:clamp(26px,5vw,88px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Satoshi',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-weight:300;
+    background:var(--bg);
+    color:var(--body);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* section-to-section scrolling */
+  .scroller{
+    height:100svh;
+    overflow-y:scroll;
+    overscroll-behavior:none;
+    scrollbar-width:none;
+  }
+  .scroller::-webkit-scrollbar{display:none}
+  .scroller.locked{overflow:hidden;touch-action:none}
+  section{
+    min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:var(--pad);
+    position:relative;
+    width:100%;
+  }
+  .inner{width:100%;max-width:1440px;margin:0 auto}
+
+  /* ---------- type ---------- */
+  .eyebrow{
+    text-transform:uppercase;letter-spacing:.2em;
+    font-size:clamp(10px,1vw,12px);color:var(--muted);margin-bottom:clamp(20px,2.5vw,34px);
+  }
+  .statement{
+    text-transform:uppercase;color:var(--heading);
+    font-size:clamp(21px,3.6vw,52px);line-height:1.22;letter-spacing:.004em;
+    max-width:20ch;
+  }
+  .note{
+    text-transform:uppercase;color:var(--body);
+    font-size:clamp(12px,1.15vw,16px);letter-spacing:.08em;line-height:1.85;
+    margin-top:clamp(28px,3vw,44px);max-width:52ch;
+  }
+  .note em{font-style:normal;color:var(--olive)}
+
+  /* ---------- hero ---------- */
+  #top{padding:0;overflow:hidden;justify-content:flex-end}
+  #top img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  #top .scrim{
+    position:absolute;inset:0;
+    background:rgba(35,38,18,.42);
+  }
+  #top .logo{
+    position:relative;z-index:1;
+    padding:var(--pad);
+    width:100%;max-width:1440px;margin:0 auto;
+  }
+  /* supply a white/cream version of the mark at /logo.svg */
+  #top .logo img{height:clamp(52px,7vw,104px);width:auto;display:block}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-block;margin-top:clamp(30px,3.4vw,46px);
+    padding:17px clamp(30px,3vw,48px);
+    font:inherit;font-size:clamp(11px,.95vw,13px);font-weight:400;
+    text-transform:uppercase;letter-spacing:.2em;text-decoration:none;
+    color:var(--bg);background:var(--olive);
+    border:1px solid var(--olive);cursor:pointer;
+    transition:background .25s ease,color .25s ease;
+  }
+  .btn:hover{background:transparent;color:var(--olive)}
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* ---------- how it works ---------- */
+  .steps{list-style:none;margin-top:clamp(30px,3.4vw,50px);border-top:1px solid var(--tint);max-width:1000px}
+  .steps li{
+    display:flex;gap:clamp(18px,2vw,34px);align-items:flex-start;
+    padding:clamp(18px,1.9vw,26px) 0;border-bottom:1px solid var(--tint);
+    text-transform:uppercase;letter-spacing:.07em;
+    font-size:clamp(12px,1.1vw,16px);line-height:1.7;
+  }
+  .steps .n{color:var(--olive);flex:0 0 34px;font-variant-numeric:tabular-nums}
+
+  /* ---------- image panels ---------- */
+  .panel{padding:0;overflow:hidden}
+  .panel img{width:100%;height:100svh;object-fit:cover;display:block}
+
+  /* ---------- launch ---------- */
+  .clock{
+    color:var(--heading);
+    font-size:clamp(46px,9vw,150px);letter-spacing:-.03em;line-height:.92;
+    font-variant-numeric:tabular-nums;text-transform:uppercase;
+  }
+  .clock-label{
+    text-transform:uppercase;letter-spacing:.2em;
+    font-size:clamp(10px,1vw,13px);color:var(--muted);margin-top:clamp(20px,2.2vw,30px);
+  }
+  .clock-label b{color:var(--accent);font-weight:400}
+
+  /* ---------- form ---------- */
+  form{margin-top:clamp(8px,1vw,18px);max-width:520px}
+  .field{margin-bottom:clamp(22px,2.4vw,34px)}
+  label{
+    display:block;text-transform:uppercase;letter-spacing:.2em;
+    font-size:clamp(10px,.9vw,12px);color:var(--muted);margin-bottom:10px;
+  }
+  input[type=text],input[type=email],input[type=tel]{
+    width:100%;padding:9px 0 13px;
+    font:inherit;font-size:clamp(16px,1.3vw,19px);font-weight:300;
+    color:var(--heading);background:transparent;
+    border:0;border-bottom:1px solid var(--tint);border-radius:0;
+  }
+  input::placeholder{color:var(--muted);opacity:.6}
+  input:focus{outline:0;border-bottom-color:var(--olive)}
+  .check{display:flex;gap:13px;align-items:flex-start;margin:0 0 clamp(26px,3vw,38px)}
+  .check input{
+    appearance:none;-webkit-appearance:none;
+    width:16px;height:16px;flex:0 0 16px;margin-top:3px;
+    border:1px solid var(--muted);background:transparent;cursor:pointer;
+  }
+  .check input:checked{background:var(--olive);border-color:var(--olive)}
+  .check span{text-transform:uppercase;letter-spacing:.09em;font-size:clamp(10px,.95vw,12px);line-height:1.8;color:var(--muted)}
+  button.btn{margin-top:0;width:100%;max-width:520px}
+  .msg{
+    margin-top:20px;text-transform:uppercase;letter-spacing:.09em;
+    font-size:clamp(10px,.95vw,12px);line-height:1.8;color:var(--accent);
+  }
+
+  /* ---------- footer ---------- */
+  #end{min-height:100svh;justify-content:flex-end}
+  nav{display:flex;flex-wrap:wrap;gap:clamp(18px,2.6vw,44px);margin-bottom:clamp(34px,4vw,56px)}
+  nav a{
+    color:var(--body);text-decoration:none;
+    text-transform:uppercase;letter-spacing:.2em;font-size:clamp(11px,1vw,13px);
+  }
+  nav a:hover{color:var(--olive)}
+  .copy{text-transform:uppercase;letter-spacing:.18em;font-size:clamp(9px,.85vw,11px);color:var(--muted)}
+
+  /* section indicator */
+  .dots{
+    position:fixed;right:clamp(14px,1.6vw,26px);top:50%;transform:translateY(-50%);
+    z-index:20;display:flex;flex-direction:column;gap:11px;
+  }
+  .dots button{
+    width:7px;height:7px;padding:0;border-radius:50%;
+    border:1px solid var(--muted);background:transparent;cursor:pointer;
+    transition:background .5s ease,border-color .5s ease,transform .5s ease;
+  }
+  .dots button.on{background:var(--olive);border-color:var(--olive);transform:scale(1.5)}
+  .dots button.light{border-color:rgba(250,247,239,.75)}
+  .dots button.light.on{background:#FAF7EF;border-color:#FAF7EF}
+  @media (max-width:640px){.dots{display:none}}
+
+  @media (prefers-reduced-motion:reduce){
+    .scroller{scroll-behavior:auto}
+    .dots button{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="scroller" id="scroller">
+
+  <section id="top">
+    <img class="bg" src="/HERO.webp" alt="" fetchpriority="high">
+    <div class="scrim"></div>
+    <div class="logo">
+      <!-- supply a cream/white version of the mark as /logo.svg -->
+      <img src="/logo.svg" alt="Dibs">
+    </div>
+  </section>
+
+  <section id="what">
+    <div class="inner">
+      <p class="eyebrow">Bali</p>
+      <p class="statement">We sell limited access to spots we've been to, and vouch for.</p>
+      <p class="note">
+        Not a listings site. Not a search. Three times a week we pick one place
+        in Bali worth going out for — a kitchen, a bakery, a bar, a villa, a night
+        that isn't on the menu — write about why, and release a small number of
+        spots at a price you won't get walking in.
+      </p>
+      <a class="btn" href="#join">Get on the list</a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <img src="/CAFE.webp" alt="" loading="lazy">
+  </section>
+
+  <section id="how">
+    <div class="inner">
+      <p class="eyebrow">How it works</p>
+      <ol class="steps">
+        <li><span class="n">01</span><span>We tell you what's dropping and when. One spot at a time — no feed, no browsing.</span></li>
+        <li><span class="n">02</span><span>At 20:20 it goes live. Limited numbers. Pay by card, Apple Pay, QRIS or transfer.</span></li>
+        <li><span class="n">03</span><span>You get a voucher with a QR code. Turn up, they scan it, that's it.</span></li>
+      </ol>
+      <p class="note">
+        We've sat at every table, checked into every room, and ordered at every bar.
+        If it isn't worth our inner circle's time, it never sees the light of day.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <img src="/HOTEL.webp" alt="" loading="lazy">
+  </section>
+
+  <section id="launch">
+    <div class="inner">
+      <p class="eyebrow">Launch</p>
+      <div class="clock" id="clock">—</div>
+      <p class="clock-label"><b>10 October 2026</b> · 20:20 WITA</p>
+      <a class="btn" href="#join">Be first in line</a>
+    </div>
+  </section>
+
+  <section id="join">
+    <div class="inner">
+      <p class="eyebrow">Newsletter</p>
+      <p class="statement" style="margin-bottom:clamp(34px,4vw,56px)">Be first in line for the next release.</p>
+      <form id="signup" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="phone">WhatsApp</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+62">
+        </div>
+        <div class="check">
+          <input type="checkbox" id="wa" name="wa_optin" value="yes">
+          <span>Send me drop alerts on WhatsApp</span>
+        </div>
+        <button type="submit" class="btn" id="submit">Sign up</button>
+        <p class="msg" id="msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="end">
+    <div class="inner">
+      <nav>
+        <a href="https://instagram.com/dibs.id" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="mailto:hello@wearedibs.com">Contact</a>
+        <a href="/terms.html">Terms of use</a>
+      </nav>
+      <p class="copy">© 2026 Dibs. All rights reserved.</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="dots" id="dots" aria-hidden="true"></div>
+
+<script>
+  var LAUNCH   = '2026-10-10T20:20:00+08:00';   // 10 Oct 2026, 20:20 WITA
+  var ENDPOINT = '';                            // Supabase REST or /api/subscribe
+
+  var clockEl = document.getElementById('clock');
+  (function tick(){
+    var diff = new Date(LAUNCH) - new Date();
+    if (diff <= 0){ clockEl.textContent = 'Live now'; return; }
+    var d = Math.floor(diff/864e5), h = Math.floor(diff%864e5/36e5), m = Math.floor(diff%36e5/6e4);
+    clockEl.textContent = d + 'd ' + h + 'h ' + m + 'm';
+    setTimeout(tick, 20000);
+  })();
+
+  /* ---------- slow section scrolling ---------- */
+  (function(){
+    var scroller = document.getElementById('scroller');
+    var sections = Array.prototype.slice.call(scroller.querySelectorAll('section'));
+    var dotsWrap = document.getElementById('dots');
+    var DURATION = 1400;              // ms per section — raise for slower
+    var COOLDOWN = 140;               // ms of quiet before another gesture counts
+    var index = 0, animating = false, lastEnd = 0;
+
+    var reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    /* dots */
+    sections.forEach(function(sec,i){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.addEventListener('click', function(){ go(i); });
+      dotsWrap.appendChild(b);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.children);
+    function paint(){
+      dots.forEach(function(d,i){
+        d.classList.toggle('on', i===index);
+        d.classList.toggle('light', sections[i].classList.contains('panel') || sections[i].id==='top');
+      });
+    }
+    paint();
+
+    /* easing — slow in, slow out */
+    function ease(t){
+      return t<0.5 ? 8*t*t*t*t : 1-Math.pow(-2*t+2,4)/2;
+    }
+
+    function go(i){
+      i = Math.max(0, Math.min(sections.length-1, i));
+      if (i===index && !animating) return;
+      index = i;
+      paint();
+      if (reduced){ scroller.scrollTop = sections[i].offsetTop; return; }
+
+      var start = scroller.scrollTop;
+      var end   = sections[i].offsetTop;
+      var delta = end - start;
+      if (Math.abs(delta) < 2) return;
+
+      animating = true;
+      scroller.classList.add('locked');
+      var t0 = null;
+      function step(ts){
+        if (t0===null) t0 = ts;
+        var p = Math.min((ts - t0) / DURATION, 1);
+        scroller.scrollTop = start + delta * ease(p);
+        if (p < 1){ requestAnimationFrame(step); }
+        else {
+          scroller.scrollTop = end;
+          animating = false;
+          lastEnd = Date.now();
+          scroller.classList.remove('locked');
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    function ready(){ return !animating && (Date.now() - lastEnd) > COOLDOWN; }
+
+    /* wheel / trackpad */
+    var wheelLock = false, wheelTimer;
+    scroller.addEventListener('wheel', function(e){
+      e.preventDefault();
+      if (!ready() || wheelLock) return;
+      if (Math.abs(e.deltaY) < 8) return;
+      wheelLock = true;
+      clearTimeout(wheelTimer);
+      wheelTimer = setTimeout(function(){ wheelLock = false; }, DURATION * 0.5);
+      go(index + (e.deltaY > 0 ? 1 : -1));
+    }, {passive:false});
+
+    /* touch */
+    var y0 = null;
+    scroller.addEventListener('touchstart', function(e){ y0 = e.touches[0].clientY; }, {passive:true});
+    scroller.addEventListener('touchmove', function(e){
+      if (animating) e.preventDefault();
+    }, {passive:false});
+    scroller.addEventListener('touchend', function(e){
+      if (y0===null || !ready()) { y0 = null; return; }
+      var dy = y0 - e.changedTouches[0].clientY;
+      y0 = null;
+      if (Math.abs(dy) < 44) return;
+      go(index + (dy > 0 ? 1 : -1));
+    }, {passive:true});
+
+    /* keyboard */
+    window.addEventListener('keydown', function(e){
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+      var k = e.key;
+      if (k==='ArrowDown' || k==='PageDown' || k===' '){ e.preventDefault(); if(ready()) go(index+1); }
+      else if (k==='ArrowUp' || k==='PageUp'){ e.preventDefault(); if(ready()) go(index-1); }
+      else if (k==='Home'){ e.preventDefault(); go(0); }
+      else if (k==='End'){ e.preventDefault(); go(sections.length-1); }
+    });
+
+    /* in-page anchors */
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var t = document.querySelector(a.getAttribute('href'));
+        if(!t) return;
+        e.preventDefault();
+        go(sections.indexOf(t));
+      });
+    });
+
+    /* keep position on resize / orientation change */
+    var rt;
+    window.addEventListener('resize', function(){
+      clearTimeout(rt);
+      rt = setTimeout(function(){ scroller.scrollTop = sections[index].offsetTop; }, 120);
+    });
+  })();
+
+  var form=document.getElementById('signup'), msg=document.getElementById('msg'), btn=document.getElementById('submit');
+  form.addEventListener('submit', async function(e){
+    e.preventDefault(); msg.textContent='';
+    var data={name:form.name.value.trim(),email:form.email.value.trim(),phone:form.phone.value.trim(),wa_optin:form.wa_optin.checked,source:'holding-page'};
+    if(!data.email.includes('@')){ msg.textContent='A valid e-mail, please.'; return; }
+    btn.disabled=true; btn.textContent='Sending';
+    try{
+      if(!ENDPOINT) throw new Error('no endpoint');
+      var res=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
+      if(!res.ok) throw new Error('bad response');
+      form.innerHTML='<p class="msg">You\'re on the list. We\'ll be in touch before launch.</p>';
+    }catch(err){
+      msg.textContent='Something went wrong — write to hello@wearedibs.com';
+      btn.disabled=false; btn.textContent='Sign up';
+    }
+  });
+</script>
+
+</body>
+</html>
