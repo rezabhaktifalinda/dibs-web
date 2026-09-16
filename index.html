@@ -189,6 +189,10 @@
 
   /* ---------- join (form + footer, one section, free-scroll if taller than the screen) ---------- */
   #join{justify-content:flex-start}
+  #join .join-hero{
+    min-height:calc(100svh - 2*var(--pad));
+    display:flex;flex-direction:column;justify-content:center;
+  }
 
   @media (prefers-reduced-motion:reduce){
     .scroller{scroll-behavior:auto}
@@ -243,10 +247,6 @@
     </div>
   </section>
 
-  <section class="panel">
-    <img src="/HERO.webp" alt="" loading="lazy">
-  </section>
-
   <section id="launch">
     <div class="inner">
       <p class="eyebrow">Launch</p>
@@ -261,7 +261,7 @@
   </section>
 
   <section id="join" class="invert" data-free="true">
-    <div class="inner">
+    <div class="inner join-hero">
       <p class="eyebrow">Newsletter</p>
       <p class="statement" style="margin-bottom:clamp(34px,4vw,56px)">Call dibs on the next release.</p>
       <form id="signup" novalidate>
