@@ -81,7 +81,7 @@
   }
   #top .logo{width:100%;max-width:1440px;margin:0 auto}
   /* supply a white/cream version of the mark at /logo.svg */
-  #top .logo img{height:clamp(52px,7vw,104px);width:auto;display:block}
+  #top .logo img{height:clamp(84px,11vw,104px);width:auto;display:block}
 
   /* ---------- buttons ---------- */
   .btn{
@@ -316,7 +316,7 @@
     var scroller = document.getElementById('scroller');
     var sections = Array.prototype.slice.call(scroller.querySelectorAll('section'));
     var DURATION = 1000;              // ms per section — raise for slower
-    var COOLDOWN = 120;                // ms of quiet before another gesture counts
+    var COOLDOWN = 50;                 // ms of quiet before another gesture counts
     var index = 0, animating = false, lastEnd = 0;
     var freeIndex = sections.findIndex(function(s){ return s.dataset.free === 'true'; });
 
@@ -385,7 +385,7 @@
       if (Math.abs(e.deltaY) < 8) return;
       wheelLock = true;
       clearTimeout(wheelTimer);
-      wheelTimer = setTimeout(function(){ wheelLock = false; }, DURATION * 0.5);
+      wheelTimer = setTimeout(function(){ wheelLock = false; }, DURATION * 0.3);
       go(index + (e.deltaY > 0 ? 1 : -1));
     }, {passive:false});
 
