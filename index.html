@@ -125,19 +125,23 @@
   }
   .clock-label b{color:var(--accent);font-weight:400}
 
-  /* ---------- drop-time vote (over the HOTEL photo) ---------- */
-  .vote-panel{position:relative}
-  .vote-panel::after{
+  /* ---------- text over photos (tagline on CAFE, vote on HOTEL) ---------- */
+  .text-panel{position:relative}
+  .text-panel::after{
     content:"";position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(ellipse at center,rgba(35,38,18,.68) 0%,rgba(35,38,18,.5) 55%,rgba(35,38,18,.35) 100%);
   }
-  /* centred over the photo; vote text runs 5% larger than the rest of the page */
-  .vote{
+  /* centred over the photo; text runs 5% larger than the rest of the page */
+  .over-photo{
     position:absolute;inset:0;z-index:1;padding:var(--pad);color:var(--bg);
     display:flex;flex-direction:column;justify-content:center;text-align:center;
   }
-  .vote .eyebrow{color:rgba(250,247,239,.85);font-size:clamp(10.5px,1.05vw,12.6px)}
-  .vote .statement{color:var(--bg);font-size:clamp(29.4px,4.62vw,54.6px);margin:0 auto}
+  .over-photo .eyebrow{color:rgba(250,247,239,.85);font-size:clamp(10.5px,1.05vw,12.6px)}
+  .over-photo .statement{color:var(--bg);font-size:clamp(29.4px,4.62vw,54.6px);margin:0 auto}
+  /* the sunset photo is already dark: a lighter veil keeps the sky's colour */
+  .text-panel.light::after{background:rgba(35,38,18,.22)}
+
+  /* ---------- drop-time vote (over the HOTEL photo) ---------- */
   .vote .note{color:var(--bg);font-size:clamp(12.6px,1.21vw,16.8px);margin:clamp(16px,1.8vw,24px) auto 0}
   .vote-options{display:flex;gap:10px;max-width:400px;margin:clamp(24px,2.8vw,36px) auto 0}
   .vote-btn{
@@ -270,8 +274,13 @@
     </div>
   </section>
 
-  <section class="panel">
+  <section class="panel text-panel light">
     <img src="/CAFE.webp" alt="" loading="lazy">
+    <div class="over-photo">
+      <div class="inner">
+        <p class="statement">Only the ones<br>worth calling</p>
+      </div>
+    </div>
   </section>
 
   <section id="how" class="invert">
@@ -298,9 +307,9 @@
     </div>
   </section>
 
-  <section class="panel vote-panel">
+  <section class="panel text-panel">
     <img src="/HOTEL.webp" alt="" loading="lazy">
-    <div class="vote" id="vote">
+    <div class="over-photo vote" id="vote">
       <div class="inner">
         <p class="eyebrow">Your call</p>
         <p class="statement">Help us pick the drop time.</p>
