@@ -129,17 +129,20 @@
   .vote-panel{position:relative}
   .vote-panel::after{
     content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(to top,rgba(35,38,18,.82) 0%,rgba(35,38,18,.55) 45%,rgba(35,38,18,.3) 100%);
+    background:radial-gradient(ellipse at center,rgba(35,38,18,.68) 0%,rgba(35,38,18,.5) 55%,rgba(35,38,18,.35) 100%);
   }
-  /* vote text runs 5% larger than the rest of the page */
-  .vote{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:var(--pad);color:var(--bg)}
+  /* centred over the photo; vote text runs 5% larger than the rest of the page */
+  .vote{
+    position:absolute;inset:0;z-index:1;padding:var(--pad);color:var(--bg);
+    display:flex;flex-direction:column;justify-content:center;text-align:center;
+  }
   .vote .eyebrow{color:rgba(250,247,239,.85);font-size:clamp(10.5px,1.05vw,12.6px)}
-  .vote .statement{color:var(--bg);font-size:clamp(29.4px,4.62vw,54.6px)}
-  .vote .note{color:var(--bg);font-size:clamp(12.6px,1.21vw,16.8px);margin-top:clamp(16px,1.8vw,24px)}
-  .vote-options{display:flex;gap:12px;max-width:520px;margin-top:clamp(26px,3vw,40px)}
+  .vote .statement{color:var(--bg);font-size:clamp(29.4px,4.62vw,54.6px);margin:0 auto}
+  .vote .note{color:var(--bg);font-size:clamp(12.6px,1.21vw,16.8px);margin:clamp(16px,1.8vw,24px) auto 0}
+  .vote-options{display:flex;gap:10px;max-width:400px;margin:clamp(24px,2.8vw,36px) auto 0}
   .vote-btn{
-    flex:1;padding:16px 0;
-    font:inherit;font-size:clamp(23.1px,2.31vw,31.5px);font-weight:300;letter-spacing:.02em;
+    flex:1;padding:11px 0;
+    font:inherit;font-size:clamp(20px,1.9vw,26px);font-weight:300;letter-spacing:.02em;
     font-variant-numeric:tabular-nums;color:var(--bg);
     background:rgba(250,247,239,.08);border:1px solid rgba(250,247,239,.75);cursor:pointer;
     -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
