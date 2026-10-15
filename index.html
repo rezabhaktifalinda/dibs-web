@@ -125,6 +125,39 @@
   }
   .clock-label b{color:var(--accent);font-weight:400}
 
+  /* ---------- drop-time vote ---------- */
+  .vote{margin-top:clamp(34px,4vw,56px);max-width:520px}
+  .vote [hidden]{display:none}
+  .vote-q{
+    text-transform:uppercase;letter-spacing:.2em;
+    font-size:clamp(10px,1vw,13px);color:var(--muted);margin-bottom:clamp(14px,1.6vw,20px);
+  }
+  .vote-options{display:flex;gap:12px}
+  .vote-btn{
+    flex:1;padding:15px 0;
+    font:inherit;font-size:clamp(20px,2vw,28px);font-weight:300;letter-spacing:.02em;
+    font-variant-numeric:tabular-nums;color:var(--olive);
+    background:transparent;border:1px solid var(--olive);cursor:pointer;
+    transition:background .25s ease,color .25s ease;
+  }
+  .vote-btn:hover:not(:disabled){background:var(--olive);color:var(--bg)}
+  .vote-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .vote-btn:disabled{opacity:.5;cursor:default}
+  .vote-row{
+    display:grid;grid-template-columns:4.5em 1fr 3.5em;align-items:center;gap:14px;
+    padding:8px 0;font-size:clamp(14px,1.3vw,18px);color:var(--heading);
+    font-variant-numeric:tabular-nums;
+  }
+  .vote-row b{font-weight:300;text-align:right}
+  .vote-row.mine span:first-child{color:var(--accent)}
+  .vote-bar{height:6px;background:var(--tint);overflow:hidden}
+  .vote-bar i{display:block;height:100%;width:0;background:var(--olive);transition:width .6s ease}
+  .vote-note{
+    margin-top:12px;min-height:1.8em;text-transform:uppercase;letter-spacing:.09em;
+    font-size:clamp(10px,.95vw,12px);line-height:1.8;color:var(--muted);
+  }
+  .vote + .btn{margin-top:clamp(18px,2vw,28px)}
+
   /* ---------- form ---------- */
   form{margin-top:clamp(8px,1vw,18px);max-width:520px}
   .field{margin-bottom:clamp(22px,2.4vw,34px)}
@@ -255,8 +288,20 @@
   <section id="launch">
     <div class="inner">
       <p class="eyebrow">Launch</p>
-      <div class="clock" id="clock">—</div>
-      <p class="clock-label"><b>10 October 2026</b> · 20:20 WITA</p>
+      <div class="clock">December</div>
+      <p class="clock-label"><b>2026</b> · Exact date soon</p>
+      <div class="vote" id="vote">
+        <p class="vote-q">You pick the drop time</p>
+        <div class="vote-options">
+          <button type="button" class="vote-btn" data-choice="20:20">20:20</button>
+          <button type="button" class="vote-btn" data-choice="11:11">11:11</button>
+        </div>
+        <div class="vote-results" hidden>
+          <div class="vote-row" data-choice="20:20"><span>20:20</span><span class="vote-bar"><i></i></span><b>0%</b></div>
+          <div class="vote-row" data-choice="11:11"><span>11:11</span><span class="vote-bar"><i></i></span><b>0%</b></div>
+        </div>
+        <p class="vote-note" aria-live="polite"></p>
+      </div>
       <a class="btn" href="#join">Call dibs first</a>
     </div>
   </section>
@@ -303,17 +348,68 @@
 </div>
 
 <script>
-  var RELEASE_TARGET = '2026-10-10T20:20:00+08:00';   // 10 Oct 2026, 20:20 WITA
-  var ENDPOINT = 'https://myxrzwqsnjroqngcqopd.supabase.co/rest/v1/signups';
+  var SUPABASE_URL = 'https://myxrzwqsnjroqngcqopd.supabase.co';
+  var ENDPOINT = SUPABASE_URL + '/rest/v1/signups';
   var SUPABASE_KEY = 'sb_publishable_1yt1XLbG9Wu1qqPVz25GGA_TNGpAoNo';
+  var HEADERS = {'Content-Type':'application/json','Accept':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY};
 
-  var clockEl = document.getElementById('clock');
-  (function tick(){
-    var diff = new Date(RELEASE_TARGET) - new Date();
-    if (diff <= 0){ clockEl.textContent = 'Live now'; return; }
-    var d = Math.floor(diff/864e5), h = Math.floor(diff%864e5/36e5), m = Math.floor(diff%36e5/6e4), s = Math.floor(diff%6e4/1e3);
-    clockEl.textContent = d + 'd ' + h + 'h ' + m + 'm ' + s + 's';
-    setTimeout(tick, 1000);
+  /* ---------- drop-time vote (one vote per browser; totals only are public) ---------- */
+  (function(){
+    var root = document.getElementById('vote');
+    var options = root.querySelector('.vote-options');
+    var buttons = root.querySelectorAll('.vote-btn');
+    var results = root.querySelector('.vote-results');
+    var note = root.querySelector('.vote-note');
+
+    function get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+    function set(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+    function uuid(){
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){
+        var r = Math.random()*16|0; return (c==='x' ? r : (r&3|8)).toString(16);
+      });
+    }
+    var voterId = get('dibsVoterId');
+    if (!voterId){ voterId = uuid(); set('dibsVoterId', voterId); }
+
+    function disable(on){ buttons.forEach(function(b){ b.disabled = on; }); }
+
+    async function showResults(){
+      var res = await fetch(SUPABASE_URL + '/rest/v1/rpc/drop_time_results', {method:'POST',headers:HEADERS,body:'{}'});
+      if (!res.ok) throw new Error('bad response');
+      var rows = await res.json();
+      var total = rows.reduce(function(n,r){ return n + Number(r.votes); }, 0);
+      var mine = get('dibsVoteChoice');
+      rows.forEach(function(r){
+        var pct = total ? Math.round(Number(r.votes) / total * 100) : 0;
+        var row = results.querySelector('[data-choice="' + r.choice + '"]');
+        row.querySelector('i').style.width = pct + '%';
+        row.querySelector('b').textContent = pct + '%';
+        row.classList.toggle('mine', r.choice === mine);
+      });
+      note.textContent = total + (total === 1 ? ' vote' : ' votes') + ' so far. Thanks for voting.';
+      options.hidden = true;
+      results.hidden = false;
+    }
+
+    async function vote(choice){
+      disable(true); note.textContent = 'Saving your vote';
+      try{
+        var res = await fetch(SUPABASE_URL + '/rest/v1/drop_time_votes', {
+          method:'POST', headers:Object.assign({'Prefer':'return=minimal'}, HEADERS),
+          body:JSON.stringify({choice:choice, voter_id:voterId})
+        });
+        if (!res.ok && res.status !== 409) throw new Error('bad response'); // 409: this browser already voted
+        if (res.ok) set('dibsVoteChoice', choice);
+        await showResults();
+      }catch(err){
+        note.textContent = 'Couldn\'t save your vote. Try again.';
+        disable(false);
+      }
+    }
+
+    buttons.forEach(function(b){ b.addEventListener('click', function(){ vote(b.dataset.choice); }); });
+    if (get('dibsVoteChoice')) showResults().catch(function(){});
   })();
 
   /* ---------- section scrolling ---------- */
@@ -451,7 +547,7 @@
     btn.disabled=true; btn.textContent='Calling dibs';
     try{
       if(!ENDPOINT) throw new Error('no endpoint');
-      var res=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Prefer':'return=minimal'},body:JSON.stringify(data)});
+      var res=await fetch(ENDPOINT,{method:'POST',headers:Object.assign({'Prefer':'return=minimal'},HEADERS),body:JSON.stringify(data)});
       if(!res.ok) throw new Error('bad response');
       form.innerHTML='<p class="msg">Dibs called. We\'ll be in touch before launch.</p>';
     }catch(err){
