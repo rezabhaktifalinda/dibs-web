@@ -13,6 +13,12 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400&display=swap" rel="stylesheet">
+<!-- Vercel Web Analytics: cookieless, runs for everyone -->
+<script>window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<!-- Google Analytics + Meta Pixel load only after cookie consent -->
+<script src="/config.js"></script>
+<script src="/consent.js"></script>
 <style>
   :root{
     --olive:#737700;
@@ -353,6 +359,8 @@
         <a href="https://instagram.com/dibs.id" target="_blank" rel="noopener noreferrer">Instagram</a>
         <a href="mailto:hello@wearedibs.com">Contact</a>
         <a href="/terms.html">Terms of use</a>
+        <a href="/privacy">Privacy policy</a>
+        <a href="#" data-cookie-settings>Cookie settings</a>
       </nav>
       <p class="copy">© 2026 Dibs. All rights reserved.</p>
     </div>
@@ -558,6 +566,7 @@
       var res=await fetch(ENDPOINT,{method:'POST',headers:Object.assign({'Prefer':'return=minimal'},HEADERS),body:JSON.stringify(data)});
       if(!res.ok) throw new Error('bad response');
       form.innerHTML='<p class="msg">Dibs called. We\'ll be in touch before launch.</p>';
+      if(window.dibsConsent) window.dibsConsent.trackLead(); // saved: count a Lead (consent only, no personal data)
     }catch(err){
       msg.textContent='Something went wrong — write to hello@wearedibs.com';
       btn.disabled=false; btn.textContent='Call dibs';
