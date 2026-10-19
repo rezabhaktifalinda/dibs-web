@@ -1,5 +1,6 @@
 {
   "buildCommand": "node scripts/build-config.js",
+  "outputDirectory": ".",
   "rewrites": [
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/privacy", "destination": "/privacy.html" }
