@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DIBS</title>
-<meta name="description" content="Limited access to handpicked spots in Bali. Released Monday, Wednesday and Friday at 20:20.">
+<meta name="description" content="Limited access to handpicked spots in Bali. Released Tuesday, Thursday and Friday at 20:20.">
 <meta property="og:title" content="DIBS">
 <meta property="og:description" content="Limited access to handpicked spots in Bali.">
 <meta property="og:image" content="/HERO.webp">
@@ -238,6 +238,28 @@
     display:flex;flex-direction:column;justify-content:center;
   }
 
+  /* ---------- consent line, for venues, FAQ (inside #join) ---------- */
+  .consent{text-transform:uppercase;letter-spacing:.09em;font-size:clamp(10px,.95vw,12px);line-height:1.8;color:rgba(250,247,239,.75);margin:0 0 clamp(22px,2.6vw,32px);max-width:520px}
+  .consent a{color:var(--bg)}
+  .more{margin-top:clamp(72px,9vw,128px)}
+  .btn-row{display:flex;flex-wrap:wrap;gap:12px}
+  .invert .btn.ghost{background:transparent;color:var(--bg)}
+  .invert .btn.ghost:hover{background:var(--bg);color:var(--olive)}
+  .faq{max-width:1000px;border-top:1px solid rgba(250,247,239,.25)}
+  .faq details{border-bottom:1px solid rgba(250,247,239,.25)}
+  .faq summary{
+    list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;
+    padding:clamp(18px,1.9vw,26px) 0;text-transform:uppercase;letter-spacing:.07em;
+    font-size:clamp(12px,1.1vw,16px);line-height:1.7;color:var(--bg);
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-weight:300}
+  .faq details[open] summary::after{content:"\2013"}
+  .faq details p{
+    text-transform:uppercase;letter-spacing:.08em;font-size:clamp(12px,1.05vw,15px);line-height:1.85;
+    color:rgba(250,247,239,.85);padding:0 0 clamp(18px,1.9vw,26px);max-width:62ch;
+  }
+
   @media (prefers-reduced-motion:reduce){
     .scroller{scroll-behavior:auto}
   }
@@ -261,7 +283,7 @@
   <section id="what" class="invert">
     <div class="inner">
       <p class="eyebrow">Bali</p>
-      <p class="statement">Mon. Wed. Fri. 20:20.</p>
+      <p class="statement">Tue. Thu. Fri. 20:20</p>
       <p class="note">
         We drop a limited number of Dibs on places in Bali worth your time.
         From the restaurant you keep meaning to try to the recovery session
@@ -269,7 +291,7 @@
         pop-up everyone's talking about by Saturday.
       </p>
       <p class="note">Places we'd send our friends to, at rates you won't get walking in.</p>
-      <p class="note">Subscribe to catch the 20:20 drop.</p>
+      <p class="note">Subscribe to catch what drops next: Dibs, Features and Side Quests.</p>
       <a class="btn" href="#join">Call dibs</a>
     </div>
   </section>
@@ -287,8 +309,8 @@
     <div class="inner">
       <p class="eyebrow">How it works</p>
       <ol class="steps">
-        <li><span class="n">01</span><span>We tell you what's dropping and when. One spot at a time — no feed, no browsing.</span></li>
-        <li><span class="n">02</span><span>At 20:20 it goes live. Limited numbers. Pay by card, Apple Pay, QRIS or transfer.</span></li>
+        <li><span class="n">01</span><span>We tell you what's dropping, and when. One place at a time, no feed, no browsing.</span></li>
+        <li><span class="n">02</span><span>At 20:20 Dibs go live, in limited numbers. Pay by card, Apple Pay, QRIS or transfer.</span></li>
         <li><span class="n">03</span><span>You get a voucher with a QR code. Turn up, they scan it, that's it.</span></li>
       </ol>
       <p class="note">
@@ -312,7 +334,7 @@
     <div class="over-photo vote" id="vote">
       <div class="inner">
         <p class="eyebrow">Your call</p>
-        <p class="statement">Help us pick the drop time.</p>
+        <p class="statement">Help us pick the drop time</p>
         <p class="note">For now it's 20:20. Which would you rather?</p>
         <div class="vote-options">
           <button type="button" class="vote-btn" data-choice="20:20">20:20<small></small></button>
@@ -326,7 +348,8 @@
   <section id="join" class="invert" data-free="true">
     <div class="inner join-hero">
       <p class="eyebrow">Newsletter</p>
-      <p class="statement" style="margin-bottom:clamp(34px,4vw,56px)">Call dibs on the next release.</p>
+      <p class="statement">Call dibs on the next release</p>
+      <p class="note" style="margin-bottom:clamp(34px,4vw,56px)">List members hear the days, the drops and the first seats before anyone else.</p>
       <form id="signup" novalidate>
         <div class="field">
           <label for="name">Name</label>
@@ -344,15 +367,46 @@
           <input type="checkbox" id="wa" name="wa_optin" value="yes">
           <span>Send me drop alerts on WhatsApp</span>
         </div>
+        <p class="consent">By subscribing, you agree to get Dibs emails about drops, Features and Side Quests. Tick the box to get drop alerts on WhatsApp too. You can unsubscribe at any time. Read our <a href="/privacy">Privacy policy</a>.</p>
         <button type="submit" class="btn" id="submit">Call dibs</button>
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
     </div>
+    <div class="inner more" id="venues">
+      <p class="eyebrow">For venues</p>
+      <p class="statement">Fill the nights you want filled</p>
+      <p class="note">We feature places we'd send our friends to, then release a small number of reserved spots to our list. You choose the offer, the nights and how many. Guests pay us upfront, so nobody walks out without paying. We write about you, photograph you, and you keep every photo.</p>
+      <p class="note">No upfront fee. We earn a small commission only on the spots we sell.</p>
+      <p class="note">Want us to come and eat first?</p>
+      <div class="btn-row">
+        <a class="btn" href="mailto:partnership@wearedibs.com">Email us</a>
+        <a class="btn ghost" href="https://wa.me/6285190951909" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+    <div class="inner more" id="faq">
+      <p class="eyebrow">Questions</p>
+      <div class="faq">
+        <details><summary>What are Dibs?</summary><p>A small number of reserved spots at a place we've picked, usually a set menu or a table credit, paid upfront. When they're gone, they're gone.</p></details>
+        <details><summary>What do you cover?</summary><p>Tables, stays, wellness, art and culture: whatever is worth your time. Our Features and Side Quests can be about anything worth your time, from day one.</p></details>
+        <details><summary>What's a Feature?</summary><p>A story about a place, a person or an artist worth knowing. Free to read.</p></details>
+        <details><summary>What's a Side Quest?</summary><p>A small trip off the tourist trail, for people who've lived here for years and people who just landed.</p></details>
+        <details><summary>How often do you drop?</summary><p>Every Tuesday, Thursday and Friday at 20:20, something drops: Dibs (reserved spots), a Feature or a Side Quest. Features are free to read. We add Dibs as the list grows, and list members hear first.</p></details>
+        <details><summary>How do I get a seat?</summary><p>Pay when Dibs go live (card, Apple Pay, QRIS or transfer). Your QR voucher arrives by email and WhatsApp. Book with the venue, then show the QR when you arrive.</p></details>
+        <details><summary>How long is my voucher valid?</summary><p>Six months from purchase. Event drops use the event date.</p></details>
+        <details><summary>How many can I buy?</summary><p>Up to 3 per drop. You can use them together at one table, on one visit.</p></details>
+        <details><summary>What if I can't make it?</summary><p>Cancel your booking with the venue at least 24 hours before. Later than that, or if you don't turn up, the voucher counts as used.</p></details>
+        <details><summary>Can I get a refund?</summary><p>If the place can't honour your voucher, or an event is cancelled, you get a full refund. Event tickets aren't refunded if you change your mind.</p></details>
+        <details><summary>Can a place pay to be on Dibs?</summary><p>No. Our picks are never for sale. Partnerships exist, and they are always labelled "In partnership with Dibs".</p></details>
+      </div>
+    </div>
     <div class="inner foot">
       <nav>
-        <a href="https://instagram.com/dibs.id" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="mailto:hello@wearedibs.com">Contact</a>
-        <a href="/terms.html">Terms of use</a>
+        <a href="https://instagram.com/dibs.bali" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="mailto:hello@wearedibs.com">hello@wearedibs.com</a>
+        <a href="mailto:partnership@wearedibs.com">partnership@wearedibs.com</a>
+        <a href="https://wa.me/6285190951909" target="_blank" rel="noopener noreferrer">WhatsApp +62 851 9095 1909</a>
+        <a href="/terms">Terms of use</a>
+        <a href="/privacy">Privacy policy</a>
       </nav>
       <p class="copy">© 2026 Dibs. All rights reserved.</p>
     </div>
