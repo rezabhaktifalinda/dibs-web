@@ -307,6 +307,33 @@
   @media (prefers-reduced-motion:reduce){
     .scroller{scroll-behavior:auto}
   }
+
+  /* ---------- front page redesign preview (24 Oct) ---------- */
+  #top .hero-line{color:var(--bg);text-transform:uppercase;font-size:clamp(18px,2vw,28px);letter-spacing:.02em;margin-top:clamp(18px,2vw,28px)}
+  #top .hero-btns{display:flex;flex-wrap:wrap;gap:12px}
+  #top .hero-btns .btn{margin-top:clamp(22px,2.4vw,34px)}
+  #top .btn.line{background:transparent;color:var(--bg);border-color:var(--bg)}
+  #top .btn.line:hover{background:var(--bg);color:var(--heading)}
+  #what.field{align-items:center;text-align:center}
+  #what.field .inner{display:flex;flex-direction:column;align-items:center}
+  #what.field .statement{font-size:clamp(48px,10.5vw,170px);line-height:.95;letter-spacing:-.03em;max-width:10ch}
+  #what.field .note{margin-left:auto;margin-right:auto}
+  .wall-sec{background:var(--heading);color:var(--bg)}
+  .wall-sec .eyebrow{color:rgba(250,247,239,.7)}
+  .wall-sec .wall{text-transform:uppercase;font-size:clamp(34px,6.4vw,104px);line-height:1.06;letter-spacing:-.015em}
+  .wall-sec .wall span{white-space:nowrap}
+  .wall-sec .wall i{font-style:normal;color:var(--olive)}
+  #how.split{display:grid;grid-template-columns:1fr 1fr;padding:0;background:var(--bg)}
+  #how.split>img{width:100%;height:100%;min-height:100svh;object-fit:cover;display:block}
+  #how.split .inner{padding:var(--pad);display:flex;flex-direction:column;justify-content:center}
+  #how.split .steps{border-top-color:rgba(35,38,18,.18)}
+  #how.split .steps li{border-bottom-color:rgba(35,38,18,.18);align-items:baseline}
+  #how.split .steps .n{font-size:clamp(34px,4vw,58px);line-height:1;flex:0 0 clamp(58px,6vw,92px);letter-spacing:-.02em}
+  @media (max-width:760px){
+    #how.split{grid-template-columns:1fr}
+    #how.split>img{min-height:0;height:46svh}
+    #what.field .statement{font-size:clamp(44px,15vw,80px)}
+  }
 </style>
 </head>
 <body>
@@ -331,11 +358,13 @@
       <div class="logo">
         <!-- supply a cream/white version of the mark at /logo.svg -->
         <img src="/logo.svg" alt="Dibs">
+        <p class="hero-line">Only the ones worth calling</p>
+        <div class="hero-btns"><a class="btn" href="#join">Join the list</a><a class="btn line" href="/partner">Partner with us</a></div>
       </div>
     </div>
   </section>
 
-  <section id="what" class="invert">
+  <section id="what" class="invert field">
     <div class="inner">
       <p class="eyebrow">Bali</p>
       <p class="statement">Tue. Thu. Fri. 20:20</p>
@@ -351,16 +380,16 @@
     </div>
   </section>
 
-  <section class="panel text-panel light">
-    <img src="/CAFE.webp" alt="" loading="lazy">
-    <div class="over-photo">
-      <div class="inner">
-        <p class="statement">Only the ones<br>worth calling</p>
-      </div>
+  <section class="wall-sec">
+    <div class="inner">
+      <p class="eyebrow">What we drop</p>
+      <p class="wall"><span>Dinners <i>/</i></span> <span>bars <i>/</i></span> <span>stays <i>/</i></span> <span>wellness <i>/</i></span> <span>art openings <i>/</i></span> <span>supper clubs <i>/</i></span> <span>pop-ups</span></p>
+      <a class="btn" href="#join">Call dibs</a>
     </div>
   </section>
 
-  <section id="how" class="invert">
+  <section id="how" class="split">
+    <img src="/HOTEL.webp" alt="" loading="lazy">
     <div class="inner">
       <p class="eyebrow">How it works</p>
       <ol class="steps">
@@ -384,7 +413,7 @@
   </section>
 
   <section class="panel text-panel">
-    <img src="/HOTEL.webp" alt="" loading="lazy">
+    <img src="/CAFE.webp" alt="" loading="lazy">
     <div class="over-photo vote" id="vote">
       <div class="inner">
         <p class="eyebrow">Your call</p>
