@@ -120,6 +120,8 @@
   .p-wall{background:var(--ink);color:var(--bg);min-height:100svh;padding:clamp(60px,8vw,120px) 0;display:flex;align-items:center}
   .wall{text-transform:uppercase;font-size:clamp(30px,5.4vw,78px);line-height:1.08;letter-spacing:-.01em;margin:clamp(22px,3vw,40px) 0}
   .wall i{font-style:normal;color:var(--olive)}
+  .wall span{white-space:nowrap}
+  .p-field .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
   .p-wall .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px}
   .p-wall .row .note{margin-top:0;max-width:48ch;color:rgba(250,247,239,.85)}
   .p-field{background:var(--olive);color:var(--bg);min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:clamp(60px,8vw,120px) var(--pad)}
@@ -131,7 +133,7 @@
   .p-photo .box{position:absolute;right:var(--pad);bottom:var(--pad);background:var(--bg);color:var(--ink);padding:clamp(22px,2.4vw,34px);max-width:380px}
   .p-photo .box p{text-transform:uppercase;letter-spacing:.12em;font-size:12px;line-height:1.9}
   .p-photo .box a{color:var(--ink)}
-  @media (max-width:760px){.p-split{grid-template-columns:1fr}.p-photo img{height:80svh}.p-photo .box{left:var(--pad);right:var(--pad)}}
+  @media (max-width:760px){.p-split{grid-template-columns:1fr;min-height:0}.p-wall,.p-field{min-height:0}.p-photo img{height:80svh}.p-photo .box{left:var(--pad);right:var(--pad)}}
 </style>
 
 <section class="wrap intro">
@@ -159,7 +161,7 @@
 
 <section class="p-wall"><div class="wrap">
   <p class="label" style="color:rgba(250,247,239,.7)">02 · For events · Events worth your time</p>
-  <p class="wall">Art openings <i>/</i> exhibitions <i>/</i> concerts <i>/</i> live music <i>/</i> supper clubs <i>/</i> pop-up dinners <i>/</i> launches <i>/</i> cultural nights</p>
+  <p class="wall"><span>Art openings <i>/</i></span> <span>exhibitions <i>/</i></span> <span>concerts <i>/</i></span> <span>live music <i>/</i></span> <span>supper clubs <i>/</i></span> <span>pop-up dinners <i>/</i></span> <span>launches <i>/</i></span> <span>cultural nights</span></p>
   <div class="row">
     <p class="note">We take a limited number of tickets, add a perk (early entry, a drink, a better seat) and tell the story of your event to our list. Your own ticketing stays as it is. If an event is cancelled, guests get a full refund.</p>
     <a class="btn" href="mailto:partnership@wearedibs.com" style="margin-top:0">Tell us about your event</a>
