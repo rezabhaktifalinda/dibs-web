@@ -197,12 +197,12 @@
 
   /* ---------- footer nav (now living inside #join) ---------- */
   .foot{margin-top:clamp(56px,7vw,96px)}
-  nav{display:flex;flex-wrap:wrap;gap:clamp(18px,2.6vw,44px);margin-bottom:clamp(34px,4vw,56px)}
-  nav a{
+  .foot nav{display:flex;flex-wrap:wrap;gap:clamp(18px,2.6vw,44px);margin-bottom:clamp(34px,4vw,56px)}
+  .foot nav a{
     color:var(--body);text-decoration:none;
     text-transform:uppercase;letter-spacing:.2em;font-size:clamp(11px,1vw,13px);
   }
-  nav a:hover{color:var(--olive)}
+  .foot nav a:hover{color:var(--olive)}
   .copy{text-transform:uppercase;letter-spacing:.18em;font-size:clamp(9px,.85vw,11px);color:var(--muted)}
 
   /* ---------- inverted (olive) sections ---------- */
@@ -227,8 +227,11 @@
   .invert .check input:checked{background:var(--bg);border-color:var(--bg)}
   .invert .check span{color:rgba(250,247,239,.75)}
   .invert .msg{color:var(--bg)}
-  .invert nav a{color:var(--bg)}
-  .invert nav a:hover{opacity:.7}
+  .invert .foot nav a{color:var(--bg)}
+  .invert .foot nav a:hover{opacity:.7}
+  .legal{display:flex;flex-wrap:wrap;gap:10px 26px;padding-top:18px;border-top:1px solid rgba(250,247,239,.2);text-transform:uppercase;letter-spacing:.18em;font-size:10px;color:rgba(250,247,239,.6)}
+  .legal a{color:rgba(250,247,239,.6);text-decoration:none}
+  .legal a:hover{color:var(--bg)}
   .invert .copy{color:rgba(250,247,239,.7)}
 
   /* ---------- join (form + footer, one section, free-scroll if taller than the screen) ---------- */
@@ -261,28 +264,39 @@
   }
 
 
-  /* ---------- menu (all pages) ---------- */
-  .menu-btn{position:fixed;top:clamp(18px,2.4vw,30px);right:clamp(18px,2.4vw,30px);z-index:50;
-    width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;mix-blend-mode:difference}
-  .menu-btn span{display:block;width:30px;height:1.5px;background:#fff;margin:7px auto}
+  /* ---------- menu: side panel (all pages) ---------- */
+  .menu-btn{position:fixed;top:clamp(16px,2.2vw,28px);right:clamp(16px,2.2vw,28px);z-index:50;
+    width:52px;height:52px;padding:0;border:0;background:transparent;cursor:pointer;mix-blend-mode:difference}
+  .menu-btn span{display:block;width:34px;height:2px;background:#fff;margin:7px auto}
   .menu-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
-  .menu{position:fixed;inset:0;z-index:60;background:var(--olive,#737700);color:#FAF7EF;
-    padding:clamp(26px,5vw,88px);overflow-y:auto;display:none}
-  .menu.open{display:block}
-  .menu-close{position:absolute;top:clamp(18px,2.4vw,30px);right:clamp(18px,2.4vw,30px);width:44px;height:44px;
-    border:0;background:transparent;cursor:pointer}
-  .menu-close span{position:absolute;left:7px;top:21px;width:30px;height:1.5px;background:#FAF7EF}
+  .menu-shade{position:fixed;inset:0;z-index:55;background:rgba(35,38,18,.45);opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .menu{position:fixed;top:0;right:0;bottom:0;z-index:60;width:min(420px,100vw);background:#737700;color:#FAF7EF;
+    padding:clamp(28px,3vw,44px);overflow-y:auto;transform:translateX(100%);transition:transform .35s ease;
+    display:flex;flex-direction:column}
+  .menu.open{transform:none}
+  .menu-shade.open{opacity:1;pointer-events:auto}
+  .menu-close{align-self:flex-end;width:44px;height:44px;border:0;background:transparent;cursor:pointer;position:relative;flex:0 0 auto}
+  .menu-close span{position:absolute;left:6px;top:21px;width:32px;height:2px;background:#FAF7EF}
   .menu-close span:first-child{transform:rotate(45deg)}.menu-close span:last-child{transform:rotate(-45deg)}
-  .menu ul{list-style:none;max-width:1440px;margin:clamp(50px,6vw,80px) auto 0}
-  .menu li{margin:0 0 clamp(14px,1.6vw,22px)}
-  .menu li.gap{margin-top:clamp(34px,4vw,56px)}
-  .menu a,.menu .soon{font-family:'Satoshi',sans-serif;font-weight:300;text-transform:uppercase;
-    font-size:clamp(24px,3.2vw,40px);letter-spacing:.02em;line-height:1.2;color:#FAF7EF;text-decoration:none}
-  .menu a:hover{opacity:.7}
-  .menu .soon{opacity:.45}
-  .menu .soon small{font-size:.45em;letter-spacing:.2em;margin-left:.8em;vertical-align:middle}
-  .menu a[aria-current="page"]{text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
-  .menu-copy{max-width:1440px;margin:clamp(40px,5vw,70px) auto 0;text-transform:uppercase;letter-spacing:.18em;font-size:11px;opacity:.7}
+  .menu ul{list-style:none;margin-top:clamp(28px,4vh,48px)}
+  .menu li{border-top:1px solid rgba(250,247,239,.25)}
+  .menu li:last-child{border-bottom:1px solid rgba(250,247,239,.25)}
+  .menu ul a,.menu ul .soon{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;
+    font-family:'Satoshi',sans-serif;font-weight:300;text-transform:uppercase;font-size:22px;letter-spacing:.04em;
+    color:#FAF7EF;text-decoration:none}
+  .menu ul a:hover{opacity:.7}
+  .menu ul .soon{color:rgba(250,247,239,.5)}
+  .menu ul small{font-size:10px;letter-spacing:.2em}
+  .menu-cta{display:flex;flex-direction:column;gap:10px;margin-top:auto;padding-top:36px}
+  .menu-cta a{display:block;text-align:center;padding:17px 20px;font-family:'Satoshi',sans-serif;font-weight:400;font-size:12px;
+    text-transform:uppercase;letter-spacing:.2em;text-decoration:none;border:1px solid #FAF7EF;transition:background .2s ease,color .2s ease}
+  .menu-cta .primary{background:#FAF7EF;color:#737700}
+  .menu-cta .primary:hover{background:transparent;color:#FAF7EF}
+  .menu-cta .ghost{color:#FAF7EF}
+  .menu-cta .ghost:hover{background:#FAF7EF;color:#737700}
+  .menu-foot{display:flex;gap:22px;margin-top:22px;font-family:'Satoshi',sans-serif;text-transform:uppercase;letter-spacing:.2em;font-size:11px}
+  .menu-foot a{color:rgba(250,247,239,.8);text-decoration:none}
+  .menu-foot a:hover{color:#FAF7EF}
 
   /* ---------- know a place ---------- */
   .tip form{margin-top:clamp(26px,3vw,40px)}
@@ -297,11 +311,16 @@
 </head>
 <body>
 
-<button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+<button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+<div class="menu-shade"></div>
 <nav class="menu" id="menu" aria-label="Menu">
   <button class="menu-close" type="button" aria-label="Close menu"><span></span><span></span></button>
-  <ul><li><a href="/" aria-current="page">Front page</a></li><li class="gap"><a href="/dibs">Dibs</a></li><li><a href="/features">Features</a></li><li><span class="soon">Side Quests<small>Soon</small></span></li><li><a href="/the-short-list">The Short List</a></li><li><span class="soon">Shop<small>Soon</small></span></li><li class="gap"><a href="/#join">Newsletter</a></li><li><a href="/partner">Partner with us</a></li><li><a href="/contact">Contact</a></li></ul>
-  <p class="menu-copy">© 2026 Dibs</p>
+  <ul><li><span class="soon">Side Quests<small>Soon</small></span></li><li><a href="/the-short-list">The Short List</a></li><li><span class="soon">Shop<small>Soon</small></span></li></ul>
+  <div class="menu-cta">
+    <a class="primary" href="/#join">Join the list</a>
+    <a class="ghost" href="/partner">Partner with us</a>
+  </div>
+  <div class="menu-foot"><a href="/contact">Contact</a><a href="https://instagram.com/dibs.bali" target="_blank" rel="noopener noreferrer">Instagram</a></div>
 </nav>
 
 <div class="scroller" id="scroller">
@@ -415,15 +434,11 @@
       <p class="note" style="margin-bottom:clamp(34px,4vw,56px)">List members hear the days, the drops and the first seats before anyone else.</p>
       <form id="signup" novalidate>
         <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" autocomplete="name">
-        </div>
-        <div class="field">
           <label for="email">E-mail</label>
           <input type="email" id="email" name="email" autocomplete="email">
         </div>
         <div class="field">
-          <label for="phone">WhatsApp</label>
+          <label for="phone">WhatsApp (optional)</label>
           <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+62">
         </div>
         <div class="check">
@@ -442,32 +457,34 @@
       <a class="btn" href="/partner">Partner with us</a>
     </div>
     <div class="inner more" id="faq">
-      <p class="eyebrow">Questions</p>
+      <p class="eyebrow">Good to know</p>
       <div class="faq">
-        <details><summary>What are Dibs?</summary><p>A limited number of reserved spots at a place we've picked, usually a set menu or a table credit, paid upfront. When they're gone, they're gone.</p></details>
-        <details><summary>What do you cover?</summary><p>Tables, stays, wellness, art and culture: whatever is worth your time. Our Features and Side Quests can be about anything worth your time, from day one.</p></details>
-        <details><summary>What's a Feature?</summary><p>A story about a place, a person or an artist worth knowing. Free to read.</p></details>
-        <details><summary>What's a Side Quest?</summary><p>A small trip off the tourist trail, for people who've lived here for years and people who just landed.</p></details>
-        <details><summary>How often do you drop?</summary><p>Every Tuesday, Thursday and Friday at 20:20, something drops: Dibs (reserved spots), a Feature or a Side Quest. Features are free to read. We add Dibs as the list grows, and list members hear first.</p></details>
-        <details><summary>How do I get a seat?</summary><p>Pay when Dibs go live (card, Apple Pay, QRIS or bank transfer). Your QR voucher arrives by email. Book with the venue, then show the QR when you arrive.</p></details>
-        <details><summary>How long is my voucher valid?</summary><p>Six months from purchase. Event drops use the event date.</p></details>
-        <details><summary>How many can I buy?</summary><p>Up to 3 per drop. You can use them together at one table, on one visit.</p></details>
-        <details><summary>What if I can't make it?</summary><p>Cancel your booking with the venue at least 24 hours before. Later than that, or if you don't turn up, the voucher counts as used.</p></details>
-        <details><summary>Can I get a refund?</summary><p>If the place can't honour your voucher, we arrange a refund or an extension. If an event is cancelled, you get a full refund. Event tickets aren't refunded if you change your mind.</p></details>
-        <details><summary>Can a place pay to be on Dibs?</summary><p>No. Our picks are never for sale. Partnerships exist, and they are always labelled "In partnership with Dibs".</p></details>
+        <details><summary>About Dibs</summary>
+          <p>Dibs are a limited number of reserved spots at a place we've picked, usually a set menu or a table credit, paid upfront. When they're gone, they're gone.</p>
+          <p>We cover tables, stays, wellness, art and culture: whatever is worth your time. Features are stories about the people behind the places, free to read. Side Quests are small trips off the tourist trail.</p>
+          <p>Our picks are never for sale. Partnerships exist, and they are always labelled "In partnership with Dibs".</p>
+        </details>
+        <details><summary>Getting a seat</summary>
+          <p>Every Tuesday, Thursday and Friday at 20:20, something drops: Dibs (reserved spots), a Feature or a Side Quest. List members hear first.</p>
+          <p>Pay when Dibs go live, by card, Apple Pay, QRIS or transfer. Your QR voucher arrives by email. Book with the venue, then show the QR when you arrive.</p>
+          <p>You can buy up to 3 per drop and use them together at one table, on one visit.</p>
+        </details>
+        <details><summary>After you buy</summary>
+          <p>Vouchers are valid for six months from purchase. Event drops use the event date.</p>
+          <p>Can't make it? Cancel with the venue at least 24 hours before. Later than that, or if you don't turn up, the voucher counts as used.</p>
+          <p>If the place can't honour your voucher, or an event is cancelled, you get a full refund. Event tickets aren't refunded if you change your mind.</p>
+        </details>
       </div>
     </div>
     <div class="inner foot">
       <nav>
-        <a href="https://instagram.com/dibs.bali" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="mailto:hello@wearedibs.com">hello@wearedibs.com</a>
-        <a href="mailto:partnership@wearedibs.com">partnership@wearedibs.com</a>
-        <a href="https://wa.me/6285190951909" target="_blank" rel="noopener noreferrer">WhatsApp +62 851 9095 1909</a>
         <a href="/partner">Partner with us</a>
-        <a href="/terms">Terms of use</a>
-        <a href="/privacy">Privacy policy</a>
+        <a href="/contact">Contact</a>
+        <a href="mailto:hello@wearedibs.com">hello@wearedibs.com</a>
+        <a href="https://wa.me/6285190951909" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://instagram.com/dibs.bali" target="_blank" rel="noopener noreferrer">Instagram</a>
       </nav>
-      <p class="copy">© 2026 Dibs. All rights reserved.</p>
+      <div class="legal"><span>© 2026 Dibs</span><a href="/terms">Terms of use</a><a href="/privacy">Privacy policy</a></div>
     </div>
   </section>
 
@@ -689,7 +706,7 @@
   var form=document.getElementById('signup'), msg=document.getElementById('msg'), btn=document.getElementById('submit');
   form.addEventListener('submit', async function(e){
     e.preventDefault(); msg.textContent='';
-    var data={name:form.name.value.trim(),email:form.email.value.trim(),phone:form.phone.value.trim(),wa_optin:form.wa_optin.checked,source:'holding-page'};
+    var data={email:form.email.value.trim(),phone:form.phone.value.trim(),wa_optin:form.wa_optin.checked,source:'holding-page'};
     if(!data.email.includes('@')){ msg.textContent='A valid e-mail, please.'; return; }
     btn.disabled=true; btn.textContent='Calling dibs';
     try{
@@ -706,10 +723,11 @@
 
 <script>
 (function(){
-  var btn=document.querySelector('.menu-btn'), m=document.getElementById('menu'), c=m.querySelector('.menu-close');
-  function set(o){ m.classList.toggle('open',o); btn.setAttribute('aria-expanded',o); document.body.classList.toggle('menu-open',o); if(o) c.focus(); else btn.focus(); }
+  var btn=document.querySelector('.menu-btn'), m=document.getElementById('menu'), sh=document.querySelector('.menu-shade'), c=m.querySelector('.menu-close');
+  function set(o){ m.classList.toggle('open',o); sh.classList.toggle('open',o); btn.setAttribute('aria-expanded',o); document.body.classList.toggle('menu-open',o); if(o) c.focus(); else btn.focus(); }
   btn.addEventListener('click',function(){ set(true); });
   c.addEventListener('click',function(){ set(false); });
+  sh.addEventListener('click',function(){ set(false); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && m.classList.contains('open')) set(false); });
   m.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ set(false); }); });
 })();
