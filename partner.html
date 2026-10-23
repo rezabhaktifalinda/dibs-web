@@ -130,12 +130,12 @@
   .p-field .label{color:rgba(250,247,239,.75)}
   .p-photo{position:relative}
   .p-photo img{width:100%;height:100svh;object-fit:cover;display:block}
-  .p-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,22,10,.6),rgba(20,22,10,0) 55%);pointer-events:none}
-  .p-photo .over{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(36px,5vw,72px);z-index:1;color:var(--bg)}
-  .p-photo .over .label{color:rgba(250,247,239,.8);margin-bottom:clamp(10px,1.4vw,18px)}
-  .p-photo .big{display:block;width:fit-content;color:var(--bg);text-decoration:none;text-transform:uppercase;font-weight:300;font-size:clamp(24px,4.6vw,68px);line-height:1.12;letter-spacing:-.015em;border-bottom:1px solid transparent;transition:border-color .2s}
-  .p-photo .big:hover{border-bottom-color:var(--bg)}
-  @media (max-width:760px){.p-split{grid-template-columns:1fr;min-height:0}.p-wall,.p-field{min-height:0}.p-photo img{height:80svh}.p-photo .big{font-size:clamp(18px,5.6vw,30px);word-break:break-word}}
+  .p-photo .over{position:absolute;inset:0;padding:0 var(--pad);display:flex;justify-content:space-between;align-items:center;gap:24px;color:var(--bg);text-shadow:0 1px 14px rgba(0,0,0,.35)}
+  .p-photo .t{text-transform:uppercase;font-weight:300;font-size:clamp(18px,1.9vw,28px);line-height:1.35;letter-spacing:.01em}
+  .p-photo .t.r{text-align:right}
+  .p-photo .t a{color:var(--bg);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+  .p-photo .t a:hover{border-bottom-color:var(--bg)}
+  @media (max-width:760px){.p-split{grid-template-columns:1fr;min-height:0}.p-wall,.p-field{min-height:0}.p-photo img{height:80svh}.p-photo .over{flex-direction:column;justify-content:center;text-align:center;gap:14px}.p-photo .t.r{text-align:center}.p-photo .t{font-size:17px}}
 </style>
 
 <section class="wrap intro">
@@ -180,9 +180,8 @@
 <section class="p-photo">
   <img src="/CAFE.webp" alt="" loading="lazy">
   <div class="over">
-    <p class="label">Partnerships</p>
-    <a class="big" href="mailto:partnership@wearedibs.com">partnership@wearedibs.com</a>
-    <a class="big" href="https://wa.me/6285190951909" target="_blank" rel="noopener noreferrer">WhatsApp +62 851 9095 1909</a>
+    <p class="t">Partnerships</p>
+    <p class="t r"><a href="mailto:partnership@wearedibs.com">partnership@wearedibs.com</a><br><a href="https://wa.me/6285190951909" target="_blank" rel="noopener noreferrer">WhatsApp +62 851 9095 1909</a></p>
   </div>
 </section>
 <footer class="site"><div class="wrap">
