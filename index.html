@@ -266,8 +266,9 @@
 
   /* ---------- menu: side panel (all pages) ---------- */
   .menu-btn{position:fixed;top:clamp(16px,2.2vw,28px);right:clamp(16px,2.2vw,28px);z-index:50;
-    width:52px;height:52px;padding:0;border:0;background:transparent;cursor:pointer;mix-blend-mode:difference}
-  .menu-btn span{display:block;width:34px;height:2px;background:#fff;margin:7px auto}
+    width:52px;height:52px;padding:0;border:0;background:transparent;cursor:pointer}
+  .menu-btn span{display:block;width:34px;height:2px;background:#fff;margin:7px auto;transition:background .2s}
+  .menu-btn.on-light span{background:#232612}
   .menu-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
   .menu-shade{position:fixed;inset:0;z-index:55;background:rgba(35,38,18,.45);opacity:0;pointer-events:none;transition:opacity .3s ease}
   .menu{position:fixed;top:0;right:0;bottom:0;z-index:60;width:min(340px,100vw);background:#232612;color:#FAF7EF;
@@ -334,6 +335,23 @@
     #how.split>img{min-height:0;height:46svh}
     #what.field .statement{font-size:clamp(44px,15vw,80px)}
   }
+
+  /* ---------- preview 30 Oct: launch first, big and centred, with countdown ---------- */
+  #launch .launch-c{display:flex;flex-direction:column;align-items:center;text-align:center}
+  #launch .clock{font-size:clamp(64px,16.5vw,290px);line-height:.9}
+  #launch .clock-label b{color:inherit}
+  .countdown{display:flex;justify-content:center;gap:clamp(22px,5vw,80px);margin:clamp(34px,4.4vw,64px) 0 clamp(34px,4vw,56px)}
+  .countdown div{display:flex;flex-direction:column;align-items:center}
+  .countdown span{font-size:clamp(30px,4.2vw,64px);letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--heading);line-height:1}
+  .countdown small{text-transform:uppercase;letter-spacing:.2em;font-size:clamp(9px,.9vw,12px);color:var(--muted);margin-top:12px}
+  .vote .statement{max-width:none;white-space:nowrap;font-size:clamp(22px,3.7vw,54.6px)}
+  @media (max-width:700px){.vote .statement{white-space:normal;max-width:16ch}}
+  .first24 .statement{max-width:16ch}
+  .first24 .note{max-width:52ch;margin-top:clamp(20px,2.4vw,32px)}
+  .first24 .btn{margin-top:clamp(28px,3vw,44px)}
+  .f24-grid{display:grid;grid-template-columns:auto 1fr;gap:clamp(30px,6vw,110px);align-items:center}
+  .big24{font-size:clamp(120px,26vw,420px);line-height:.8;letter-spacing:-.05em;color:var(--bg);font-variant-numeric:tabular-nums}
+  @media (max-width:700px){.f24-grid{grid-template-columns:1fr}.big24{font-size:44vw}}
 </style>
 </head>
 <body>
@@ -364,6 +382,21 @@
     </div>
   </section>
 
+  <section id="launch">
+    <div class="inner launch-c">
+      <p class="eyebrow">Launch</p>
+      <div class="clock">December</div>
+      <p class="clock-label">2026 · Exact date soon</p>
+      <div class="countdown" id="countdown" aria-label="Time until December">
+        <div><span data-u="d">--</span><small>Days</small></div>
+        <div><span data-u="h">--</span><small>Hours</small></div>
+        <div><span data-u="m">--</span><small>Minutes</small></div>
+        <div><span data-u="s">--</span><small>Seconds</small></div>
+      </div>
+      <a class="btn" href="#join">Call dibs first</a>
+    </div>
+  </section>
+
   <section id="what" class="invert field">
     <div class="inner">
       <p class="eyebrow">Bali</p>
@@ -376,7 +409,6 @@
       </p>
       <p class="note">Places we'd send our friends to, at rates you won't get walking in.</p>
       <p class="note">Subscribe to catch what drops next.</p>
-      <a class="btn" href="#join">Call dibs</a>
     </div>
   </section>
 
@@ -384,7 +416,6 @@
     <div class="inner">
       <p class="eyebrow">What we drop</p>
       <p class="wall"><span>Dinners <i>/</i></span> <span>bars <i>/</i></span> <span>stays <i>/</i></span> <span>wellness <i>/</i></span> <span>art openings <i>/</i></span> <span>supper clubs <i>/</i></span> <span>pop-ups</span></p>
-      <a class="btn" href="#join">Call dibs</a>
     </div>
   </section>
 
@@ -403,12 +434,15 @@
     </div>
   </section>
 
-  <section id="launch">
-    <div class="inner">
-      <p class="eyebrow">Launch</p>
-      <div class="clock">December</div>
-      <p class="clock-label"><b>2026</b> · Exact date soon</p>
-      <a class="btn" href="#join">Call dibs first</a>
+  <section id="first24" class="invert first24">
+    <div class="inner f24-grid">
+      <div class="big24" aria-hidden="true">24</div>
+      <div>
+      <p class="eyebrow">For places</p>
+      <p class="statement">We're looking for the first 24 places</p>
+      <p class="note">Our first 24 drops, with the first 24 places. Your Feature and photos are on us. No upfront fee: we only earn when we sell.</p>
+      <a class="btn" href="/partner">Partner with us</a>
+      </div>
     </div>
   </section>
 
@@ -758,6 +792,40 @@
   sh.addEventListener('click',function(){ set(false); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && m.classList.contains('open')) set(false); });
   m.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ set(false); }); });
+})();
+</script>
+<script>
+(function(){
+  var el=document.getElementById('countdown'); if(!el) return;
+  var target=new Date('2026-12-01T00:00:00+08:00').getTime();
+  function pad(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var d=Math.max(0,target-Date.now()), s=Math.floor(d/1000);
+    var v={d:Math.floor(s/86400),h:Math.floor(s%86400/3600),m:Math.floor(s%3600/60),s:s%60};
+    for(var k in v){var x=el.querySelector('[data-u="'+k+'"]'); if(x) x.textContent=k==='d'?v[k]:pad(v[k]);}
+  }
+  tick(); setInterval(tick,1000);
+})();
+</script>
+<script>
+(function(){
+  var btn=document.querySelector('.menu-btn'); if(!btn) return;
+  var sc=document.getElementById('scroller')||window;
+  function lum(c){var m=c.match(/\d+(\.\d+)?/g); if(!m||m.length<3) return null; if(m.length>3&&+m[3]===0) return null; return (0.299*m[0]+0.587*m[1]+0.114*m[2])/255;}
+  function check(){
+    var r=btn.getBoundingClientRect(), x=r.left+r.width/2, y=r.top+r.height/2;
+    btn.style.pointerEvents='none'; var el=document.elementFromPoint(x,y); btn.style.pointerEvents='';
+    var light=false;
+    if(el&&el.closest&&el.closest('.panel,#top,.text-panel,.hero,.split img')){btn.classList.remove('on-light');return;}
+    while(el&&el!==document.documentElement){
+      if(el.tagName==='IMG'||el.classList.contains('scrim')){light=false;break;}
+      var l=lum(getComputedStyle(el).backgroundColor); if(l!==null){light=l>0.6;break;}
+      el=el.parentElement;
+    }
+    btn.classList.toggle('on-light',light);
+  }
+  (sc.addEventListener?sc:window).addEventListener('scroll',check,{passive:true});
+  window.addEventListener('resize',check); setTimeout(check,300);
 })();
 </script>
 </body>
