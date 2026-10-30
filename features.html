@@ -100,6 +100,12 @@
   .menu-foot a{color:rgba(250,247,239,.8);text-decoration:none}
   .menu-foot a:hover{color:#FAF7EF}
 
+  .frow{display:grid;grid-template-columns:60px 1fr auto;gap:24px;align-items:baseline;padding:28px 0;border-top:1px solid rgba(35,38,18,.18);border-bottom:1px solid rgba(35,38,18,.18);text-decoration:none;color:var(--heading)}
+  .frow:hover .ftitle{color:var(--olive)}
+  .fnum{color:var(--olive);font-size:clamp(20px,2vw,28px)}
+  .ftitle{text-transform:uppercase;font-size:clamp(24px,3.4vw,48px);line-height:1.05;letter-spacing:-.01em}
+  .fmeta{text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--muted)}
+  @media (max-width:700px){.frow{grid-template-columns:40px 1fr}.fmeta{grid-column:2}}
 </style>
 </head>
 <body>
@@ -124,9 +130,12 @@
   <p class="note">Conversations with the people behind the places we vouch for. No selling, just the story.</p>
 </div>
 </section>
-<section class="band ink"><div class="wrap grid">
-  <div><p class="label">Coming up</p><p class="big">Soon</p></div>
-  <div><p class="note" style="margin-top:0">The first Feature is coming. Join the list and we'll tell you when it's out.</p><a class="btn" href="/#join">Join the list</a></div>
+<section class="band"><div class="wrap">
+  <a class="frow" href="/features/jus">
+    <span class="fnum">01</span>
+    <span class="ftitle">You can't create taste</span>
+    <span class="fmeta">Ubud · With Jus</span>
+  </a>
 </div></section>
 <footer class="site"><div class="wrap">
   <div class="links">
