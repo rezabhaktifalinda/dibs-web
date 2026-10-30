@@ -4,7 +4,7 @@
    To change wording, edit TEXT below. To add the Meta Pixel later, set MARKETING_READY = true
    and add the Pixel tag in GTM with a "marketing" consent check. */
 (function(){
-  var GTM_ID = 'GTM-XXXXXXX';          // <- Dudu's container ID goes here
+  var GTM_ID = 'GTM-MTWNDGC3';         // DIBS container (GA4 G-WMH1T5N8MN set up inside GTM)
   var MARKETING_READY = false;          // Meta Pixel not set up yet
   var KEY = 'dibs_consent_v1';          // {"statistics":true,"marketing":false,"t":...}
 
