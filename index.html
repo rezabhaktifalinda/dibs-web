@@ -409,6 +409,9 @@
   #how.split>img{height:100%;min-height:0}
   #how.split .inner{justify-content:center;overflow:hidden}
   @media (max-width:900px){#how.split{height:auto;grid-template-rows:auto auto;overflow:visible}#how.split>img{height:46svh}}
+  /* hero buttons: both outline, fill cream on hover (30 Oct) */
+  #top .hero-btns .btn{background:transparent;color:var(--bg);border:1px solid var(--bg);transition:background .25s ease,color .25s ease}
+  #top .hero-btns .btn:hover,#top .hero-btns .btn:focus-visible{background:var(--bg);color:var(--heading);border-color:var(--bg)}
 </style>
 </head>
 <body>
