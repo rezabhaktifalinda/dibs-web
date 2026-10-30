@@ -410,6 +410,30 @@
   #how.split .inner{justify-content:center;overflow:hidden}
   @media (max-width:900px){#how.split{height:auto;grid-template-rows:auto auto;overflow:visible}#how.split>img{height:46svh}}
 </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  body, input, button, select, textarea { font-family: 'Satoshi','Albert Sans',-apple-system,sans-serif !important; }
+  .idx-sec{min-height:auto;padding-top:clamp(80px,10vw,140px);padding-bottom:clamp(80px,10vw,140px)}
+  .idx{list-style:none;margin:0;padding:0;border-top:1px solid rgba(35,38,18,.18);max-width:900px}
+  .idx li{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:baseline;padding:clamp(18px,2vw,26px) 0;border-bottom:1px solid rgba(35,38,18,.18);text-transform:uppercase;letter-spacing:.08em;font-size:clamp(13px,1.3vw,18px);color:var(--heading)}
+  .idx .n{color:var(--muted)}
+  .idx .cat{color:var(--olive)}
+  .idx .when{color:var(--muted);font-size:clamp(10px,1vw,12px);letter-spacing:.2em}
+  .rules-sec{min-height:auto;padding-top:clamp(80px,10vw,140px);padding-bottom:clamp(80px,10vw,140px)}
+  .rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,64px);max-width:1100px}
+  .rules h3{font-weight:400;text-transform:uppercase;letter-spacing:.2em;font-size:clamp(11px,1vw,13px);color:var(--olive);margin:0 0 14px}
+  .rules p{text-transform:uppercase;letter-spacing:.08em;line-height:1.85;font-size:clamp(12px,1.15vw,15px);color:var(--body);margin:0}
+  @media (max-width:760px){.rules{grid-template-columns:1fr}.idx li{grid-template-columns:44px 1fr}.idx .when{grid-column:2}}
+  .join-sub{text-transform:uppercase;letter-spacing:.12em;font-size:11px;opacity:.75;margin-top:14px}
+  .pop,.pop-shade{display:none!important}
+  #top .hero-btns .btn{background:transparent;color:var(--bg);border-color:rgba(250,247,239,.85);min-width:0!important;width:auto!important;padding-left:26px;padding-right:26px}
+  #top .hero-btns{flex-direction:row!important;align-items:center!important;max-width:none!important;gap:10px!important}
+  #top .hero-btns .btn{margin-top:clamp(22px,2.4vw,34px)!important}
+  #top .hero-btns .btn{flex:0 0 200px;padding-left:0;padding-right:0;text-align:center;white-space:nowrap}
+  @media (max-width:700px){#top .hero-btns .btn{flex:0 0 calc(50% - 5px);max-width:170px;font-size:11px}}
+  #top .hero-btns .btn:hover{background:var(--bg);color:var(--heading);border-color:var(--bg)}
+</style>
 </head>
 <body>
 
@@ -434,7 +458,7 @@
     <p class="pop-t" id="popt">Be first in line</p>
     <p class="pop-d">List members get every drop 20 minutes before everyone else.</p>
     <form class="pop-form" id="popform" novalidate>
-      <input type="email" id="popemail" placeholder="E-mail" autocomplete="email" aria-label="E-mail">
+      <input type="email" id="popemail" placeholder="Email" autocomplete="email" aria-label="Email">
       <button type="submit" class="pop-btn">Call dibs</button>
       <p class="pop-msg" id="popmsg" role="status" aria-live="polite"></p>
     </form>
@@ -445,7 +469,7 @@
     <p class="pop-small">By subscribing, you agree to get Dibs emails. Unsubscribe any time. <a href="/privacy">Privacy policy</a>.</p>
   </div>
 </div>
-<div class="scroller" id="scroller">
+<div class="scroller-free" id="scroller-free">
 
   <section id="top">
     <img class="bg" src="/HERO.webp" alt="" fetchpriority="high">
@@ -480,7 +504,7 @@
       <p class="eyebrow">Three drops a week</p>
       <p class="statement">Tue. Thu. Fri.</p>
       <p class="note">
-        We drop a limited number of Dibs on places in Bali worth your time.
+        We drop a limited number of Dibs: reserved spots at places in Bali worth your time.
         From the restaurant you keep meaning to try to the recovery session
         you actually need, a boutique stay worth a night away and the
         pop-up everyone's talking about by Saturday.
@@ -490,6 +514,19 @@
     </div>
   </section>
 
+
+  <section class="idx-sec">
+    <div class="inner">
+      <p class="eyebrow">On Dibs</p>
+      <ol class="idx">
+        <li><span class="n">01 /</span><span><span class="cat">Feature</span> — Rick Owens x Dr. Martens, at Laboutik</span><span class="when">Coming soon</span></li>
+        <li><span class="n">02 /</span><span><span class="cat">Feature</span> — Jusuf, collector of AI art and former owner of SILK Art House</span><span class="when">Coming soon</span></li>
+        <li><span class="n">03 /</span><span><span class="cat">Dibs</span> — First drop</span><span class="when">December</span></li>
+        <li><span class="n">04 /</span><span><span class="cat">Side Quest</span></span><span class="when">Coming soon</span></li>
+        <li><span class="n">05 /</span><span><span class="cat">The Short List</span></span><span class="when">Coming soon</span></li>
+      </ol>
+    </div>
+  </section>
   <section class="wall-sec">
     <div class="inner">
       <p class="eyebrow">We drop access to</p>
@@ -504,11 +541,11 @@
       <p class="eyebrow">How it works</p>
       <ol class="steps">
         <li><span class="n">01</span><span>We tell you what's dropping, and when. One place at a time, no feed, no browsing.</span></li>
-        <li><span class="n">02</span><span>At drop time, Dibs go live, in limited numbers. Pay by card, Apple Pay, QRIS or bank transfer.</span></li>
-        <li><span class="n">03</span><span>You get a voucher with a QR code. Book a table with the place on any day within six months, then show your QR when you arrive.</span></li>
+        <li><span class="n">02</span><span>At drop time, Dibs go live in limited numbers. Pay by card, Apple Pay, QRIS or bank transfer.</span></li>
+        <li><span class="n">03</span><span>You get a voucher with a QR code. Book a table with the place on any day within 6 months, then show your QR when you arrive.</span></li>
       </ol>
       <p class="note">
-        We've sat at every table we call.
+        We sit at every table before we call it.
       </p>
     </div>
   </section>
@@ -519,7 +556,7 @@
       <div class="inner">
         <p class="eyebrow">Your call</p>
         <p class="statement">Help us pick the drop time</p>
-        <p class="note">Evening or morning?<br>Which would you rather?</p>
+        <p class="note">Evening or morning?<br>Which do you prefer?</p>
         <div class="vote-options">
           <button type="button" class="vote-btn" data-choice="20:20">20:20<small></small></button>
           <button type="button" class="vote-btn" data-choice="11:11">11:11<small></small></button>
@@ -559,12 +596,12 @@
   <section id="join" class="invert" data-free="true">
     <div class="inner join-hero">
       <p class="eyebrow">Newsletter</p>
-      <p class="statement">Call dibs on the next release</p>
-      <p class="note" style="margin-bottom:clamp(34px,4vw,56px)">List members get in 20 minutes before everyone else.</p>
+      <p class="statement">The Drops</p>
+      <p class="note" style="margin-bottom:clamp(34px,4vw,56px)">Reserved spots at places in Bali worth your time. List members get in 20 minutes early.</p>
       <form id="signup" novalidate>
         <div class="field">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" autocomplete="email">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="Email address">
         </div>
         <div class="field">
           <label for="phone">WhatsApp (optional)</label>
@@ -581,23 +618,22 @@
     </div>
   </section>
 
+
   <section id="more" class="more-sec">
     <div class="inner" id="faq">
       <p class="eyebrow">Good to know</p>
+      <div class="rules" style="margin-bottom:clamp(48px,6vw,88px)">
+        <div><h3>The spots</h3><p>A limited number of reserved spots. Valid for 6 months.</p></div>
+        <div><h3>The limit</h3><p>Up to 3 Dibs per person, per drop.</p></div>
+        <div><h3>The commitment</h3><p>Cancel less than 24 hours before, or don't show up, and your spot counts as used.</p></div>
+      </div>
       <div class="faq">
-        <details><summary>About Dibs</summary>
-          <p>Dibs are a limited number of reserved spots at a place we've picked, usually a set menu or a table credit, paid upfront. When they're gone, they're gone.</p>
-          <p>We cover tables, stays, wellness, art and culture: whatever is worth your time. Features are stories about the people behind the places, free to read. Side Quests are small trips off the tourist trail.</p>
+        <details><summary>What we cover</summary>
+          <p>Tables, stays, wellness, art and culture: whatever is worth your time. Features are stories about the people behind the places, free to read. Side Quests are small trips off the tourist trail.</p>
           <p>Our picks are never for sale. Partnerships exist, and they are always labelled "In partnership with Dibs".</p>
         </details>
-        <details><summary>Getting a seat</summary>
-          <p>Every Tuesday, Thursday and Friday, something drops: Dibs (reserved spots), a Feature or a Side Quest. List members get 20 minutes early access.</p>
-          <p>Pay when Dibs go live, by card, Apple Pay, QRIS or transfer. Your QR voucher arrives by email. Book with the venue, then show the QR when you arrive.</p>
-          <p>You can buy up to 3 per drop and use them together at one table, on one visit.</p>
-        </details>
-        <details><summary>After you buy</summary>
-          <p>Vouchers are valid every day for six months from purchase, unless the release page lists closed dates. Event drops use the event date.</p>
-          <p>Can't make it? Cancel with the venue at least 24 hours before. Later than that, or if you don't turn up, the voucher counts as used.</p>
+        <details><summary>The fine print</summary>
+          <p>Dibs can be used individually or combined, up to 3 at one table on one visit. Every place has its own rules, so check the details on each drop before you buy. Some releases list closed dates, and event drops use the event date.</p>
           <p>If the place can't honour your voucher, or an event is cancelled, you get a full refund. Event tickets aren't refunded if you change your mind.</p>
         </details>
       </div>
@@ -833,7 +869,7 @@
   form.addEventListener('submit', async function(e){
     e.preventDefault(); msg.textContent='';
     var data={email:form.email.value.trim(),phone:form.phone.value.trim(),wa_optin:form.wa_optin.checked,source:'holding-page'};
-    if(!data.email.includes('@')){ msg.textContent='A valid e-mail, please.'; return; }
+    if(!data.email.includes('@')){ msg.textContent='A valid email, please.'; return; }
     btn.disabled=true; btn.textContent='Calling dibs';
     try{
       if(!ENDPOINT) throw new Error('no endpoint');
@@ -841,7 +877,7 @@
       if(!res.ok) throw new Error('bad response');
       form.innerHTML='<p class="msg">Dibs called. We\'ll be in touch before launch.</p>';
     }catch(err){
-      msg.textContent='Something went wrong — write to hello@wearedibs.com';
+      msg.textContent='Something went wrong. Write to us at hello@wearedibs.com.';
       btn.disabled=false; btn.textContent='Call dibs';
     }
   });
@@ -906,7 +942,7 @@
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && shown) close(); });
   document.getElementById('popform').addEventListener('submit',function(e){
     e.preventDefault(); var em=document.getElementById('popemail').value.trim(), m=document.getElementById('popmsg');
-    if(!em || em.indexOf('@')<0){ m.textContent='A valid e-mail, please.'; return; }
+    if(!em || em.indexOf('@')<0){ m.textContent='A valid email, please.'; return; }
     var main=document.getElementById('signup'), me=document.getElementById('email');
     if(main && me){ me.value=em; if(main.requestSubmit) main.requestSubmit(); else main.dispatchEvent(new Event('submit',{cancelable:true})); }
     m.textContent="You're on the list. See you in December."; setTimeout(close,2200);

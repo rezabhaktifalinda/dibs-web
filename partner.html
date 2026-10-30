@@ -100,6 +100,17 @@
   .menu-foot a{color:rgba(250,247,239,.8);text-decoration:none}
   .menu-foot a:hover{color:#FAF7EF}
 
+  .p-solo{grid-template-columns:1fr!important;min-height:0!important}
+  .p-solo .txt.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,120px);align-items:start;max-width:none}
+  .p-solo .col-l{position:sticky;top:clamp(80px,10vw,120px)}
+  .p-solo .col-l h2{font-size:clamp(40px,5.6vw,84px)!important;line-height:.98}
+  .p-solo .col-r .bignums{margin-top:0}
+  @media (max-width:760px){.p-solo .txt.two{grid-template-columns:1fr}.p-solo .col-l{position:static}}
+  .p-photo img{height:75svh!important}
+  .p-photo .over{align-items:flex-end!important;justify-content:flex-start!important;flex-direction:column!important;padding-bottom:clamp(36px,5vw,64px)!important;gap:14px!important;text-align:left!important}
+  .p-photo .t{font-size:clamp(11px,1vw,13px)!important;letter-spacing:.2em!important;line-height:2!important;text-align:left!important}
+  .p-photo .t.r{text-align:left!important}
+  .p-photo .over{justify-content:flex-end!important;align-items:flex-start!important}
 </style>
 </head>
 <body>
@@ -142,7 +153,8 @@
   .p-photo .t.r{text-align:right}
   .p-photo .t a{color:var(--bg);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
   .p-photo .t a:hover{border-bottom-color:var(--bg)}
-  @media (max-width:760px){.p-split{grid-template-columns:1fr;min-height:0}.p-wall,.p-field{min-height:0}.p-photo img{height:80svh}.p-photo .over{flex-direction:column;justify-content:flex-end;padding-bottom:56px;text-align:center;gap:14px}.p-photo .t.r{text-align:center}.p-photo .t{font-size:17px}}
+  .p-split>img{width:100%;height:100%;min-height:60vh;object-fit:cover;display:block}
+  @media (max-width:760px){.p-split{grid-template-columns:1fr;min-height:0;display:flex;flex-direction:column}.p-split>img{order:2;height:auto;min-height:0;aspect-ratio:4/5;max-height:70svh}.p-split>.txt{order:1}.p-wall,.p-field{min-height:0}.p-photo img{height:80svh}.p-photo .over{flex-direction:column;justify-content:flex-end;padding-bottom:56px;text-align:center;gap:14px}.p-photo .t.r{text-align:center}.p-photo .t{font-size:17px}}
 </style>
 
 <section class="hero">
@@ -150,24 +162,26 @@
   <div class="wrap">
   <p class="eyebrow">Partner with us</p>
   <p class="statement">Work with Dibs</p>
-  <p class="note">We visit before we say yes. We've sat at every table we call.</p>
+  <p class="note">We sit at every table before we call it.</p>
 </div>
 </section>
 
 <section class="p-split">
-  <img src="/HERO.webp" alt="">
-  <div class="txt">
+  <img src="/HERO.webp" alt="" loading="lazy">
+  <div class="txt two">
+    <div class="col-l">
     <p class="label">01 · For places</p>
     <h2 style="color:var(--heading)">Restaurants, bars and stays</h2>
-    <p class="note">We feature places we'd send our friends to, wellness spaces included, then release a limited number of reserved spots to our list. You choose the offer and how many spots. Vouchers are valid every day for six months, and guests book their table with you. They pay us upfront, so every spot is paid before anyone sits down. We write about you, photograph you, and you keep every photo.</p>
-    <ol class="bignums">
+    <p class="note">We feature places we'd send our friends to, wellness spaces included, then release a limited number of reserved spots to our list. You choose the offer and how many spots. Vouchers are valid every day for 6 months, and guests book their table with you. They pay us upfront, so every spot is paid before anyone sits down. We write about you, photograph you, and you keep every photo.</p>
+    </div>
+    <div class="col-r"><ol class="bignums">
       <li><b>01</b><span>We visit before we say yes.</span></li>
-      <li><b>02</b><span>If it's a yes, we come back to shoot, and write your Feature.</span></li>
+      <li><b>02</b><span>If it's a yes, we come back to shoot and write your Feature.</span></li>
       <li><b>03</b><span>Your Dibs drop goes live at 20:20. Guests book a table with you directly and show their QR when they arrive.</span></li>
     </ol>
     <p class="note">No upfront fee. We take a commission only on the spots we sell, and pay you twice a month.</p>
     <p class="note">The first 24 places are Founding Partners: your Feature and photos are on us, and you get first call on future drops.</p>
-    <div class="btn-row"><a class="btn" href="mailto:partnership@wearedibs.com">Email us</a><a class="btn ghost" href="https://wa.me/6285190951909" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+    <div class="btn-row"><a class="btn" href="mailto:partnership@wearedibs.com">Email us</a><a class="btn ghost" href="https://wa.me/6285190951909" target="_blank" rel="noopener noreferrer">WhatsApp</a></div></div>
   </div>
 </section>
 
