@@ -338,7 +338,7 @@
 
   /* ---------- preview 30 Oct: launch first, big and centred, with countdown ---------- */
   #launch .launch-c{display:flex;flex-direction:column;align-items:center;text-align:center}
-  #launch .clock{font-size:clamp(64px,16.5vw,290px);line-height:.9}
+  #launch .clock{font-size:clamp(52px,10.5vw,180px);line-height:.92}
   #launch .clock-label b{color:inherit}
   .countdown{display:flex;justify-content:center;gap:clamp(22px,5vw,80px);margin:clamp(34px,4.4vw,64px) 0 clamp(34px,4vw,56px)}
   .countdown div{display:flex;flex-direction:column;align-items:center}
@@ -346,12 +346,18 @@
   .countdown small{text-transform:uppercase;letter-spacing:.2em;font-size:clamp(9px,.9vw,12px);color:var(--muted);margin-top:12px}
   .vote .statement{max-width:none;white-space:nowrap;font-size:clamp(22px,3.7vw,54.6px)}
   @media (max-width:700px){.vote .statement{white-space:normal;max-width:16ch}}
-  .first24 .statement{max-width:16ch}
-  .first24 .note{max-width:52ch;margin-top:clamp(20px,2.4vw,32px)}
-  .first24 .btn{margin-top:clamp(28px,3vw,44px)}
-  .f24-grid{display:grid;grid-template-columns:auto 1fr;gap:clamp(30px,6vw,110px);align-items:center}
-  .big24{font-size:clamp(120px,26vw,420px);line-height:.8;letter-spacing:-.05em;color:var(--bg);font-variant-numeric:tabular-nums}
-  @media (max-width:700px){.f24-grid{grid-template-columns:1fr}.big24{font-size:44vw}}
+  .wall-note{text-transform:uppercase;letter-spacing:.08em;font-size:clamp(12px,1.2vw,16px);line-height:1.85;color:rgba(250,247,239,.75);margin-top:clamp(28px,3vw,44px);max-width:48ch}
+  .f24-pop{position:fixed;right:clamp(16px,2.2vw,32px);bottom:clamp(16px,2.2vw,32px);z-index:60;width:min(360px,calc(100vw - 32px));
+    background:var(--heading);color:var(--bg);padding:30px 30px 32px;border:1px solid rgba(250,247,239,.18);box-shadow:0 18px 50px rgba(0,0,0,.28);
+    transform:translateY(20px);opacity:0;transition:opacity .4s,transform .4s}
+  .f24-pop.show{opacity:1;transform:none}
+  .f24-x{position:absolute;top:10px;right:12px;background:none;border:0;color:rgba(250,247,239,.7);font-size:26px;cursor:pointer;line-height:1}
+  .f24-eye{text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:rgba(250,247,239,.7)}
+  .f24-big{font-size:96px;line-height:.85;letter-spacing:-.05em;margin-top:18px;color:var(--olive-light,#B8BB5A)}
+  .f24-t{text-transform:uppercase;font-size:22px;line-height:1.2;letter-spacing:.01em;margin-top:16px}
+  .f24-d{text-transform:uppercase;font-size:11.5px;line-height:1.8;letter-spacing:.08em;color:rgba(250,247,239,.8);margin-top:14px}
+  .f24-btn{display:inline-block;margin-top:22px;background:var(--bg);color:var(--heading);text-decoration:none;text-transform:uppercase;letter-spacing:.2em;font-size:12px;padding:15px 26px}
+  .f24-btn:hover{background:var(--olive);color:var(--bg)}
 </style>
 </head>
 <body>
@@ -367,6 +373,15 @@
   <div class="menu-foot"><a href="https://instagram.com/dibs.bali" target="_blank" rel="noopener noreferrer">Instagram</a></div>
 </nav>
 
+
+<aside class="f24-pop" id="f24pop" role="dialog" aria-labelledby="f24t" hidden>
+  <button class="f24-x" type="button" aria-label="Close">&times;</button>
+  <p class="f24-eye">Run a place worth calling?</p>
+  <p class="f24-big" aria-hidden="true">24</p>
+  <p class="f24-t" id="f24t">We're looking for the first 24 places</p>
+  <p class="f24-d">Our first 24 drops, with the first 24 places. Your Feature and photos are on us. No upfront fee: we only earn when we sell.</p>
+  <a class="f24-btn" href="/partner">Partner with us</a>
+</aside>
 <div class="scroller" id="scroller">
 
   <section id="top">
@@ -415,7 +430,8 @@
   <section class="wall-sec">
     <div class="inner">
       <p class="eyebrow">What we drop</p>
-      <p class="wall"><span>Dinners <i>/</i></span> <span>bars <i>/</i></span> <span>stays <i>/</i></span> <span>wellness <i>/</i></span> <span>art openings <i>/</i></span> <span>supper clubs <i>/</i></span> <span>pop-ups</span></p>
+      <p class="wall"><span>Seats <i>/</i></span> <span>tables <i>/</i></span> <span>rooms <i>/</i></span> <span>tickets <i>/</i></span> <span>sessions</span></p>
+      <p class="wall-note">A limited number of each, at places worth your time. When they're gone, they're gone.</p>
     </div>
   </section>
 
@@ -431,18 +447,6 @@
       <p class="note">
         We've sat at every table we call.
       </p>
-    </div>
-  </section>
-
-  <section id="first24" class="invert first24">
-    <div class="inner f24-grid">
-      <div class="big24" aria-hidden="true">24</div>
-      <div>
-      <p class="eyebrow">For places</p>
-      <p class="statement">We're looking for the first 24 places</p>
-      <p class="note">Our first 24 drops, with the first 24 places. Your Feature and photos are on us. No upfront fee: we only earn when we sell.</p>
-      <a class="btn" href="/partner">Partner with us</a>
-      </div>
     </div>
   </section>
 
@@ -511,12 +515,6 @@
         <button type="submit" class="btn" id="submit">Call dibs</button>
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
-    </div>
-    <div class="inner more" id="venues">
-      <p class="eyebrow">Partner with us</p>
-      <p class="statement">Places, events and brands</p>
-      <p class="note">We visit before we say yes. We've sat at every table we call.</p>
-      <a class="btn" href="/partner">Partner with us</a>
     </div>
     <div class="inner more" id="faq">
       <p class="eyebrow">Good to know</p>
@@ -826,6 +824,20 @@
   }
   (sc.addEventListener?sc:window).addEventListener('scroll',check,{passive:true});
   window.addEventListener('resize',check); setTimeout(check,300);
+})();
+</script>
+<script>
+(function(){
+  var p=document.getElementById('f24pop'); if(!p) return;
+  var k='dibs_f24_closed', closed=false;
+  try{closed=localStorage.getItem(k)==='1';}catch(e){}
+  if(closed) return;
+  var sc=document.getElementById('scroller')||window, shown=false;
+  function show(){ if(shown) return; shown=true; p.hidden=false; requestAnimationFrame(function(){p.classList.add('show');}); }
+  function onScroll(){ var y=sc.scrollTop!==undefined?sc.scrollTop:window.scrollY; if(y>window.innerHeight*1.6) show(); }
+  sc.addEventListener('scroll',onScroll,{passive:true});
+  setTimeout(show,20000);
+  p.querySelector('.f24-x').addEventListener('click',function(){ p.classList.remove('show'); setTimeout(function(){p.hidden=true;},400); try{localStorage.setItem(k,'1');}catch(e){} });
 })();
 </script>
 </body>
