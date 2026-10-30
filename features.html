@@ -56,6 +56,14 @@
   footer.site a:hover{opacity:.7}
   footer.site .legal{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:clamp(40px,5vw,64px);padding-top:18px;border-top:1px solid rgba(250,247,239,.18);text-transform:uppercase;letter-spacing:.18em;font-size:10px;color:rgba(250,247,239,.6)}
   footer.site .legal a{color:rgba(250,247,239,.6)}
+  header.top.on-hero{position:absolute;top:0;left:0;right:0;z-index:5}
+  .hero{position:relative;height:100svh;min-height:540px;color:var(--bg);overflow:hidden}
+  .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,22,10,.72),rgba(20,22,10,.15) 55%,rgba(20,22,10,0) 75%);pointer-events:none}
+  .hero .wrap{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(44px,6vw,96px)}
+  .hero .eyebrow{color:rgba(250,247,239,.85)}
+  .hero .statement{color:var(--bg)}
+  .hero .note{color:rgba(250,247,239,.92)}
   @media (max-width:760px){.grid{grid-template-columns:1fr}}
   
   /* ---------- menu: side panel (all pages) ---------- */
@@ -72,10 +80,10 @@
   .menu-close{align-self:flex-end;width:44px;height:44px;border:0;background:transparent;cursor:pointer;position:relative;flex:0 0 auto}
   .menu-close span{position:absolute;left:6px;top:21px;width:32px;height:2px;background:#FAF7EF}
   .menu-close span:first-child{transform:rotate(45deg)}.menu-close span:last-child{transform:rotate(-45deg)}
-  .menu ul{list-style:none;margin-top:clamp(28px,4vh,48px)}
+  .menu ul{list-style:none;margin-top:clamp(20px,3vh,40px)}
   .menu li{border-top:1px solid rgba(250,247,239,.25)}
   .menu li:last-child{border-bottom:1px solid rgba(250,247,239,.25)}
-  .menu ul a,.menu ul .soon{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;
+  .menu ul a,.menu ul .soon{display:flex;justify-content:space-between;align-items:baseline;padding:13px 0;
     font-family:'Satoshi',sans-serif;font-weight:300;text-transform:uppercase;font-size:18px;letter-spacing:.05em;
     color:#FAF7EF;text-decoration:none}
   .menu ul a:hover{opacity:.7}
@@ -100,21 +108,22 @@
 <div class="menu-shade"></div>
 <nav class="menu" id="menu" aria-label="Menu">
   <button class="menu-close" type="button" aria-label="Close menu"><span></span><span></span></button>
-  <ul><li><span class="soon">Side Quests<small>Soon</small></span></li><li><a href="/the-short-list">The Short List</a></li><li><span class="soon">Shop<small>Soon</small></span></li></ul>
+  <ul><li><a href="/">Front page</a></li><li><a href="/features" aria-current="page">Features</a></li><li><span class="soon">Side Quests<small>Soon</small></span></li><li><a href="/the-short-list">The Short List</a></li><li><span class="soon">Shop<small>Soon</small></span></li><li><a href="/#join">Newsletter</a></li><li><a href="/partner">Partner with us</a></li><li><a href="/contact">Contact</a></li></ul>
   <div class="menu-cta">
     <a class="primary" href="/#join">Join the list</a>
-    <a class="ghost" href="/partner">Partner with us</a>
   </div>
-  <div class="menu-foot"><a href="/contact">Contact</a><a href="https://instagram.com/dibs.bali" target="_blank" rel="noopener noreferrer">Instagram</a></div>
+  <div class="menu-foot"><a href="https://instagram.com/dibs.bali" target="_blank" rel="noopener noreferrer">Instagram</a></div>
 </nav>
-<header class="top"><div class="wrap"><a class="home" href="/" aria-label="Dibs, front page"><img src="/DIBS_LOGO_OLIVE.svg" alt="Dibs"></a></div></header>
+<header class="top on-hero"><div class="wrap"><a class="home" href="/" aria-label="Dibs, front page"><img src="/DIBS_LOGO_WHITE.svg" alt="Dibs"></a></div></header>
 
-<section class="wrap intro">
+<section class="hero">
+  <img src="/CAFE.webp" alt="" fetchpriority="high">
+  <div class="wrap">
   <p class="eyebrow">Features</p>
   <p class="statement">The people behind the places</p>
   <p class="note">Conversations with the people behind the places we vouch for. No selling, just the story.</p>
+</div>
 </section>
-<img class="photo" src="/CAFE.webp" alt="">
 <section class="band ink"><div class="wrap grid">
   <div><p class="label">Coming up</p><p class="big">Soon</p></div>
   <div><p class="note" style="margin-top:0">The first Feature is coming. Join the list and we'll tell you when it's out.</p><a class="btn" href="/#join">Join the list</a></div>

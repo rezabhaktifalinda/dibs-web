@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DIBS</title>
-<meta name="description" content="Limited access to handpicked spots in Bali. Released Tuesday, Thursday and Friday at 20:20.">
+<meta name="description" content="Limited access to places in Bali worth your time. Something drops every Tuesday, Thursday and Friday.">
 <meta property="og:title" content="DIBS">
 <meta property="og:description" content="Limited access to handpicked spots in Bali.">
 <meta property="og:image" content="/HERO.webp">
@@ -266,8 +266,9 @@
 
   /* ---------- menu: side panel (all pages) ---------- */
   .menu-btn{position:fixed;top:clamp(16px,2.2vw,28px);right:clamp(16px,2.2vw,28px);z-index:50;
-    width:52px;height:52px;padding:0;border:0;background:transparent;cursor:pointer;mix-blend-mode:difference}
-  .menu-btn span{display:block;width:34px;height:2px;background:#fff;margin:7px auto}
+    width:52px;height:52px;padding:0;border:0;background:transparent;cursor:pointer}
+  .menu-btn span{display:block;width:34px;height:2px;background:#fff;margin:7px auto;transition:background .2s}
+  .menu-btn.on-light span{background:#232612}
   .menu-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
   .menu-shade{position:fixed;inset:0;z-index:55;background:rgba(35,38,18,.45);opacity:0;pointer-events:none;transition:opacity .3s ease}
   .menu{position:fixed;top:0;right:0;bottom:0;z-index:60;width:min(340px,100vw);background:#232612;color:#FAF7EF;
@@ -278,10 +279,10 @@
   .menu-close{align-self:flex-end;width:44px;height:44px;border:0;background:transparent;cursor:pointer;position:relative;flex:0 0 auto}
   .menu-close span{position:absolute;left:6px;top:21px;width:32px;height:2px;background:#FAF7EF}
   .menu-close span:first-child{transform:rotate(45deg)}.menu-close span:last-child{transform:rotate(-45deg)}
-  .menu ul{list-style:none;margin-top:clamp(28px,4vh,48px)}
+  .menu ul{list-style:none;margin-top:clamp(20px,3vh,40px)}
   .menu li{border-top:1px solid rgba(250,247,239,.25)}
   .menu li:last-child{border-bottom:1px solid rgba(250,247,239,.25)}
-  .menu ul a,.menu ul .soon{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;
+  .menu ul a,.menu ul .soon{display:flex;justify-content:space-between;align-items:baseline;padding:13px 0;
     font-family:'Satoshi',sans-serif;font-weight:300;text-transform:uppercase;font-size:18px;letter-spacing:.05em;
     color:#FAF7EF;text-decoration:none}
   .menu ul a:hover{opacity:.7}
@@ -307,6 +308,107 @@
   @media (prefers-reduced-motion:reduce){
     .scroller{scroll-behavior:auto}
   }
+
+  /* ---------- front page redesign preview (24 Oct) ---------- */
+  #top .hero-line{color:var(--bg);text-transform:uppercase;font-size:clamp(18px,2vw,28px);letter-spacing:.02em;margin-top:clamp(18px,2vw,28px)}
+  #top .hero-btns{display:flex;flex-wrap:wrap;gap:12px}
+  #top .hero-btns .btn{margin-top:clamp(22px,2.4vw,34px)}
+  #top .btn.line{background:transparent;color:var(--bg);border-color:var(--bg)}
+  #top .btn.line:hover{background:var(--bg);color:var(--heading)}
+  #what.field{align-items:center;text-align:center}
+  #what.field .inner{display:flex;flex-direction:column;align-items:center}
+  #what.field .statement{font-size:clamp(48px,10.5vw,170px);line-height:.95;letter-spacing:-.03em;max-width:10ch}
+  #what.field .note{margin-left:auto;margin-right:auto}
+  .wall-sec{background:var(--heading);color:var(--bg)}
+  .wall-sec .eyebrow{color:rgba(250,247,239,.8);font-size:clamp(13px,1.4vw,20px);letter-spacing:.16em}
+  .wall-sec .wall{text-transform:uppercase;font-size:clamp(34px,6.4vw,104px);line-height:1.06;letter-spacing:-.015em}
+  .wall-sec .wall span{white-space:nowrap}
+  .wall-sec .wall i{font-style:normal;color:var(--olive)}
+  #how.split{display:grid;grid-template-columns:1fr 1fr;padding:0;background:var(--bg)}
+  #how.split>img{width:100%;height:100%;min-height:100svh;object-fit:cover;display:block}
+  #how.split .inner{padding:var(--pad);display:flex;flex-direction:column;justify-content:center}
+  #how.split .steps{border-top-color:rgba(35,38,18,.18)}
+  #how.split .steps li{border-bottom-color:rgba(35,38,18,.18);align-items:baseline}
+  #how.split .steps .n{font-size:clamp(34px,4vw,58px);line-height:1;flex:0 0 clamp(58px,6vw,92px);letter-spacing:-.02em}
+  @media (max-width:760px){
+    #how.split{grid-template-columns:1fr}
+    #how.split>img{min-height:0;height:46svh}
+    #what.field .statement{font-size:clamp(44px,15vw,80px)}
+  }
+
+  /* ---------- preview 30 Oct: launch first, big and centred, with countdown ---------- */
+  #launch .launch-c{display:flex;flex-direction:column;align-items:center;text-align:center}
+  #launch .clock{font-size:clamp(52px,10.5vw,180px);line-height:.92}
+  #launch .clock-label b{color:inherit}
+  .countdown{display:flex;justify-content:center;gap:clamp(22px,5vw,80px);margin:clamp(34px,4.4vw,64px) 0 clamp(34px,4vw,56px)}
+  .countdown div{display:flex;flex-direction:column;align-items:center}
+  .countdown span{font-size:clamp(30px,4.2vw,64px);letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--heading);line-height:1}
+  .countdown small{text-transform:uppercase;letter-spacing:.2em;font-size:clamp(9px,.9vw,12px);color:var(--muted);margin-top:12px}
+  .vote .statement{max-width:none;white-space:nowrap;font-size:clamp(22px,3.7vw,54.6px)}
+  @media (max-width:700px){.vote .statement{white-space:normal;max-width:16ch}}
+  .wall-note{text-transform:uppercase;letter-spacing:.08em;font-size:clamp(12px,1.2vw,16px);line-height:1.85;color:rgba(250,247,239,.75);margin-top:clamp(28px,3vw,44px);max-width:48ch}
+  .wall-lead{text-transform:uppercase;letter-spacing:.08em;font-size:clamp(13px,1.3vw,18px);line-height:1.8;color:rgba(250,247,239,.85);max-width:56ch;margin-bottom:clamp(24px,3vw,40px)}
+  .wall-note{text-transform:uppercase;letter-spacing:.08em;font-size:clamp(12px,1.2vw,16px);color:rgba(250,247,239,.7);margin-top:clamp(28px,3vw,44px)}
+  .more-sec{background:var(--bg);color:var(--heading);min-height:0;justify-content:flex-start;padding-top:clamp(72px,9vw,128px)}
+  #how.split{min-height:100svh}
+  #how.split .inner{padding:clamp(48px,6vw,96px) var(--pad)}
+  #how.split .steps li{padding:clamp(14px,1.4vw,20px) 0;font-size:clamp(12px,1vw,15px)}
+  #how.split .steps .n{font-size:clamp(28px,3vw,44px);flex:0 0 clamp(50px,5vw,74px)}
+  .pop-shade{position:fixed;inset:0;z-index:70;background:rgba(35,38,18,.55);opacity:0;transition:opacity .35s}
+  .pop{position:fixed;z-index:71;left:50%;top:50%;transform:translate(-50%,-46%);opacity:0;transition:opacity .35s,transform .35s;
+    width:min(860px,calc(100vw - 32px));display:grid;grid-template-columns:1fr 1fr;background:var(--bg);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+  .pop[hidden],.pop-shade[hidden]{display:none}
+  .pop.show{opacity:1;transform:translate(-50%,-50%)}.pop-shade.show{opacity:1}
+  .pop-photo{position:relative;min-height:440px}
+  .pop-photo img:first-child{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+  .pop-logo{position:absolute;right:22px;top:var(--logo-top,12%);width:56%;filter:brightness(0) invert(1)}
+  .pop-body{position:relative;padding:44px 40px 36px;display:flex;flex-direction:column;justify-content:center}
+  .pop-x{position:absolute;top:12px;right:14px;background:none;border:0;font-size:28px;color:var(--muted);cursor:pointer;line-height:1}
+  .pop-eye{text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--muted)}
+  .pop-t{text-transform:uppercase;font-size:clamp(28px,3vw,40px);line-height:1.1;color:var(--heading);margin-top:14px}
+  .pop-d{text-transform:uppercase;letter-spacing:.07em;font-size:12px;line-height:1.8;color:var(--body);margin-top:14px}
+  .pop-form{margin-top:22px}
+  .pop-form input{width:100%;border:0;border-bottom:1px solid rgba(35,38,18,.35);background:transparent;padding:12px 0;font:inherit;font-size:14px;letter-spacing:.06em;color:var(--heading);outline:none}
+  .pop-btn{width:100%;margin-top:16px;background:var(--olive);color:var(--bg);border:0;padding:16px;text-transform:uppercase;letter-spacing:.2em;font:inherit;font-size:12px;cursor:pointer}
+  .pop-btn:hover{background:var(--heading)}
+  .pop-small{font-size:10px;letter-spacing:.06em;line-height:1.6;color:var(--muted);margin-top:10px;text-transform:uppercase}
+  .pop-small a{color:inherit}
+  .pop-msg{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--olive);margin-top:6px}.pop-msg:empty{display:none}
+  .pop-partner{border-top:1px solid rgba(35,38,18,.15);margin-top:16px;padding-top:14px;font-size:11px;letter-spacing:.07em;line-height:1.7;text-transform:uppercase;color:var(--body)}
+  .pop-partner b{font-weight:400;color:var(--heading)}
+  .pop-partner a{display:inline-block;margin-top:6px;color:var(--olive);text-decoration:none;letter-spacing:.18em}
+  @media (max-width:700px){.pop{grid-template-columns:1fr;max-height:calc(100svh - 24px);overflow:auto}.pop-photo{min-height:120px;height:120px}.pop-photo img:first-child{object-position:50% 78%}.pop-logo{width:38%;right:16px;top:auto;bottom:14px}.pop-body{padding:22px 22px 18px}.pop-t{font-size:26px;margin-top:8px}.pop-d{margin-top:8px;font-size:11px}.pop-form{margin-top:12px}.pop-btn{margin-top:12px;padding:14px}.pop-partner{margin-top:14px;padding-top:12px}}
+  .more-sec .faq{border-top-color:rgba(35,38,18,.18)}
+  .more-sec .faq details{border-bottom-color:rgba(35,38,18,.18)}
+  .more-sec .faq summary,.more-sec .faq details p,.more-sec .faq details li{color:var(--heading)}
+  .more-sec .faq h3,.more-sec .faq .grp{color:var(--muted)}
+  .more-sec .legal{border-top-color:rgba(35,38,18,.15);color:var(--muted)}
+  .more-sec .legal a{color:var(--muted)}
+  .more-sec .legal a:hover{color:var(--heading)}
+  #what.field .statement{max-width:none;white-space:nowrap}
+  #top .hero-btns .btn{min-width:240px;text-align:center}
+  @media (max-width:700px){
+    #what.field .statement{font-size:clamp(34px,12.2vw,64px)}
+    #top .hero-btns{flex-direction:column;align-items:stretch;gap:12px;max-width:320px}
+    #top .hero-btns .btn{margin-top:0;min-width:0;width:100%}
+    #top .hero-btns .btn:first-child{margin-top:clamp(22px,2.4vw,34px)}
+    .pop{top:50%}
+    .pop-photo{min-height:96px!important;height:96px!important}
+    .pop-body{padding:18px 20px 16px!important}
+    .pop-eye{font-size:10px}
+    .pop-t{font-size:24px!important;margin-top:6px!important}
+    .pop-d{font-size:10.5px!important;line-height:1.6;margin-top:6px!important}
+    .pop-form{margin-top:10px!important}
+    .pop-form input{padding:8px 0}
+    .pop-btn{margin-top:10px!important;padding:12px!important}
+    .pop-partner{margin-top:12px!important;padding-top:10px!important;font-size:10.5px;line-height:1.55}
+    .pop-partner a{margin-top:4px}
+    .pop-small{font-size:9px;margin-top:8px}
+  }
+  #how.split{height:100svh;min-height:0;grid-template-rows:100%;overflow:hidden}
+  #how.split>img{height:100%;min-height:0}
+  #how.split .inner{justify-content:center;overflow:hidden}
+  @media (max-width:900px){#how.split{height:auto;grid-template-rows:auto auto;overflow:visible}#how.split>img{height:46svh}}
 </style>
 </head>
 <body>
@@ -315,14 +417,34 @@
 <div class="menu-shade"></div>
 <nav class="menu" id="menu" aria-label="Menu">
   <button class="menu-close" type="button" aria-label="Close menu"><span></span><span></span></button>
-  <ul><li><span class="soon">Side Quests<small>Soon</small></span></li><li><a href="/the-short-list">The Short List</a></li><li><span class="soon">Shop<small>Soon</small></span></li></ul>
+  <ul><li><a href="/" aria-current="page">Front page</a></li><li><a href="/features">Features</a></li><li><span class="soon">Side Quests<small>Soon</small></span></li><li><a href="/the-short-list">The Short List</a></li><li><span class="soon">Shop<small>Soon</small></span></li><li><a href="/#join">Newsletter</a></li><li><a href="/partner">Partner with us</a></li><li><a href="/contact">Contact</a></li></ul>
   <div class="menu-cta">
     <a class="primary" href="/#join">Join the list</a>
-    <a class="ghost" href="/partner">Partner with us</a>
   </div>
-  <div class="menu-foot"><a href="/contact">Contact</a><a href="https://instagram.com/dibs.bali" target="_blank" rel="noopener noreferrer">Instagram</a></div>
+  <div class="menu-foot"><a href="https://instagram.com/dibs.bali" target="_blank" rel="noopener noreferrer">Instagram</a></div>
 </nav>
 
+
+<div class="pop-shade" id="popshade" hidden></div>
+<div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="popt" hidden>
+  <div class="pop-photo"><img src="/HOTEL.webp" alt=""><img class="pop-logo" src="/logo.svg" alt="Dibs"></div>
+  <div class="pop-body">
+    <button class="pop-x" type="button" aria-label="Close">&times;</button>
+    <p class="pop-eye">First drop · December</p>
+    <p class="pop-t" id="popt">Be first in line</p>
+    <p class="pop-d">List members get every drop 20 minutes before everyone else.</p>
+    <form class="pop-form" id="popform" novalidate>
+      <input type="email" id="popemail" placeholder="E-mail" autocomplete="email" aria-label="E-mail">
+      <button type="submit" class="pop-btn">Call dibs</button>
+      <p class="pop-msg" id="popmsg" role="status" aria-live="polite"></p>
+    </form>
+    <div class="pop-partner">
+      <p><b>Run a place worth calling?</b> We're looking for the first 24 places. Your Feature and photos are on us.</p>
+      <a href="/partner">Partner with us →</a>
+    </div>
+    <p class="pop-small">By subscribing, you agree to get Dibs emails. Unsubscribe any time. <a href="/privacy">Privacy policy</a>.</p>
+  </div>
+</div>
 <div class="scroller" id="scroller">
 
   <section id="top">
@@ -332,14 +454,31 @@
       <div class="logo">
         <!-- supply a cream/white version of the mark at /logo.svg -->
         <img src="/logo.svg" alt="Dibs">
+        <p class="hero-line">Only the ones worth calling</p>
+        <div class="hero-btns"><a class="btn" href="#join">Join the list</a><a class="btn line" href="/partner">Partner with us</a></div>
       </div>
     </div>
   </section>
 
-  <section id="what" class="invert">
+  <section id="launch">
+    <div class="inner launch-c">
+      <p class="eyebrow">Launch</p>
+      <div class="clock">December</div>
+      <p class="clock-label">2026 · Exact date soon</p>
+      <div class="countdown" id="countdown" aria-label="Time until December">
+        <div><span data-u="d">--</span><small>Days</small></div>
+        <div><span data-u="h">--</span><small>Hours</small></div>
+        <div><span data-u="m">--</span><small>Minutes</small></div>
+        <div><span data-u="s">--</span><small>Seconds</small></div>
+      </div>
+      <a class="btn" href="#join">Call dibs first</a>
+    </div>
+  </section>
+
+  <section id="what" class="invert field">
     <div class="inner">
-      <p class="eyebrow">Bali</p>
-      <p class="statement">Tue. Thu. Fri. 20:20</p>
+      <p class="eyebrow">Three drops a week</p>
+      <p class="statement">Tue. Thu. Fri.</p>
       <p class="note">
         We drop a limited number of Dibs on places in Bali worth your time.
         From the restaurant you keep meaning to try to the recovery session
@@ -348,26 +487,25 @@
       </p>
       <p class="note">Places we'd send our friends to, at rates you won't get walking in.</p>
       <p class="note">Subscribe to catch what drops next.</p>
-      <a class="btn" href="#join">Call dibs</a>
     </div>
   </section>
 
-  <section class="panel text-panel light">
-    <img src="/CAFE.webp" alt="" loading="lazy">
-    <div class="over-photo">
-      <div class="inner">
-        <p class="statement">Only the ones<br>worth calling</p>
-      </div>
+  <section class="wall-sec">
+    <div class="inner">
+      <p class="eyebrow">We drop access to</p>
+      <p class="wall"><span>Dinners <i>/</i></span> <span>bars <i>/</i></span> <span>stays <i>/</i></span> <span>wellness <i>/</i></span> <span>art openings <i>/</i></span> <span>supper clubs <i>/</i></span> <span>pop-ups</span></p>
+      <p class="wall-note">When they're gone, they're gone.</p>
     </div>
   </section>
 
-  <section id="how" class="invert">
+  <section id="how" class="split">
+    <img src="/HOTEL.webp" alt="" loading="lazy">
     <div class="inner">
       <p class="eyebrow">How it works</p>
       <ol class="steps">
         <li><span class="n">01</span><span>We tell you what's dropping, and when. One place at a time, no feed, no browsing.</span></li>
-        <li><span class="n">02</span><span>At 20:20 Dibs go live, in limited numbers. Pay by card, Apple Pay, QRIS or bank transfer.</span></li>
-        <li><span class="n">03</span><span>You get a voucher with a QR code. Turn up, they scan it, that's it.</span></li>
+        <li><span class="n">02</span><span>At drop time, Dibs go live, in limited numbers. Pay by card, Apple Pay, QRIS or bank transfer.</span></li>
+        <li><span class="n">03</span><span>You get a voucher with a QR code. Book a table with the place on any day within six months, then show your QR when you arrive.</span></li>
       </ol>
       <p class="note">
         We've sat at every table we call.
@@ -375,22 +513,13 @@
     </div>
   </section>
 
-  <section id="launch">
-    <div class="inner">
-      <p class="eyebrow">Launch</p>
-      <div class="clock">December</div>
-      <p class="clock-label"><b>2026</b> · Exact date soon</p>
-      <a class="btn" href="#join">Call dibs first</a>
-    </div>
-  </section>
-
   <section class="panel text-panel">
-    <img src="/HOTEL.webp" alt="" loading="lazy">
+    <img src="/CAFE.webp" alt="" loading="lazy">
     <div class="over-photo vote" id="vote">
       <div class="inner">
         <p class="eyebrow">Your call</p>
         <p class="statement">Help us pick the drop time</p>
-        <p class="note">For now it's 20:20. Which would you rather?</p>
+        <p class="note">Evening or morning?<br>Which would you rather?</p>
         <div class="vote-options">
           <button type="button" class="vote-btn" data-choice="20:20">20:20<small></small></button>
           <button type="button" class="vote-btn" data-choice="11:11">11:11<small></small></button>
@@ -431,7 +560,7 @@
     <div class="inner join-hero">
       <p class="eyebrow">Newsletter</p>
       <p class="statement">Call dibs on the next release</p>
-      <p class="note" style="margin-bottom:clamp(34px,4vw,56px)">List members hear the days, the drops and the first seats before anyone else.</p>
+      <p class="note" style="margin-bottom:clamp(34px,4vw,56px)">List members get in 20 minutes before everyone else.</p>
       <form id="signup" novalidate>
         <div class="field">
           <label for="email">E-mail</label>
@@ -450,13 +579,10 @@
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
     </div>
-    <div class="inner more" id="venues">
-      <p class="eyebrow">Partner with us</p>
-      <p class="statement">Places, events and brands</p>
-      <p class="note">We visit before we say yes. We've sat at every table we call.</p>
-      <a class="btn" href="/partner">Partner with us</a>
-    </div>
-    <div class="inner more" id="faq">
+  </section>
+
+  <section id="more" class="more-sec">
+    <div class="inner" id="faq">
       <p class="eyebrow">Good to know</p>
       <div class="faq">
         <details><summary>About Dibs</summary>
@@ -465,12 +591,12 @@
           <p>Our picks are never for sale. Partnerships exist, and they are always labelled "In partnership with Dibs".</p>
         </details>
         <details><summary>Getting a seat</summary>
-          <p>Every Tuesday, Thursday and Friday at 20:20, something drops: Dibs (reserved spots), a Feature or a Side Quest. List members hear first.</p>
+          <p>Every Tuesday, Thursday and Friday, something drops: Dibs (reserved spots), a Feature or a Side Quest. List members get 20 minutes early access.</p>
           <p>Pay when Dibs go live, by card, Apple Pay, QRIS or transfer. Your QR voucher arrives by email. Book with the venue, then show the QR when you arrive.</p>
           <p>You can buy up to 3 per drop and use them together at one table, on one visit.</p>
         </details>
         <details><summary>After you buy</summary>
-          <p>Vouchers are valid for six months from purchase. Event drops use the event date.</p>
+          <p>Vouchers are valid every day for six months from purchase, unless the release page lists closed dates. Event drops use the event date.</p>
           <p>Can't make it? Cancel with the venue at least 24 hours before. Later than that, or if you don't turn up, the voucher counts as used.</p>
           <p>If the place can't honour your voucher, or an event is cancelled, you get a full refund. Event tickets aren't refunded if you change your mind.</p>
         </details>
@@ -730,6 +856,61 @@
   sh.addEventListener('click',function(){ set(false); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && m.classList.contains('open')) set(false); });
   m.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ set(false); }); });
+})();
+</script>
+<script>
+(function(){
+  var el=document.getElementById('countdown'); if(!el) return;
+  var target=new Date('2026-12-01T00:00:00+08:00').getTime();
+  function pad(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var d=Math.max(0,target-Date.now()), s=Math.floor(d/1000);
+    var v={d:Math.floor(s/86400),h:Math.floor(s%86400/3600),m:Math.floor(s%3600/60),s:s%60};
+    for(var k in v){var x=el.querySelector('[data-u="'+k+'"]'); if(x) x.textContent=k==='d'?v[k]:pad(v[k]);}
+  }
+  tick(); setInterval(tick,1000);
+})();
+</script>
+<script>
+(function(){
+  var btn=document.querySelector('.menu-btn'); if(!btn) return;
+  var sc=document.getElementById('scroller')||window;
+  function lum(c){var m=c.match(/\d+(\.\d+)?/g); if(!m||m.length<3) return null; if(m.length>3&&+m[3]===0) return null; return (0.299*m[0]+0.587*m[1]+0.114*m[2])/255;}
+  function check(){
+    var r=btn.getBoundingClientRect(), x=r.left+r.width/2, y=r.top+r.height/2;
+    btn.style.pointerEvents='none'; var el=document.elementFromPoint(x,y); btn.style.pointerEvents='';
+    var light=false;
+    if(el&&el.closest&&el.closest('.panel,#top,.text-panel,.hero,.split img')){btn.classList.remove('on-light');return;}
+    while(el&&el!==document.documentElement){
+      if(el.tagName==='IMG'||el.classList.contains('scrim')){light=false;break;}
+      var l=lum(getComputedStyle(el).backgroundColor); if(l!==null){light=l>0.6;break;}
+      el=el.parentElement;
+    }
+    btn.classList.toggle('on-light',light);
+  }
+  (sc.addEventListener?sc:window).addEventListener('scroll',check,{passive:true});
+  window.addEventListener('resize',check); setTimeout(check,300);
+})();
+</script>
+<script>
+(function(){
+  var p=document.getElementById('pop'), sh=document.getElementById('popshade'); if(!p) return;
+  var k='dibs_pop_closed', closed=false; try{closed=localStorage.getItem(k)==='1';}catch(e){}
+  if(closed) return;
+  var sc=document.getElementById('scroller')||window, shown=false;
+  function show(){ if(shown) return; shown=true; p.hidden=false; sh.hidden=false; requestAnimationFrame(function(){p.classList.add('show'); sh.classList.add('show');}); }
+  function close(){ p.classList.remove('show'); sh.classList.remove('show'); setTimeout(function(){p.hidden=true; sh.hidden=true;},350); try{localStorage.setItem(k,'1');}catch(e){} }
+  sc.addEventListener('scroll',function(){ var y=sc.scrollTop!==undefined?sc.scrollTop:window.scrollY; if(y>window.innerHeight*1.5) show(); },{passive:true});
+  setTimeout(show,15000);
+  p.querySelector('.pop-x').addEventListener('click',close); sh.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && shown) close(); });
+  document.getElementById('popform').addEventListener('submit',function(e){
+    e.preventDefault(); var em=document.getElementById('popemail').value.trim(), m=document.getElementById('popmsg');
+    if(!em || em.indexOf('@')<0){ m.textContent='A valid e-mail, please.'; return; }
+    var main=document.getElementById('signup'), me=document.getElementById('email');
+    if(main && me){ me.value=em; if(main.requestSubmit) main.requestSubmit(); else main.dispatchEvent(new Event('submit',{cancelable:true})); }
+    m.textContent="You're on the list. See you in December."; setTimeout(close,2200);
+  });
 })();
 </script>
 </body>
