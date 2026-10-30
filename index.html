@@ -360,8 +360,8 @@
   .pop[hidden],.pop-shade[hidden]{display:none}
   .pop.show{opacity:1;transform:translate(-50%,-50%)}.pop-shade.show{opacity:1}
   .pop-photo{position:relative;min-height:440px}
-  .pop-photo img:first-child{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .pop-logo{position:absolute;left:28px;right:28px;bottom:28px;width:calc(100% - 56px);filter:brightness(0) invert(1)}
+  .pop-photo img:first-child{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+  .pop-logo{position:absolute;right:22px;top:var(--logo-top,12%);width:56%;filter:brightness(0) invert(1)}
   .pop-body{position:relative;padding:44px 40px 36px;display:flex;flex-direction:column;justify-content:center}
   .pop-x{position:absolute;top:12px;right:14px;background:none;border:0;font-size:28px;color:var(--muted);cursor:pointer;line-height:1}
   .pop-eye{text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--muted)}
@@ -373,11 +373,11 @@
   .pop-btn:hover{background:var(--heading)}
   .pop-small{font-size:10px;letter-spacing:.06em;line-height:1.6;color:var(--muted);margin-top:10px;text-transform:uppercase}
   .pop-small a{color:inherit}
-  .pop-msg{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--olive);margin-top:8px;min-height:1em}
-  .pop-partner{border-top:1px solid rgba(35,38,18,.15);margin-top:20px;padding-top:16px;font-size:11px;letter-spacing:.07em;line-height:1.7;text-transform:uppercase;color:var(--body)}
+  .pop-msg{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--olive);margin-top:6px}.pop-msg:empty{display:none}
+  .pop-partner{border-top:1px solid rgba(35,38,18,.15);margin-top:16px;padding-top:14px;font-size:11px;letter-spacing:.07em;line-height:1.7;text-transform:uppercase;color:var(--body)}
   .pop-partner b{font-weight:400;color:var(--heading)}
   .pop-partner a{display:inline-block;margin-top:6px;color:var(--olive);text-decoration:none;letter-spacing:.18em}
-  @media (max-width:700px){.pop{grid-template-columns:1fr;max-height:calc(100svh - 32px);overflow:auto}.pop-photo{min-height:170px}.pop-logo{width:46%;left:20px;bottom:18px}.pop-body{padding:28px 24px 24px}}
+  @media (max-width:700px){.pop{grid-template-columns:1fr;max-height:calc(100svh - 24px);overflow:auto}.pop-photo{min-height:120px;height:120px}.pop-photo img:first-child{object-position:50% 78%}.pop-logo{width:38%;right:16px;top:auto;bottom:14px}.pop-body{padding:22px 22px 18px}.pop-t{font-size:26px;margin-top:8px}.pop-d{margin-top:8px;font-size:11px}.pop-form{margin-top:12px}.pop-btn{margin-top:12px;padding:14px}.pop-partner{margin-top:14px;padding-top:12px}}
   .more-sec .faq{border-top-color:rgba(35,38,18,.18)}
   .more-sec .faq details{border-bottom-color:rgba(35,38,18,.18)}
   .more-sec .faq summary,.more-sec .faq details p,.more-sec .faq details li{color:var(--heading)}
@@ -385,6 +385,26 @@
   .more-sec .legal{border-top-color:rgba(35,38,18,.15);color:var(--muted)}
   .more-sec .legal a{color:var(--muted)}
   .more-sec .legal a:hover{color:var(--heading)}
+  #what.field .statement{max-width:none;white-space:nowrap}
+  #top .hero-btns .btn{min-width:240px;text-align:center}
+  @media (max-width:700px){
+    #what.field .statement{font-size:clamp(34px,12.2vw,64px)}
+    #top .hero-btns{flex-direction:column;align-items:stretch;gap:12px;max-width:320px}
+    #top .hero-btns .btn{margin-top:0;min-width:0;width:100%}
+    #top .hero-btns .btn:first-child{margin-top:clamp(22px,2.4vw,34px)}
+    .pop{top:50%}
+    .pop-photo{min-height:96px!important;height:96px!important}
+    .pop-body{padding:18px 20px 16px!important}
+    .pop-eye{font-size:10px}
+    .pop-t{font-size:24px!important;margin-top:6px!important}
+    .pop-d{font-size:10.5px!important;line-height:1.6;margin-top:6px!important}
+    .pop-form{margin-top:10px!important}
+    .pop-form input{padding:8px 0}
+    .pop-btn{margin-top:10px!important;padding:12px!important}
+    .pop-partner{margin-top:12px!important;padding-top:10px!important;font-size:10.5px;line-height:1.55}
+    .pop-partner a{margin-top:4px}
+    .pop-small{font-size:9px;margin-top:8px}
+  }
 </style>
 </head>
 <body>
@@ -412,13 +432,13 @@
     <form class="pop-form" id="popform" novalidate>
       <input type="email" id="popemail" placeholder="E-mail" autocomplete="email" aria-label="E-mail">
       <button type="submit" class="pop-btn">Call dibs</button>
-      <p class="pop-small">By subscribing, you agree to get Dibs emails. Unsubscribe any time. <a href="/privacy">Privacy policy</a>.</p>
       <p class="pop-msg" id="popmsg" role="status" aria-live="polite"></p>
     </form>
     <div class="pop-partner">
       <p><b>Run a place worth calling?</b> We're looking for the first 24 places. Your Feature and photos are on us.</p>
       <a href="/partner">Partner with us →</a>
     </div>
+    <p class="pop-small">By subscribing, you agree to get Dibs emails. Unsubscribe any time. <a href="/privacy">Privacy policy</a>.</p>
   </div>
 </div>
 <div class="scroller" id="scroller">
@@ -496,7 +516,7 @@
       <div class="inner">
         <p class="eyebrow">Your call</p>
         <p class="statement">Help us pick the drop time</p>
-        <p class="note">Evening or morning? Which would you rather?</p>
+        <p class="note">Evening or morning?<br>Which would you rather?</p>
         <div class="vote-options">
           <button type="button" class="vote-btn" data-choice="20:20">20:20<small></small></button>
           <button type="button" class="vote-btn" data-choice="11:11">11:11<small></small></button>
