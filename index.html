@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DIBS</title>
-<meta name="description" content="Limited access to handpicked spots in Bali. Released Tuesday, Thursday and Friday at 20:20.">
+<meta name="description" content="Limited access to places in Bali worth your time. Something drops every Tuesday, Thursday and Friday.">
 <meta property="og:title" content="DIBS">
 <meta property="og:description" content="Limited access to handpicked spots in Bali.">
 <meta property="og:image" content="/HERO.webp">
@@ -347,17 +347,43 @@
   .vote .statement{max-width:none;white-space:nowrap;font-size:clamp(22px,3.7vw,54.6px)}
   @media (max-width:700px){.vote .statement{white-space:normal;max-width:16ch}}
   .wall-note{text-transform:uppercase;letter-spacing:.08em;font-size:clamp(12px,1.2vw,16px);line-height:1.85;color:rgba(250,247,239,.75);margin-top:clamp(28px,3vw,44px);max-width:48ch}
-  .f24-pop{position:fixed;right:clamp(16px,2.2vw,32px);bottom:clamp(16px,2.2vw,32px);z-index:60;width:min(360px,calc(100vw - 32px));
-    background:var(--heading);color:var(--bg);padding:30px 30px 32px;border:1px solid rgba(250,247,239,.18);box-shadow:0 18px 50px rgba(0,0,0,.28);
-    transform:translateY(20px);opacity:0;transition:opacity .4s,transform .4s}
-  .f24-pop.show{opacity:1;transform:none}
-  .f24-x{position:absolute;top:10px;right:12px;background:none;border:0;color:rgba(250,247,239,.7);font-size:26px;cursor:pointer;line-height:1}
-  .f24-eye{text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:rgba(250,247,239,.7)}
-  .f24-big{font-size:96px;line-height:.85;letter-spacing:-.05em;margin-top:18px;color:var(--olive-light,#B8BB5A)}
-  .f24-t{text-transform:uppercase;font-size:22px;line-height:1.2;letter-spacing:.01em;margin-top:16px}
-  .f24-d{text-transform:uppercase;font-size:11.5px;line-height:1.8;letter-spacing:.08em;color:rgba(250,247,239,.8);margin-top:14px}
-  .f24-btn{display:inline-block;margin-top:22px;background:var(--bg);color:var(--heading);text-decoration:none;text-transform:uppercase;letter-spacing:.2em;font-size:12px;padding:15px 26px}
-  .f24-btn:hover{background:var(--olive);color:var(--bg)}
+  .wall-lead{text-transform:uppercase;letter-spacing:.08em;font-size:clamp(13px,1.3vw,18px);line-height:1.8;color:rgba(250,247,239,.85);max-width:56ch;margin-bottom:clamp(24px,3vw,40px)}
+  .wall-note{text-transform:uppercase;letter-spacing:.08em;font-size:clamp(12px,1.2vw,16px);color:rgba(250,247,239,.7);margin-top:clamp(28px,3vw,44px)}
+  .more-sec{background:var(--bg);color:var(--heading);min-height:0;justify-content:flex-start;padding-top:clamp(72px,9vw,128px)}
+  #how.split{min-height:100svh}
+  #how.split .inner{padding:clamp(48px,6vw,96px) var(--pad)}
+  #how.split .steps li{padding:clamp(14px,1.4vw,20px) 0;font-size:clamp(12px,1vw,15px)}
+  #how.split .steps .n{font-size:clamp(28px,3vw,44px);flex:0 0 clamp(50px,5vw,74px)}
+  .pop-shade{position:fixed;inset:0;z-index:70;background:rgba(35,38,18,.55);opacity:0;transition:opacity .35s}
+  .pop{position:fixed;z-index:71;left:50%;top:50%;transform:translate(-50%,-46%);opacity:0;transition:opacity .35s,transform .35s;
+    width:min(860px,calc(100vw - 32px));display:grid;grid-template-columns:1fr 1fr;background:var(--bg);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+  .pop.show{opacity:1;transform:translate(-50%,-50%)}.pop-shade.show{opacity:1}
+  .pop-photo{position:relative;min-height:440px}
+  .pop-photo img:first-child{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .pop-logo{position:absolute;left:28px;right:28px;bottom:28px;width:calc(100% - 56px);filter:brightness(0) invert(1)}
+  .pop-body{position:relative;padding:44px 40px 36px;display:flex;flex-direction:column;justify-content:center}
+  .pop-x{position:absolute;top:12px;right:14px;background:none;border:0;font-size:28px;color:var(--muted);cursor:pointer;line-height:1}
+  .pop-eye{text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--muted)}
+  .pop-t{text-transform:uppercase;font-size:clamp(28px,3vw,40px);line-height:1.1;color:var(--heading);margin-top:14px}
+  .pop-d{text-transform:uppercase;letter-spacing:.07em;font-size:12px;line-height:1.8;color:var(--body);margin-top:14px}
+  .pop-form{margin-top:22px}
+  .pop-form input{width:100%;border:0;border-bottom:1px solid rgba(35,38,18,.35);background:transparent;padding:12px 0;font:inherit;font-size:14px;letter-spacing:.06em;color:var(--heading);outline:none}
+  .pop-btn{width:100%;margin-top:16px;background:var(--olive);color:var(--bg);border:0;padding:16px;text-transform:uppercase;letter-spacing:.2em;font:inherit;font-size:12px;cursor:pointer}
+  .pop-btn:hover{background:var(--heading)}
+  .pop-small{font-size:10px;letter-spacing:.06em;line-height:1.6;color:var(--muted);margin-top:10px;text-transform:uppercase}
+  .pop-small a{color:inherit}
+  .pop-msg{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--olive);margin-top:8px;min-height:1em}
+  .pop-partner{border-top:1px solid rgba(35,38,18,.15);margin-top:20px;padding-top:16px;font-size:11px;letter-spacing:.07em;line-height:1.7;text-transform:uppercase;color:var(--body)}
+  .pop-partner b{font-weight:400;color:var(--heading)}
+  .pop-partner a{display:inline-block;margin-top:6px;color:var(--olive);text-decoration:none;letter-spacing:.18em}
+  @media (max-width:700px){.pop{grid-template-columns:1fr;max-height:calc(100svh - 32px);overflow:auto}.pop-photo{min-height:170px}.pop-logo{width:46%;left:20px;bottom:18px}.pop-body{padding:28px 24px 24px}}
+  .more-sec .faq{border-top-color:rgba(35,38,18,.18)}
+  .more-sec .faq details{border-bottom-color:rgba(35,38,18,.18)}
+  .more-sec .faq summary,.more-sec .faq details p,.more-sec .faq details li{color:var(--heading)}
+  .more-sec .faq h3,.more-sec .faq .grp{color:var(--muted)}
+  .more-sec .legal{border-top-color:rgba(35,38,18,.15);color:var(--muted)}
+  .more-sec .legal a{color:var(--muted)}
+  .more-sec .legal a:hover{color:var(--heading)}
 </style>
 </head>
 <body>
@@ -374,14 +400,26 @@
 </nav>
 
 
-<aside class="f24-pop" id="f24pop" role="dialog" aria-labelledby="f24t" hidden>
-  <button class="f24-x" type="button" aria-label="Close">&times;</button>
-  <p class="f24-eye">Run a place worth calling?</p>
-  <p class="f24-big" aria-hidden="true">24</p>
-  <p class="f24-t" id="f24t">We're looking for the first 24 places</p>
-  <p class="f24-d">Our first 24 drops, with the first 24 places. Your Feature and photos are on us. No upfront fee: we only earn when we sell.</p>
-  <a class="f24-btn" href="/partner">Partner with us</a>
-</aside>
+<div class="pop-shade" id="popshade" hidden></div>
+<div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="popt" hidden>
+  <div class="pop-photo"><img src="/HOTEL.webp" alt=""><img class="pop-logo" src="/logo.svg" alt="Dibs"></div>
+  <div class="pop-body">
+    <button class="pop-x" type="button" aria-label="Close">&times;</button>
+    <p class="pop-eye">First drop · December</p>
+    <p class="pop-t" id="popt">Be first in line</p>
+    <p class="pop-d">List members get every drop 20 minutes before everyone else.</p>
+    <form class="pop-form" id="popform" novalidate>
+      <input type="email" id="popemail" placeholder="E-mail" autocomplete="email" aria-label="E-mail">
+      <button type="submit" class="pop-btn">Call dibs</button>
+      <p class="pop-small">By subscribing, you agree to get Dibs emails. Unsubscribe any time. <a href="/privacy">Privacy policy</a>.</p>
+      <p class="pop-msg" id="popmsg" role="status" aria-live="polite"></p>
+    </form>
+    <div class="pop-partner">
+      <p><b>Run a place worth calling?</b> We're looking for the first 24 places. Your Feature and photos are on us.</p>
+      <a href="/partner">Partner with us →</a>
+    </div>
+  </div>
+</div>
 <div class="scroller" id="scroller">
 
   <section id="top">
@@ -414,8 +452,8 @@
 
   <section id="what" class="invert field">
     <div class="inner">
-      <p class="eyebrow">Bali</p>
-      <p class="statement">Tue. Thu. Fri. 20:20</p>
+      <p class="eyebrow">Three drops a week</p>
+      <p class="statement">Tue. Thu. Fri.</p>
       <p class="note">
         We drop a limited number of Dibs on places in Bali worth your time.
         From the restaurant you keep meaning to try to the recovery session
@@ -430,8 +468,9 @@
   <section class="wall-sec">
     <div class="inner">
       <p class="eyebrow">What we drop</p>
-      <p class="wall"><span>Seats <i>/</i></span> <span>tables <i>/</i></span> <span>rooms <i>/</i></span> <span>tickets <i>/</i></span> <span>sessions</span></p>
-      <p class="wall-note">A limited number of each, at places worth your time. When they're gone, they're gone.</p>
+      <p class="wall-lead">We don't drop places. We drop access: a limited number of seats, tables, rooms, tickets and sessions at</p>
+      <p class="wall"><span>Dinners <i>/</i></span> <span>bars <i>/</i></span> <span>stays <i>/</i></span> <span>wellness <i>/</i></span> <span>art openings <i>/</i></span> <span>supper clubs <i>/</i></span> <span>pop-ups</span></p>
+      <p class="wall-note">When they're gone, they're gone.</p>
     </div>
   </section>
 
@@ -441,7 +480,7 @@
       <p class="eyebrow">How it works</p>
       <ol class="steps">
         <li><span class="n">01</span><span>We tell you what's dropping, and when. One place at a time, no feed, no browsing.</span></li>
-        <li><span class="n">02</span><span>At 20:20 Dibs go live, in limited numbers. Pay by card, Apple Pay, QRIS or bank transfer.</span></li>
+        <li><span class="n">02</span><span>At drop time, Dibs go live, in limited numbers. Pay by card, Apple Pay, QRIS or bank transfer.</span></li>
         <li><span class="n">03</span><span>You get a voucher with a QR code. Book a table with the place on any day within six months, then show your QR when you arrive.</span></li>
       </ol>
       <p class="note">
@@ -456,7 +495,7 @@
       <div class="inner">
         <p class="eyebrow">Your call</p>
         <p class="statement">Help us pick the drop time</p>
-        <p class="note">For now it's 20:20. Which would you rather?</p>
+        <p class="note">Evening or morning? Which would you rather?</p>
         <div class="vote-options">
           <button type="button" class="vote-btn" data-choice="20:20">20:20<small></small></button>
           <button type="button" class="vote-btn" data-choice="11:11">11:11<small></small></button>
@@ -516,7 +555,10 @@
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
     </div>
-    <div class="inner more" id="faq">
+  </section>
+
+  <section id="more" class="more-sec">
+    <div class="inner" id="faq">
       <p class="eyebrow">Good to know</p>
       <div class="faq">
         <details><summary>About Dibs</summary>
@@ -525,7 +567,7 @@
           <p>Our picks are never for sale. Partnerships exist, and they are always labelled "In partnership with Dibs".</p>
         </details>
         <details><summary>Getting a seat</summary>
-          <p>Every Tuesday, Thursday and Friday at 20:20, something drops: Dibs (reserved spots), a Feature or a Side Quest. List members get 20 minutes early access.</p>
+          <p>Every Tuesday, Thursday and Friday, something drops: Dibs (reserved spots), a Feature or a Side Quest. List members get 20 minutes early access.</p>
           <p>Pay when Dibs go live, by card, Apple Pay, QRIS or transfer. Your QR voucher arrives by email. Book with the venue, then show the QR when you arrive.</p>
           <p>You can buy up to 3 per drop and use them together at one table, on one visit.</p>
         </details>
@@ -828,16 +870,23 @@
 </script>
 <script>
 (function(){
-  var p=document.getElementById('f24pop'); if(!p) return;
-  var k='dibs_f24_closed', closed=false;
-  try{closed=localStorage.getItem(k)==='1';}catch(e){}
+  var p=document.getElementById('pop'), sh=document.getElementById('popshade'); if(!p) return;
+  var k='dibs_pop_closed', closed=false; try{closed=localStorage.getItem(k)==='1';}catch(e){}
   if(closed) return;
   var sc=document.getElementById('scroller')||window, shown=false;
-  function show(){ if(shown) return; shown=true; p.hidden=false; requestAnimationFrame(function(){p.classList.add('show');}); }
-  function onScroll(){ var y=sc.scrollTop!==undefined?sc.scrollTop:window.scrollY; if(y>window.innerHeight*1.6) show(); }
-  sc.addEventListener('scroll',onScroll,{passive:true});
-  setTimeout(show,20000);
-  p.querySelector('.f24-x').addEventListener('click',function(){ p.classList.remove('show'); setTimeout(function(){p.hidden=true;},400); try{localStorage.setItem(k,'1');}catch(e){} });
+  function show(){ if(shown) return; shown=true; p.hidden=false; sh.hidden=false; requestAnimationFrame(function(){p.classList.add('show'); sh.classList.add('show');}); }
+  function close(){ p.classList.remove('show'); sh.classList.remove('show'); setTimeout(function(){p.hidden=true; sh.hidden=true;},350); try{localStorage.setItem(k,'1');}catch(e){} }
+  sc.addEventListener('scroll',function(){ var y=sc.scrollTop!==undefined?sc.scrollTop:window.scrollY; if(y>window.innerHeight*1.5) show(); },{passive:true});
+  setTimeout(show,15000);
+  p.querySelector('.pop-x').addEventListener('click',close); sh.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && shown) close(); });
+  document.getElementById('popform').addEventListener('submit',function(e){
+    e.preventDefault(); var em=document.getElementById('popemail').value.trim(), m=document.getElementById('popmsg');
+    if(!em || em.indexOf('@')<0){ m.textContent='A valid e-mail, please.'; return; }
+    var main=document.getElementById('signup'), me=document.getElementById('email');
+    if(main && me){ me.value=em; if(main.requestSubmit) main.requestSubmit(); else main.dispatchEvent(new Event('submit',{cancelable:true})); }
+    m.textContent="You're on the list. See you in December."; setTimeout(close,2200);
+  });
 })();
 </script>
 </body>
