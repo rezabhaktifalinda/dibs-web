@@ -48,9 +48,9 @@
   .scroller.locked{overflow:hidden}
   .scroller.free-scroll{touch-action:pan-y}
   /* front page: each section snaps into place as you scroll (native, no JavaScript lock) */
-  html{scroll-snap-type:y proximity}
+  html{scroll-snap-type:y mandatory}
   section{scroll-snap-align:start}
-  @media (min-width:901px){html{scroll-snap-type:y mandatory}}
+  #how{scroll-snap-align:none}
   section{
     min-height:100svh;
     display:flex;flex-direction:column;justify-content:center;
@@ -413,14 +413,126 @@
   #how.split>img{height:100%;min-height:0}
   #how.split .inner{justify-content:center;overflow:hidden}
   @media (max-width:900px){#how.split{height:auto;grid-template-rows:auto auto;overflow:visible}#how.split>img{height:46svh}}
+
+  /* mockup v2: merged section, olive band, photo, big light type, hairline steps */
+  .mock-sec{background:#737700;color:#FAF7EF;padding:0}
+  .mock-two{display:grid;grid-template-columns:36fr 64fr;min-height:100svh}
+  .mock-photo{position:relative;overflow:hidden}
+  .mock-photo img{width:100%;height:100%;object-fit:cover;display:block;min-height:520px}
+  .mock-copy{padding:clamp(48px,5.5vw,84px) var(--pad) clamp(40px,4vw,64px);display:flex;flex-direction:column;justify-content:flex-start}
+  .mock-tag{font-size:12px;letter-spacing:.22em;text-transform:uppercase;opacity:.8;margin:0}
+  .mock-big{font-weight:300;text-transform:uppercase;font-size:clamp(40px,4.6vw,72px);line-height:.98;letter-spacing:-.01em;margin:22px 0 0}
+  .mock-lead{font-weight:300;font-size:clamp(16px,1.3vw,19px);line-height:1.55;margin:26px 0 0;max-width:520px;opacity:.92}
+  .mock-steps{list-style:none;padding:0;margin:36px 0 0;border-top:1px solid rgba(250,247,239,.35)}
+  .mock-steps li{display:grid;grid-template-columns:86px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid rgba(250,247,239,.35);font-weight:300;font-size:15px;line-height:1.5;text-transform:uppercase;letter-spacing:.03em}
+  .mock-n{font-size:clamp(34px,3.2vw,48px);line-height:1;letter-spacing:-.02em}
+  @media (max-width:760px){.mock-two{grid-template-columns:1fr;min-height:0}.mock-photo img{min-height:0;height:24svh}.mock-copy{padding:26px 22px 30px}.mock-tag{font-size:11px}.mock-big{font-size:31px;margin-top:14px}.mock-lead{font-size:14px;margin-top:14px;line-height:1.5}.mock-steps{margin-top:18px}.mock-steps li{grid-template-columns:52px 1fr;font-size:12px;padding:12px 0;line-height:1.4}.mock-n{font-size:28px}}
+  .mock-acc{color:#E9EAD0}
+  /* mockup v3: newsletter with photo, compact Good to know + footer */
+  #join.invert .mock-jwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,110px);align-items:stretch;max-width:none}
+  .mock-jimg{width:100%;height:auto;aspect-ratio:4/5;max-height:640px;object-fit:cover;display:block;align-self:center}
+  .mc-foot a{color:inherit;text-decoration:none}
+  .mc-foot nav{margin:0;padding:0}
+  .mc{padding:clamp(44px,4.6vw,68px) var(--pad) clamp(16px,1.6vw,22px)}
+  .mc-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(32px,5vw,96px);align-items:start}
+  .mc-rules{border-top:1px solid rgba(35,38,18,.22)}
+  .mc-rules>div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:11px 0;border-bottom:1px solid rgba(35,38,18,.22)}
+  .mc-rules h3{font-weight:300;font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin:0}
+  .mc-rules p{margin:0;font-size:15px;line-height:1.5}
+  .mc-faq{margin-top:20px}
+  .mc-foot{padding:16px var(--pad) 18px;border-top:1px solid rgba(35,38,18,.22);display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 32px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  .mc-foot nav{display:flex;flex-wrap:wrap;gap:14px 26px}
+  .mc-foot .legal{display:flex;gap:18px;flex-wrap:wrap}
+  @media (max-width:900px){#join.invert .mock-jwrap{grid-template-columns:1fr}.mock-jimg{aspect-ratio:auto;max-height:none;height:46svh}}
+  @media (max-width:760px){.mc-wrap{grid-template-columns:1fr;gap:12px}.mc-rules>div{grid-template-columns:1fr;gap:4px;padding:9px 0}.mc{padding:30px 22px 14px}.mc-faq{margin-top:12px}.mc-faq summary{padding:12px 0}.mc-foot{padding:14px 22px 16px;gap:10px 18px}.mc-foot nav{gap:8px 16px;font-size:11px}}
+  .br-m{display:none}
+  @media (max-width:760px){.br-m{display:inline}.mc{padding:30px 28px 14px}.mc-foot{padding:14px 28px 16px}}
+  /* mockup v7: bottom section in capitals, rules as a 2x2 grid on desktop */
+  .more-sec.mc, .more-sec.mc .mc-rules p, .more-sec.mc .mc-faq summary, .more-sec.mc .mc-faq p, .more-sec.mc .mc-foot{text-transform:uppercase;letter-spacing:.05em}
+  .more-sec.mc .mc-rules p{font-size:13px;line-height:1.6}
+  .more-sec.mc .mc-faq p{font-size:13px;line-height:1.6}
+  @media (min-width:761px){.more-sec.mc .mc-rules{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(28px,4vw,72px);border-top:0}.more-sec.mc .mc-rules>div{display:block;padding:18px 0 20px;border-top:1px solid rgba(35,38,18,.22);border-bottom:0}.more-sec.mc .mc-rules h3{margin:0 0 8px}}
+  @media (max-width:760px){.more-sec.mc .mc-rules p{font-size:12px}}
+  /* v8: olive headings and tappable-looking FAQ rows on phone */
+  .more-sec.mc .mc-rules h3{color:#737700}
+  .more-sec.mc .mc-faq summary{color:#737700;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+  @media (max-width:760px){
+    .more-sec.mc .mc-faq details{border-top:1px solid rgba(35,38,18,.22);border-bottom:1px solid rgba(35,38,18,.22);margin-top:-1px}
+    .more-sec.mc .mc-faq summary{padding:16px 0;list-style:none}
+    .more-sec.mc .mc-faq summary::-webkit-details-marker{display:none}
+    .more-sec.mc .mc-faq summary::after{content:"+";display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border:1px solid #737700;border-radius:0;font-size:16px;line-height:1}
+    .more-sec.mc .mc-faq details[open] summary::after{content:"\2212"}
+  }
+
+  /* v9: vote moves under launch as a wide strip; How it works sits low with a gap */
+  .mock-copy{justify-content:space-between}
+  .mock-how{margin-top:clamp(40px,5vw,88px)}
+  .mock-how-label{font-size:12px;letter-spacing:.22em;text-transform:uppercase;opacity:.8;margin:0 0 18px}
+  .vote-wide{background:var(--bg);padding:clamp(48px,6vw,96px) 0;border-top:1px solid rgba(35,38,18,.15)}
+  .vw-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,72px);align-items:center;padding:0 var(--pad)}
+  .vw-left .eyebrow{margin:0 0 14px}
+  .vw-statement{font-size:clamp(28px,3.4vw,52px);line-height:1.02;text-transform:uppercase;letter-spacing:-.01em;margin:0;color:var(--heading);font-weight:300}
+  .vw-right{display:flex;flex-direction:column}
+  .vw-note{margin:0;text-transform:uppercase;letter-spacing:.09em;font-size:clamp(11px,1vw,13px);color:var(--muted)}
+  .vote-wide .vote-options{margin:22px 0 0;max-width:520px;display:flex;gap:12px}
+  .vote-wide .vote-btn{color:var(--heading);border:1px solid var(--olive);background:transparent;padding:16px 0}
+  .vote-wide .vote-btn:hover:not(:disabled){background:var(--olive);color:var(--bg)}
+  .vote-wide .vote-btn.picked{background:var(--olive);border-color:var(--olive);color:var(--bg)}
+  .vote-wide .vote-note{color:var(--muted);margin-top:12px;min-height:1.4em}
+  @media (max-width:760px){
+    .vw-inner{grid-template-columns:1fr;gap:22px}
+    .vw-statement{font-size:28px}
+    .mock-how{margin-top:34px}
+    .vote-wide{padding:44px 0}
+  }
+
+  /* v10: plain line above the headline saying which days we drop */
+  .mock-drops{font-size:clamp(15px,1.25vw,18px);line-height:1.45;letter-spacing:.06em;text-transform:uppercase;font-weight:400;margin:0;max-width:34ch}
+  @media (max-width:760px){.mock-drops{font-size:13px;letter-spacing:.05em}}
+
+  /* v11: vote lives inside the launch section, above the button */
+  #launch .vw-block{max-width:560px;margin:clamp(36px,4vw,56px) auto 0;text-align:center}
+  #launch .vw-block .eyebrow{margin:0 0 14px}
+  #launch .vw-statement{font-size:clamp(24px,2.6vw,38px);line-height:1.05;text-transform:uppercase;letter-spacing:-.01em;margin:0;color:var(--heading);font-weight:300}
+  #launch .vw-note{margin:14px 0 0;text-transform:uppercase;letter-spacing:.09em;font-size:clamp(11px,1vw,13px);color:var(--muted)}
+  #launch .vote-options{display:flex;gap:12px;max-width:420px;margin:22px auto 0}
+  #launch .vote-btn{color:var(--heading);border:1px solid var(--olive);background:transparent;padding:14px 0}
+  #launch .vote-btn:hover:not(:disabled){background:var(--olive);color:var(--bg)}
+  #launch .vote-btn.picked{background:var(--olive);border-color:var(--olive);color:var(--bg)}
+  #launch .vote-note{color:var(--muted);margin:12px 0 0;min-height:1.4em}
+  #launch .btn{margin-top:clamp(36px,4vw,56px)}
+  @media (max-width:760px){#launch .vw-statement{font-size:24px}}
+
+  /* v14: balance On Dibs and the tip form, tidy What labels, no orphan in vote title */
+  .mock-drops,.mock-how-label{font-size:clamp(12px,1vw,14px);letter-spacing:.22em;line-height:1.5;text-transform:uppercase;font-weight:400;opacity:.9;margin:0;max-width:none}
+  .mock-how-label{margin-bottom:18px}
+  @media (max-width:760px){.mock-drops,.mock-how-label{font-size:11px;letter-spacing:.2em}}
+  #launch .vw-statement{text-wrap:balance}
+  @media (min-width:761px){
+    .tip .inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(32px,6vw,120px);align-items:start;grid-template-rows:auto auto 1fr}
+    .tip .inner>.eyebrow,.tip .inner>.statement,.tip .inner>.note{grid-column:1}
+    .tip .inner>form{grid-column:2;grid-row:1 / 4;margin-top:0;max-width:560px}
+  }
+
+  /* v15: smaller vote inside launch */
+  #launch .vw-block{max-width:460px;margin-top:clamp(28px,3vw,44px)}
+  #launch .vw-block .eyebrow{margin:0 0 10px}
+  #launch .vw-statement{font-size:clamp(18px,1.8vw,26px)}
+  #launch .vw-note{margin-top:10px;font-size:clamp(10px,.85vw,12px)}
+  #launch .vote-options{max-width:320px;margin-top:16px;gap:10px}
+  #launch .vote-btn{padding:10px 0;font-size:clamp(15px,1.3vw,19px)}
+  #launch .vote-btn small{font-size:10px;margin-top:4px}
+  @media (max-width:760px){#launch .vw-statement{font-size:18px}#launch .vote-options{max-width:280px}}
+  .tip{background:#E9EAD0}
+  .tip .field input,.tip select{border-bottom-color:rgba(35,38,18,.3)!important}
 </style>
 
 <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400&display=swap" rel="stylesheet">
 <style>
   body, input, button, select, textarea { font-family: 'Satoshi','Albert Sans',-apple-system,sans-serif !important; }
   .idx-sec{min-height:auto;padding-top:clamp(80px,10vw,140px);padding-bottom:clamp(80px,10vw,140px)}
-  .idx{list-style:none;margin:0;padding:0;border-top:1px solid rgba(35,38,18,.18);max-width:900px}
-  .idx li{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:baseline;padding:clamp(18px,2vw,26px) 0;border-bottom:1px solid rgba(35,38,18,.18);text-transform:uppercase;letter-spacing:.08em;font-size:clamp(13px,1.3vw,18px);color:var(--heading)}
+  .idx{list-style:none;margin:0;padding:0;border-top:1px solid rgba(35,38,18,.18);max-width:none}
+  .idx li{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:baseline;padding:clamp(18px,2vw,26px) 0;border-bottom:1px solid rgba(35,38,18,.18);text-transform:uppercase;letter-spacing:.08em;font-size:clamp(14px,1.5vw,21px);color:var(--heading)}
   .idx .n{color:var(--muted)}
   .idx .cat{color:var(--olive)}
   .idx .when{color:var(--muted);font-size:clamp(10px,1vw,12px);letter-spacing:.2em}
@@ -431,7 +543,7 @@
   @media (max-width:760px){.rules{grid-template-columns:1fr}.idx li{grid-template-columns:44px 1fr}.idx .when{grid-column:2}}
   .join-sub{text-transform:uppercase;letter-spacing:.12em;font-size:11px;opacity:.75;margin-top:14px}
   .pop,.pop-shade{display:none!important}
-  #top .hero-btns .btn{background:transparent;color:var(--bg);border-color:rgba(250,247,239,.85);min-width:0!important;width:auto!important;padding-left:26px;padding-right:26px}
+#top .hero-btns .btn{background:transparent;color:var(--bg);border-color:rgba(250,247,239,.85);min-width:0!important;width:auto!important;padding-left:26px;padding-right:26px}
   #top .hero-btns{flex-direction:row!important;align-items:center!important;max-width:none!important;gap:10px!important}
   #top .hero-btns .btn{margin-top:clamp(22px,2.4vw,34px)!important}
   #top .hero-btns .btn{flex:0 0 200px;padding-left:0;padding-right:0;text-align:center;white-space:nowrap}
@@ -441,12 +553,15 @@
   #top .logo img{height:36px!important;width:auto}
   #top .hero-btns{display:flex!important;flex-direction:row!important;justify-content:center;align-items:stretch;gap:12px!important;max-width:none!important;width:100%}
   #top .hero-btns .btn{flex:1 1 0!important;width:auto!important;min-width:0!important;max-width:360px;margin-top:0!important;padding-left:20px!important;padding-right:20px!important;text-align:center}
+  /* hero v4 test: buttons dead centre of the hero, both ways */
+  #top .hero-pad{justify-content:center!important}
+  #top .hero-btns{position:absolute!important;left:50%!important;top:50%!important;bottom:auto!important;transform:translate(-50%,-50%);width:auto!important;justify-content:center!important;margin:0!important}
+  @media (max-width:700px){#top .hero-btns{width:calc(100% - 52px)!important;justify-content:center!important}}
   #top .hero-btns .btn:hover{background:var(--bg);color:var(--heading);border-color:var(--bg)}
 </style>
+<script src="/consent.js"></script>
 </head>
-<body>
-
-<button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+<body><button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
 <div class="menu-shade"></div>
 <nav class="menu" id="menu" aria-label="Menu">
   <button class="menu-close" type="button" aria-label="Close menu"><span></span><span></span></button>
@@ -465,7 +580,7 @@
     <button class="pop-x" type="button" aria-label="Close">&times;</button>
     <p class="pop-eye">First drop · December</p>
     <p class="pop-t" id="popt">Be first in line</p>
-    <p class="pop-d">List members get every drop 20 minutes before everyone else.</p>
+    <p class="pop-d">List members get every drop 20&nbsp;minutes before everyone else.</p>
     <form class="pop-form" id="popform" novalidate>
       <input type="email" id="popemail" placeholder="Email" autocomplete="email" aria-label="Email">
       <button type="submit" class="pop-btn">Call dibs</button>
@@ -475,7 +590,7 @@
       <p><b>Run a place worth calling?</b> We're looking for the first 24 places. Your Feature and photos are on us.</p>
       <a href="/partner">Partner with us →</a>
     </div>
-    <p class="pop-small">By subscribing, you agree to get Dibs emails. Unsubscribe any time. <a href="/privacy">Privacy policy</a>.</p>
+    <p class="pop-small">By subscribing, you agree to get Dibs emails. Unsubscribe any time. <a href="/privacy">Privacy&nbsp;policy</a>.</p>
   </div>
 </div>
 <div class="scroller-free" id="scroller-free">
@@ -492,7 +607,7 @@
     </div>
   </section>
 
-  <section id="launch">
+<section id="launch">
     <div class="inner launch-c">
       <p class="eyebrow">Launch</p>
       <div class="clock">December</div>
@@ -503,27 +618,44 @@
         <div><span data-u="m">--</span><small>Minutes</small></div>
         <div><span data-u="s">--</span><small>Seconds</small></div>
       </div>
-      <a class="btn" href="#join">Call dibs first</a>
+      <div class="vw-block" id="vote">
+        <p class="eyebrow">Your call</p>
+        <p class="vw-statement">Help us pick the drop time</p>
+        <p class="vw-note">Pick the time that suits you best.</p>
+        <div class="vote-options">
+          <button type="button" class="vote-btn" data-choice="20:20">20:20<small></small></button>
+          <button type="button" class="vote-btn" data-choice="11:11">11:11<small></small></button>
+        </div>
+        <p class="vote-note" aria-live="polite"></p>
+      </div>
     </div>
   </section>
 
-  <section id="what" class="invert field">
+<section id="what" class="mock-sec">
+    <div class="mock-two">
+      <div class="mock-photo"><img src="/HOTEL.webp" alt="" loading="lazy"></div>
+      <div class="mock-copy">
+        <p class="mock-drops">Every Tue.&nbsp;Thu.&nbsp;Fri.</p>
+        <h2 class="mock-big">We drop a limited number of Dibs</h2>
+        <p class="mock-lead">Reserved spots at places in Bali worth your time, from the restaurant you keep meaning to try to the pop-up everyone is talking about.</p>
+        <div class="mock-how"><p class="mock-how-label">How it works</p><ol class="mock-steps">
+          <li><span class="mock-n">01</span><span>We tell you what drops, and when.</span></li>
+          <li><span class="mock-n">02</span><span>At drop time, Dibs go live in limited numbers. Pay by card, bank transfer or QRIS.</span></li>
+          <li><span class="mock-n">03</span><span>Get a voucher with a QR code, then book directly with the place. Valid for 6&nbsp;months unless the drop says otherwise.</span></li>
+        </ol></div>
+      </div>
+    </div>
+  </section>
+
+<section class="wall-sec">
     <div class="inner">
-      <p class="eyebrow">Three drops a week</p>
-      <p class="statement">Tue. Thu. Fri.</p>
-      <p class="note">
-        We drop a limited number of Dibs: reserved spots at places in Bali worth your time.
-        From the restaurant you keep meaning to try to the recovery session
-        you actually need, a boutique stay worth a night away and the
-        pop-up everyone's talking about by Saturday.
-      </p>
-      <p class="note">Places we'd send our friends to, at rates you won't get walking in.</p>
-      <p class="note">Subscribe to catch what drops next.</p>
+      <p class="eyebrow">We drop access to</p>
+      <p class="wall"><span>Dinners <i>/</i></span> <span>bars <i>/</i></span> <span>stays <i>/</i></span> <span>wellness <i>/</i></span> <span>art openings <i>/</i></span> <span>supper clubs <i>/</i></span> <span>pop-ups</span></p>
+      <p class="wall-note">When they're gone, they're gone.</p>
     </div>
   </section>
 
-
-  <section class="idx-sec">
+<section class="idx-sec">
     <div class="inner">
       <p class="eyebrow">On Dibs</p>
       <ol class="idx">
@@ -535,46 +667,8 @@
       </ol>
     </div>
   </section>
-  <section class="wall-sec">
-    <div class="inner">
-      <p class="eyebrow">We drop access to</p>
-      <p class="wall"><span>Dinners <i>/</i></span> <span>bars <i>/</i></span> <span>stays <i>/</i></span> <span>wellness <i>/</i></span> <span>art openings <i>/</i></span> <span>supper clubs <i>/</i></span> <span>pop-ups</span></p>
-      <p class="wall-note">When they're gone, they're gone.</p>
-    </div>
-  </section>
 
-  <section id="how" class="split">
-    <img src="/HOTEL.webp" alt="" loading="lazy">
-    <div class="inner">
-      <p class="eyebrow">How it works</p>
-      <ol class="steps">
-        <li><span class="n">01</span><span>We tell you what's dropping, and when. One place at a time, no feed, no browsing.</span></li>
-        <li><span class="n">02</span><span>At drop time, Dibs go live in limited numbers. Pay by card, Apple Pay, QRIS or bank transfer.</span></li>
-        <li><span class="n">03</span><span>You get a voucher with a QR code. Book a table with the place on any day within 6 months, then show your QR when you arrive.</span></li>
-      </ol>
-      <p class="note">
-        We sit at every table before we call it.
-      </p>
-    </div>
-  </section>
-
-  <section class="panel text-panel">
-    <img src="/CAFE.webp" alt="" loading="lazy">
-    <div class="over-photo vote" id="vote">
-      <div class="inner">
-        <p class="eyebrow">Your call</p>
-        <p class="statement">Help us pick the drop time</p>
-        <p class="note">Evening or morning?<br>Which do you prefer?</p>
-        <div class="vote-options">
-          <button type="button" class="vote-btn" data-choice="20:20">20:20<small></small></button>
-          <button type="button" class="vote-btn" data-choice="11:11">11:11<small></small></button>
-        </div>
-        <p class="vote-note" aria-live="polite"></p>
-      </div>
-    </div>
-  </section>
-
-  <section id="tip" class="tip">
+<section id="tip" class="tip">
     <div class="inner">
       <p class="eyebrow">Know a place?</p>
       <p class="statement">Tell us a place worth knowing</p>
@@ -601,15 +695,15 @@
     </div>
   </section>
 
-  <section id="join" class="invert" data-free="true">
-    <div class="inner join-hero">
+<section id="join" class="invert" data-free="true">
+    <div class="inner join-hero mock-jwrap"><div class="mock-jl">
       <p class="eyebrow">Newsletter</p>
-      <p class="statement">The Drops</p>
-      <p class="note" style="margin-bottom:clamp(34px,4vw,56px)">Reserved spots at places in Bali worth your time. List members get in 20 minutes early.</p>
+      <p class="statement">Call dibs<br>on the next <span class="mock-acc">drop</span></p>
+      <p class="note" style="margin-bottom:clamp(34px,4vw,56px)">Reserved spots at places in Bali worth your time. List members get in 20&nbsp;minutes early.</p>
       <form id="signup" novalidate>
         <div class="field">
           <label for="email">Email address</label>
-          <input type="email" id="email" name="email" autocomplete="email" placeholder="Email address">
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com">
         </div>
         <div class="field">
           <label for="phone">WhatsApp (optional)</label>
@@ -619,34 +713,38 @@
           <input type="checkbox" id="wa" name="wa_optin" value="yes">
           <span>Send me drop alerts on WhatsApp</span>
         </div>
-        <p class="consent">By subscribing, you agree to get Dibs emails about drops, Features and Side Quests. Tick the box to get drop alerts on WhatsApp too. You can unsubscribe at any time. Read our <a href="/privacy">Privacy policy</a>.</p>
-        <button type="submit" class="btn" id="submit">Call dibs</button>
+        <p class="consent">By subscribing, you agree to get Dibs emails about drops, Features and Side Quests. Tick the box to get drop alerts on WhatsApp too. You can unsubscribe at any time. Read our <a href="/privacy">Privacy&nbsp;policy</a>.</p>
+        <button type="submit" class="btn" id="submit">Join the list</button>
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
     </div>
+    <img class="mock-jimg" src="/HOTEL.webp" alt="" loading="lazy">
+    </div>
   </section>
 
-
-  <section id="more" class="more-sec">
-    <div class="inner" id="faq">
-      <p class="eyebrow">Good to know</p>
-      <div class="rules" style="margin-bottom:clamp(48px,6vw,88px)">
-        <div><h3>The spots</h3><p>A limited number of reserved spots. Valid for 6 months.</p></div>
-        <div><h3>The limit</h3><p>Up to 3 Dibs per person, per drop.</p></div>
-        <div><h3>The commitment</h3><p>Cancel less than 24 hours before, or don't show up, and your spot counts as used.</p></div>
-      </div>
-      <div class="faq">
-        <details><summary>What we cover</summary>
-          <p>Tables, stays, wellness, art and culture: whatever is worth your time. Features are stories about the people behind the places, free to read. Side Quests are small trips off the tourist trail.</p>
-          <p>Our picks are never for sale. Partnerships exist, and they are always labelled "In partnership with Dibs".</p>
-        </details>
-        <details><summary>The fine print</summary>
-          <p>Dibs can be used individually or combined, up to 3 at one table on one visit. Every place has its own rules, so check the details on each drop before you buy. Some releases list closed dates, and event drops use the event date.</p>
-          <p>If the place can't honour your voucher, or an event is cancelled, you get a full refund. Event tickets aren't refunded if you change your mind.</p>
-        </details>
+<section id="more" class="more-sec mc">
+    <div class="mc-wrap">
+      <div class="mc-head"><p class="eyebrow">Good to know</p></div>
+      <div class="mc-body">
+        <div class="mc-rules">
+          <div><h3>The spots</h3><p>A limited number of reserved spots,<br class="br-m"> valid for 6&nbsp;months.</p></div>
+          <div><h3>The limit</h3><p>Up to 3&nbsp;Dibs per person, per drop.</p></div>
+          <div><h3>The details</h3><p>Every place sets its own rules, so check the details on each drop before you buy. If a drop runs shorter than 6&nbsp;months or on set dates, it says so there.</p></div>
+          <div><h3>The commitment</h3><p>Cancel less than 24&nbsp;hours before, or don't show up, and your spot counts as used.</p></div>
+        </div>
+        <div class="faq mc-faq">
+          <details><summary>What we cover</summary>
+            <p>Tables, stays, wellness, art and culture: whatever is worth your time. Features are stories about the people behind the places. Side Quests are small trips off the tourist trail.</p>
+            <p>Our picks are never for sale. Partnerships are always labelled "In partnership with Dibs".</p>
+          </details>
+          <details><summary>The fine print</summary>
+            <p>Dibs can be used individually or combined, up to 3 at one table on one visit. Event drops use the event date.</p>
+            <p>If the place can't honour your voucher, or an event is cancelled, you get a full refund. Event tickets aren't refunded if you change your mind.</p>
+          </details>
+        </div>
       </div>
     </div>
-    <div class="inner foot">
+    <div class="mc-foot">
       <nav>
         <a href="/partner">Partner with us</a>
         <a href="/contact">Contact</a>
@@ -654,7 +752,7 @@
         <a href="https://wa.me/6285190951909" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <a href="https://instagram.com/dibs.bali" target="_blank" rel="noopener noreferrer">Instagram</a>
       </nav>
-      <div class="legal"><span>© 2026 Dibs</span><a href="/terms">Terms of use</a><a href="/privacy">Privacy policy</a></div>
+      <div class="legal"><span>© 2026&nbsp;Dibs</span><a href="/terms">Terms&nbsp;of&nbsp;use</a><a href="/privacy">Privacy&nbsp;policy</a><a href="#" data-cookie-settings>Cookie&nbsp;settings</a></div>
     </div>
   </section>
 
@@ -723,6 +821,7 @@
   /* ---------- section scrolling ---------- */
   (function(){
     var scroller = document.getElementById('scroller');
+    if (!scroller) return; // old JS scroll lock: the page now uses CSS scroll-snap instead
     var sections = Array.prototype.slice.call(scroller.querySelectorAll('section'));
     var DURATION = 850;                // ms per section — raise for slower
     var COOLDOWN = 50;                 // ms of quiet before another gesture counts
@@ -883,6 +982,7 @@
       if(!ENDPOINT) throw new Error('no endpoint');
       var res=await fetch(ENDPOINT,{method:'POST',headers:Object.assign({'Prefer':'return=minimal'},HEADERS),body:JSON.stringify(data)});
       if(!res.ok) throw new Error('bad response');
+      window.dataLayer=window.dataLayer||[]; dataLayer.push({event:'generate_lead',form:'newsletter',wa_optin:data.wa_optin});
       form.innerHTML='<p class="msg">Dibs called. We\'ll be in touch before launch.</p>';
     }catch(err){
       msg.textContent='Something went wrong. Write to us at hello@wearedibs.com.';
@@ -942,7 +1042,7 @@
   var k='dibs_pop_closed', closed=false; try{closed=localStorage.getItem(k)==='1';}catch(e){}
   if(closed) return;
   var sc=document.getElementById('scroller')||window, shown=false;
-  function show(){ if(shown) return; shown=true; p.hidden=false; sh.hidden=false; requestAnimationFrame(function(){p.classList.add('show'); sh.classList.add('show');}); }
+  function show(){ if(shown) return; if(window.DibsConsent && !window.DibsConsent.get()){ window.addEventListener('dibs:consent',function(){ setTimeout(show,1500); },{once:true}); return; } shown=true; p.hidden=false; sh.hidden=false; requestAnimationFrame(function(){p.classList.add('show'); sh.classList.add('show');}); }
   function close(){ p.classList.remove('show'); sh.classList.remove('show'); setTimeout(function(){p.hidden=true; sh.hidden=true;},350); try{localStorage.setItem(k,'1');}catch(e){} }
   sc.addEventListener('scroll',function(){ var y=sc.scrollTop!==undefined?sc.scrollTop:window.scrollY; if(y>window.innerHeight*1.5) show(); },{passive:true});
   setTimeout(show,15000);
