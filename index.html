@@ -48,8 +48,7 @@
   .scroller.locked{overflow:hidden}
   .scroller.free-scroll{touch-action:pan-y}
   /* front page: each section snaps into place as you scroll (native, no JavaScript lock) */
-  html{scroll-snap-type:y proximity}
-  @media (min-width:901px){html{scroll-snap-type:y mandatory}}
+  html{scroll-snap-type:y mandatory}
   section{scroll-snap-align:start}
   section{scroll-margin-top:0}
   #how{scroll-snap-align:none}
@@ -598,11 +597,12 @@
     .mock-how{margin-top:20px!important;padding-top:16px}
     .mock-how-label{margin-bottom:10px!important}
   }
-  /* hero 2 Nov: new dark-table photo, no overlay, buttons fit their text */
+  /* hero 2 Nov: dark-table photo, no overlay; both buttons the same size */
   #top .scrim{display:none}
-  #top .bg{object-position:50% 0%}
-  #top .hero-btns .btn,#top .hero-btns .btn:first-child{flex:0 0 auto!important;width:auto!important;padding-left:26px!important;padding-right:26px!important}
-  @media (max-width:700px){#top .bg{object-position:34% 50%}#top .hero-btns{flex-wrap:nowrap!important}#top .hero-btns .btn{max-width:none!important;padding-left:14px!important;padding-right:14px!important;background:rgba(35,38,18,.62)}}
+  #top .bg{object-position:50% 21%}
+  #top .hero-btns{display:inline-grid!important;grid-template-columns:1fr 1fr;gap:10px!important;flex-direction:row!important;max-width:none!important}
+  #top .hero-btns .btn,#top .hero-btns .btn:first-child{width:auto!important;min-width:0!important;max-width:none!important;flex:none!important;padding-left:26px!important;padding-right:26px!important;text-align:center;white-space:nowrap}
+  @media (max-width:700px){#top .bg{object-position:34% 50%}#top .hero-btns .btn{padding-left:14px!important;padding-right:14px!important;background:rgba(35,38,18,.62)}}
 </style>
 <script src="/consent.js"></script>
 </head>
