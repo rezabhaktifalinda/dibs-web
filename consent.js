@@ -10,9 +10,9 @@
 
   var TEXT = {
     title: 'Cookies, briefly',
-    body: 'We use a few cookies to see which pages people read, so we can make Dibs better. Nothing loads until you say yes. You can change your mind any time in Cookie settings.',
+    body: 'We use a few cookies to see which pages people read. Nothing loads until you say yes.',
     accept: 'Accept all',
-    essential: 'Only essential',
+    essential: 'Essential only',
     settings: 'Settings',
     save: 'Save choices',
     necessary: ['Necessary', 'Keeps the site working and remembers your choices. Always on.'],
@@ -80,7 +80,7 @@
   + '.ck-sw input:checked+i{background:#737700}.ck-sw input:checked+i::after{transform:translateX(18px)}'
   + '.ck-sw input:disabled{cursor:default}.ck-sw input:disabled+i{opacity:.5}'
   + '@media (min-width:601px){.ck{left:auto}}'
-  + '@media (max-width:600px){.ck{left:10px;right:10px;bottom:10px;padding:18px}}';
+  + '@media (max-width:600px){.ck{left:10px;right:10px;bottom:10px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.22);max-height:72svh;overflow:auto}.ck-t{font-size:10px}.ck-b{font-size:10px;line-height:1.6;letter-spacing:.06em;margin-top:6px}.ck-row{flex-wrap:nowrap;gap:6px;margin-top:12px}.ck-row button{flex:1 1 0;padding:10px 4px;font-size:9px;letter-spacing:.12em;white-space:nowrap}.ck-opt{padding:9px 0}.ck-opt span{font-size:9.5px}}';
 
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
