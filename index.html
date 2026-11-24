@@ -664,12 +664,8 @@
         <div><span data-u="s">--</span><small>Seconds</small></div>
       </div>
       <div class="vw-block" id="vote">
-        <p class="vw-statement">Help us pick the drop time</p>
-        <div class="vote-options">
-          <button type="button" class="vote-btn" data-choice="20:20">20:20<small></small></button>
-          <button type="button" class="vote-btn" data-choice="11:11">11:11<small></small></button>
-        </div>
-        <p class="vote-note" aria-live="polite"></p>
+        <p class="vw-statement">Every Tue.&nbsp;Thu.&nbsp;Fri. at 11:11</p>
+        <p class="vote-note">The list gets in 20 minutes early, at 10:51.</p>
       </div>
     </div>
   </section>
@@ -678,7 +674,7 @@
     <div class="mock-two">
       <div class="mock-photo"><img src="/HOTEL.webp" alt="" loading="lazy"></div>
       <div class="mock-copy">
-        <p class="mock-drops">Every Tue.&nbsp;Thu.&nbsp;Fri.</p>
+        <p class="mock-drops">Every Tue.&nbsp;Thu.&nbsp;Fri. 11:11</p>
         <h2 class="mock-big">We drop a limited number of Dibs</h2>
         <p class="mock-lead">Reserved spots at places in Bali worth your time, from the restaurant you keep meaning to try to the pop-up everyone is talking about.</p>
         <div class="mock-how"><p class="mock-how-label">How it works</p><ol class="mock-steps">
@@ -809,6 +805,7 @@
   /* ---------- drop-time vote (one vote per browser; totals only are public) ---------- */
   (function(){
     var root = document.getElementById('vote');
+    if (!root || !root.querySelector('.vote-btn')) return; /* poll closed 25 Nov: 11:11 */
     var buttons = root.querySelectorAll('.vote-btn');
     var note = root.querySelector('.vote-note');
 
